@@ -40,8 +40,8 @@ Then(/^I should see Create new Wallet and Restore Wallet options$/, async ()=> {
 });
 
 When(/^I do not accept Terms and conditions$/, async ()=> {
-    await homePage.verifyTermsAndConditions(app,expect);
-    await homePage.doNotAcceptTermsAndConditions(app);
+    await homePage.verifyTermsAndConditions(app,expect)
+    await homePage.doNotAcceptTermsAndConditions(app)
 });
 
 Then(/^I should see an Error Message$/, async ()=> {
