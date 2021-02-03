@@ -1,3 +1,5 @@
+//Support Page
+
 class SupportPage {
 
     get supportText() { return ('//div[contains(text(), "Support")]') }

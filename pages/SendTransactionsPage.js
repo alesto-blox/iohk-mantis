@@ -1,3 +1,5 @@
+//Send Transaction Page
+
 class SendTransactionPage {
 
      //Send transaction selectors
@@ -22,7 +24,7 @@ class SendTransactionPage {
     get advancedButton() { return ('//span[contains(text(),"Advanced")]')}
      
      //Send transaction next page selectors    
-    get recepientAddressValue() { return('//input[@type="text"]')}
+    get recepientAddressValue() { return('//label[contains(text(),"Recipient")]/..//input')}
     get amountTextOnNextPage() { return('//div[contains(text(),"Amount")]')}     
     get amountValue() { return('//div[contains(text(),"Amount")]/../div[@class="container"]/div[@class="amount"]')}
     get feeTextOnNextPage() { return('//div[contains(text(), "Fee") and @class="label"]')}
@@ -34,25 +36,14 @@ class SendTransactionPage {
  
      //Send transaction advanced tab selectors
     get amountTextOnAdvanced() { return ('//*[@for="tx-amount"]')}
-    get gasLimitText() { return ('//*[@for="tx-gas-limit"]')}
-    get gasLimitField() { return ('//*[@id="tx-gas-limit"]')}
-    get gasPriceText() { return ('//*[@for="tx-gas-price"]')}
-    get gasPriceField() { return ('//*[@id="tx-gas-price"]')}
-    get dataText() { return ('//*[@for="tx-data"]')}
-    get datafield() { return ('//*[@id="tx-data"]')}
-    get nonceText() { return ('//*[@for="tx-nonce"]')}
-    get nonceField() { return ('//*[@id="tx-nonce"]')}
- 
-     //Send transaction advanced tab next page selectors
-    get recepientAddressValueOnNextPage() { return ('//div[@class="DialogInput"][1]//input')}
-    get gasLimitTextOnNexPage() { return ('//div[@class="DialogInput"][2]/label')}
-    get gasLimitValueOnNextPage() { return ('//div[@class="DialogInput"][2]//input')}
-    get gasPriceTextOnNexPage() { return ('//div[@class="DialogInput"][3]/label')}
-    get gasPriceValueOnNextPage() { return ('//div[@class="DialogInput"][3]//input')}
-    get nonceTextOnNexPage() { return ('//div[@class="DialogInput"][4]/label')}
-    get nonceValue() { return ('//div[@class="DialogInput"][4]//input')}
-    get dataTextOnNexPage() { return ('//div[@class="DialogInput"][5]/label')}
-    get dataValue() { return ('//div[@class="DialogInput"][5]//input')}
+    get gasLimitText() { return ('//label[contains(text(),"Gas limit")]')}
+    get gasLimitField() { return ('//label[contains(text(),"Gas limit")]/..//input')}
+    get gasPriceText() { return ('//label[contains(text(),"Gas price")]')}
+    get gasPriceField() { return ('//label[contains(text(),"Gas price")]/..//input')}
+    get dataText() { return ('//label[contains(text(),"Data")]')}
+    get datafield() { return ('//textarea[@id="tx-data"]')}
+    get nonceText() { return ('//label[contains(text(),"Data")]')}
+    get nonceField() { return ('//label[contains(text(),"Data")]/..//input')}
 
 }
 

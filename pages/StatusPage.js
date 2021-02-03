@@ -1,3 +1,5 @@
+//Status Page
+
 class StatusPage {
 
     get machineText() { return ('//div[contains(text(), "Machine")]') }

@@ -1,3 +1,5 @@
+//Setting Page
+
 class SettingsPage {
 
     get mySettingsText() { return ('//div[contains(text(),"My settings")]') }

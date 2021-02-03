@@ -1,3 +1,5 @@
+//Receive Transaction Page
+
 class ReceiveTransactionPage {
 
     get receiveButton() { return ('//button[contains(text(), "Receive")]')}
