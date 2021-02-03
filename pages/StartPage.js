@@ -1,3 +1,4 @@
+const expect = require('chai').expect;
 class StartPage {
 
     get showDetails() { return ('//div[contains(text(),"Show details")]') }
@@ -28,37 +29,80 @@ class StartPage {
     get confirmButton() { return ('//button[@data-testid="right-button"]') }
     get confirmMainnetText() { return ('//input[@class="ant-input input"]') }
 
-    /**
-     * Given a Network Logs in to Mantis Wallet
-     * @param network
-     * @param app
-     * @returns {Promise<void>}
-     */
     async login(network,app) {
-        const selectedNetwork = await app.client.waitUntilWindowLoaded().getText(this.networkDropDown)
+
+        const selectedNetwork = await app.client
+            .waitForVisible(this.networkDropDown,5000)
+            .getText(this.networkDropDown);
+
         switch (network) {
-            case "Sagano":
+            case "Sagano Testnet":
                 if (selectedNetwork !== 'Sagano Testnet') {
-                    await app.client.waitUntilWindowLoaded().click(this.networkDropDown)
-                    await app.client.waitForEnabled(this.saganoNetwork, 5000).click(this.saganoNetwork)
-                    await app.client.waitForEnabled(this.confirmButton).click(this.confirmButton)
+                    await app.client
+                        .click(this.networkDropDown);
+
+                    await app.client
+                        .waitForVisible(this.saganoNetwork,5000)
+                        .click(this.saganoNetwork);
+
+                    await app.client
+                        .waitForVisible(this.confirmButton,5000)
+                        .click(this.confirmButton);
                 }
-                break
+
+                expect(await app.client
+                    .waitForVisible(this.networkDropDown,5000)
+                    .getText(this.networkDropDown)
+                ).to.equal(network);
+
+                break;
+
             case "Mainnet":
                 if (selectedNetwork !== 'Mainnet') {
-                    await app.client.waitUntilWindowLoaded().click(this.networkDropDown)
-                    await app.client.waitForEnabled(this.mainnetNetwork, 5000).click(this.mainnetNetwork)
-                    await app.client.setValue(this.confirmMainnetText, "MAINNET")
-                    await app.client.waitForEnabled(this.confirmButton).click(this.confirmButton)
+                    await app.client
+                        .click(this.networkDropDown);
+
+                    await app.client
+                        .waitForVisible(this.mainnetNetwork,5000)
+                        .click(this.mainnetNetwork);
+
+                    await app.client
+                        .waitForVisible(this.confirmMainnetText,5000)
+                        .setValue(this.confirmMainnetText, "MAINNET");
+
+                    await app.client
+                        .waitForVisible(this.confirmButton,5000)
+                        .click(this.confirmButton);
                 }
-                break
+
+                expect(await app.client
+                    .waitForVisible(this.networkDropDown,5000)
+                    .getText(this.networkDropDown)
+                )
+                    .to.equal(network);
+
+                break;
+
             case "Mordor":
                 if (selectedNetwork !== 'Mordor') {
-                    await app.client.waitUntilWindowLoaded().click(this.networkDropDown)
-                    await app.client.waitForEnabled(this.mordorNetwork, 5000).click(this.mordorNetwork)
-                    await app.client.waitForEnabled(this.confirmButton).click(this.confirmButton)
+                    await app.client
+                        .click(this.networkDropDown);
+
+                    await app.client
+                        .waitForVisible(this.mordorNetwork,5000)
+                        .click(this.mordorNetwork);
+
+                    await app.client
+                        .waitForVisible(this.mordorNetwork,5000)
+                        .click(this.confirmButton);
                 }
-                break
+
+                expect(await app.client
+                    .waitForVisible(this.networkDropDown,5000)
+                    .getText(this.networkDropDown)
+                ).to.equal(network);
+
+                break;
         }
     }
 }
