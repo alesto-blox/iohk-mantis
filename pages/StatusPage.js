@@ -1,9 +1,11 @@
+//Status Page
+
 class StatusPage {
 
-    get machineText() { return ('//*[@id="Mantis"]/div[2]/div/div[2]/div/div[2]/div/div/div[1]/div[1]') };
-    get backendText() { return ('//*[@id="Mantis"]/div[2]/div/div[2]/div/div[2]/div/div/div[2]/div[1]') };
-    get mantisWalletText() { return ('//*[@id="Mantis"]/div[2]/div/div[2]/div/div[2]/div/div/div[1]/div[6]') };
+    get machineText() { return ('//div[contains(text(), "Machine")]') }
+    get backendText() { return ('//div[contains(text(), "Backend")]') }
+    get mantisWalletText() { return ('//div[contains(text(), "Mantis Wallet") and @class="title"]') }
 
 }
 
-module.exports = new StatusPage();
+module.exports = new StatusPage()

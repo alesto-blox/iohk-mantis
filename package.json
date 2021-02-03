@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env APP_PATH=WIN_LOCAL ./node_modules/.bin/cucumber-js -r ./steps"
+    "test": "cross-env APP_PATH=WIN_LOCAL ./node_modules/.bin/cucumber-js -r ./steps",
+    "linux": "cross-env APP_PATH=LINUX_LOCAL ./node_modules/.bin/cucumber-js -r ./steps"
+
   },
   "keywords": [],
   "author": "",

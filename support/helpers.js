@@ -1,4 +1,4 @@
-const fs  =require('fs');
+const fs  =require('fs')
 
 function writeToFileAppended(file, data) {
     fs.writeFile(file, data + "\n", {
@@ -9,7 +9,7 @@ function writeToFileAppended(file, data) {
 }
 
 async function timeout(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, ms))
 }
 
 module.exports = {

@@ -1,3 +1,5 @@
+//Home Page
+
 const expect = require('chai').expect;
 class HomePage {
 
@@ -70,4 +72,4 @@ class HomePage {
     }
 }
 
-module.exports = new HomePage();
+module.exports = new HomePage()
