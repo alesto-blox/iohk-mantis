@@ -16,7 +16,7 @@ Feature: Accept terms and conditions
         Then I should see Create new Wallet and Restore Wallet options
         Examples:
             | network |
-            |Sagano   |
+            |Sagano Testnet  |
             #|Mainnet  |
             #|Mordor   |
 
@@ -28,6 +28,6 @@ Feature: Accept terms and conditions
         Then I should see an Error Message
         Examples:
             | network |
-            |Sagano   |
+            #|Sagano Testnet  |
             #|Mainnet  |
             #|Mordor   |
