@@ -1,5 +1,5 @@
 //Start Page
-
+const WAIT = require('../config/appConfig.js').WAIT;
 const expect = require('chai').expect;
 class StartPage {
 
@@ -34,7 +34,7 @@ class StartPage {
     async login(network,app) {
 
         const selectedNetwork = await app.client
-            .waitForVisible(this.networkDropDown,5000)
+            .waitForVisible(this.networkDropDown,WAIT)
             .getText(this.networkDropDown);
 
         switch (network) {
@@ -44,16 +44,16 @@ class StartPage {
                         .click(this.networkDropDown);
 
                     await app.client
-                        .waitForVisible(this.saganoNetwork,5000)
+                        .waitForVisible(this.saganoNetwork,WAIT)
                         .click(this.saganoNetwork);
 
                     await app.client
-                        .waitForVisible(this.confirmButton,5000)
+                        .waitForVisible(this.confirmButton,WAIT)
                         .click(this.confirmButton);
                 }
 
                 expect(await app.client
-                    .waitForVisible(this.networkDropDown,5000)
+                    .waitForVisible(this.networkDropDown,WAIT)
                     .getText(this.networkDropDown)
                 ).to.equal(network);
 
@@ -65,20 +65,20 @@ class StartPage {
                         .click(this.networkDropDown);
 
                     await app.client
-                        .waitForVisible(this.mainnetNetwork,5000)
+                        .waitForVisible(this.mainnetNetwork,WAIT)
                         .click(this.mainnetNetwork);
 
                     await app.client
-                        .waitForVisible(this.confirmMainnetText,5000)
+                        .waitForVisible(this.confirmMainnetText,WAIT)
                         .setValue(this.confirmMainnetText, "MAINNET");
 
                     await app.client
-                        .waitForVisible(this.confirmButton,5000)
+                        .waitForVisible(this.confirmButton,WAIT)
                         .click(this.confirmButton);
                 }
 
                 expect(await app.client
-                    .waitForVisible(this.networkDropDown,5000)
+                    .waitForVisible(this.networkDropDown,WAIT)
                     .getText(this.networkDropDown)
                 )
                     .to.equal(network);
@@ -91,16 +91,16 @@ class StartPage {
                         .click(this.networkDropDown);
 
                     await app.client
-                        .waitForVisible(this.mordorNetwork,5000)
+                        .waitForVisible(this.mordorNetwork,WAIT)
                         .click(this.mordorNetwork);
 
                     await app.client
-                        .waitForVisible(this.mordorNetwork,5000)
+                        .waitForVisible(this.confirmButton,WAIT)
                         .click(this.confirmButton);
                 }
 
                 expect(await app.client
-                    .waitForVisible(this.networkDropDown,5000)
+                    .waitForVisible(this.networkDropDown,WAIT)
                     .getText(this.networkDropDown)
                 ).to.equal(network);
 

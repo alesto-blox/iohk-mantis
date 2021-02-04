@@ -27,7 +27,6 @@ When(/^I choose the available Network "([^"]*)" in Mantis Wallet$/, async (netwo
 
 Then(/^I should see that I am syncing or connecting to the selected Network "([^"]*)"$/, async (network) => {
     await homePage.isMantisStartedForTheSelectedNetwork(app,network);
-    return await app.stop();
 });
 
 Then(/^I should be able to accept Terms and conditions$/, async () => {
@@ -46,4 +45,7 @@ When(/^I do not accept Terms and conditions$/, async ()=> {
 
 Then(/^I should see an Error Message$/, async ()=> {
     await homePage.verifyErrorMessageWhenTermsAreNotAccepted(app);
+});
+Then(/^I should close the Mantis Wallet application$/, async ()=> {
+    return await app.stop();
 });
