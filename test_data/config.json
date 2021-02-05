@@ -1,0 +1,23 @@
+{
+	"wallet": {
+		"accounts": [],
+		"addressBook": {},
+		"tncAccepted": false
+	},
+	"settings": {
+		"theme": "dark",
+		"dateFormat": "MM/DD/YYYY",
+		"timeFormat": "12-hour",
+		"language": "en"
+	},
+	"tokens": {
+		"watched": {}
+	},
+	"networkName": "testnet-internal-nomad",
+	"settings.language": "en",
+	"__internal__": {
+		"migrations": {
+			"version": "0.1.2-mantis-wallet"
+		}
+	}
+}
