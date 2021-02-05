@@ -24,6 +24,7 @@ class CreatePage {
     get writtenDownBox() { return ('//input[@id="written-down"]') }
     get reinputRecoveryText() { return ('//div[@class="instructions"]') }
     get clearRecoveryPhraseButton() { return ('//span[@class="clear"]') }
+    get recoveryWordsText() { return ('//div[@class="word"]')}
     get conditionsLocalyText() { return ('//input[@id="checkbox-local-only"]/../../span[not(@class="ant-checkbox")]') }
     get conditionsLocalyBox() { return ('//input[@id="checkbox-local-only"]') }
     get conditionRecoveryText() { return ('//input[@id="checkbox-recovery"]/../../span[not(@class="ant-checkbox")]') }
