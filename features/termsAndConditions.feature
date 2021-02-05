@@ -16,6 +16,7 @@ Feature: Accept terms and conditions
         Then I should be able to accept Terms and conditions
         Then I should see Create new Wallet and Restore Wallet options
         Then I should close the Mantis Wallet application
+        Then I should reset Mantis Wallet config.json
         Examples:
             | network |
             #|Sagano Testnet  |

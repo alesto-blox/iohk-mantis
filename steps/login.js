@@ -49,3 +49,6 @@ Then(/^I should see an Error Message$/, async ()=> {
 Then(/^I should close the Mantis Wallet application$/, async ()=> {
     return await app.stop();
 });
+Then(/^I should reset Mantis Wallet config\.json$/, function () {
+    helpers.resetMantisConfig(APP_CONF.BASE_CONF,APP_CONF.CONF_PATH);
+});
