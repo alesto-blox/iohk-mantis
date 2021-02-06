@@ -20,5 +20,5 @@ Feature: Login Mantis Wallet
             #|Mainnet  |
             #|Mordor   |
             #|Nova opcija|
-    # Jos izmena
+    # Jos izmena frgrtgt
     # adsgfdh
