@@ -19,6 +19,3 @@ Feature: Login Mantis Wallet
             #|Sagano Testnet |
             #|Mainnet  |
             #|Mordor   |
-            #|Nova opcija|
-    # Jos izmena frgrtgt
-    # adsgfdh
