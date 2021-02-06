@@ -15,7 +15,8 @@ Feature: Login Mantis Wallet
         Then I should see that I am syncing or connecting to the selected Network "<network>"
         Then I should close the Mantis Wallet application
         Examples:
-            | network |
+            #| network |
             #|Sagano Testnet |
             #|Mainnet  |
             #|Mordor   |
+            #|Nova opcija|

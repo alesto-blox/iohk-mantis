@@ -19,9 +19,9 @@ Feature: Accept terms and conditions
         Then I should reset Mantis Wallet config.json
         Examples:
             | network |
-            #|Sagano Testnet  |
-            #|Mainnet  |
-            #|Mordor   |
+            |Sagano Testnet  |
+            |Mainnet  |
+            |Mordor   |
 
     Scenario Outline: Accept Terms and Conditions
         Given I open the Mantis wallet app
@@ -32,6 +32,6 @@ Feature: Accept terms and conditions
         Then I should close the Mantis Wallet application
         Examples:
             | network |
-            #|Sagano Testnet  |
-            #|Mainnet  |
-            #|Mordor   |
+            |Sagano Testnet  |
+            |Mainnet  |
+            |Mordor   |
