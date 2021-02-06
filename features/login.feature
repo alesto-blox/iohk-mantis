@@ -19,3 +19,4 @@ Feature: Login Mantis Wallet
             #|Sagano Testnet |
             #|Mainnet  |
             #|Mordor   |
+            #|Nova opcija|
