@@ -3,12 +3,12 @@
 const expect = require('chai').expect;
 class HomePage {
 
-    get termsOfServiceTitle() { return ('//div[@class="title"]') };//IOHK Terms of Service Agreement
+    get termsOfServiceTitle() { return ('//div[@class="title"]') };
     get termsOfServiceText() { return ('//div[@class="scrollable"]') };
     get acceptTermsAndConditionsButton() { return ('div#termsAndConditionsApproval') };
-    get acceptTermsAndConditionsSpan() { return ('//span[@class="ant-checkbox-inner"]') }; //red
+    get acceptTermsAndConditionsSpan() { return ('//span[@class="ant-checkbox-inner"]') };
     get nextButton() { return ('//button[@type="submit"]') };
-    get errorDialog() { return ('//div[@class="DialogError"]') };//  #900
+    get errorDialog() { return ('//div[@class="DialogError"]') };
     get createWalletButton() { return ('//div[text()="Create"]') };
     get restoreWalletButton() { return ('//div[text()="Restore"]') };
     get connectedNetwork(){return ('//div[@class="network"]')}

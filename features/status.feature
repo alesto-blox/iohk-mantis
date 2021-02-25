@@ -1,6 +1,6 @@
 #
 # Mantis Wallet status feature
-# Steps in: ../steps/status.js
+# Steps in: ../steps/status.js & ../steps/login.js
 #
 
  Feature: Status on Mantis wallet
@@ -9,9 +9,14 @@
      I want to see my status
      Because I want to see my status
 
-     Scenario: Status page on Mantis wallet
-         Given I am logged in Mantis wallet and I am on main page
+     Scenario Outline: Status page on Mantis wallet
+         Given I open the Mantis wallet app
+         When I choose the available Network "<network>" in Mantis Wallet
          When I click on status button on main page on Mantis wallet
          Then I expect to see status page on Mantis wallet
-
-
+         Then I should close the Mantis Wallet application
+         Examples:
+            #| network |
+            #|Sagano Testnet |
+            #|Mainnet  |
+            #|Mordor   |
