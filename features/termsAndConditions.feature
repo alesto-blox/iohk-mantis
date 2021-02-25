@@ -8,7 +8,6 @@ Feature: Accept terms and conditions
     As a regular user when I login into Mantis Wallet application
     for the first time I should read and accept Terms and Conditions
 
-    # TODO Here we need to add another step to edit Mantis Wallet config.json files "tncAccepted" field back to false
     Scenario Outline: Accept Terms and Conditions
         Given I open the Mantis wallet app
         When I choose the available Network "<network>" in Mantis Wallet
@@ -18,10 +17,10 @@ Feature: Accept terms and conditions
         Then I should close the Mantis Wallet application
         Then I should reset Mantis Wallet config.json
         Examples:
-            | network |
-            |Sagano Testnet  |
-            |Mainnet  |
-            |Mordor   |
+            #| network |
+            #|Sagano Testnet  |
+            #|Mainnet  |
+            #|Mordor   |
 
     Scenario Outline: Accept Terms and Conditions
         Given I open the Mantis wallet app
@@ -31,7 +30,7 @@ Feature: Accept terms and conditions
         Then I should see an Error Message
         Then I should close the Mantis Wallet application
         Examples:
-            | network |
-            |Sagano Testnet  |
-            |Mainnet  |
-            |Mordor   |
+            #| network |
+            #|Sagano Testnet  |
+            #|Mainnet  |
+            #|Mordor   |

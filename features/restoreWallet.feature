@@ -1,6 +1,6 @@
 #
 # Mantis Restore Wallet  feature
-# Steps in: ../steps/restoreWallet.js
+# Steps in: ../steps/restoreWallet.js & ../steps/login.js
 #
 
 Feature: Create Mantis Wallet
@@ -11,7 +11,6 @@ Feature: Create Mantis Wallet
 
     Background: User is on restore page
         Given I open the Mantis wallet app
-        When I select directory folder
 
     Scenario Outline: Restore Mantis wallet with private key
         Then I choose the available Network "<network>" in Mantis Wallet
@@ -19,6 +18,7 @@ Feature: Create Mantis Wallet
         Then I choose Restore wallet button
         Then I enter wallet name, private key and passwords
         Then I expect to see main page
+        Then I should close the Mantis Wallet application
         Examples:
             #| network |
             #|Sagano Testnet |
@@ -31,6 +31,7 @@ Feature: Create Mantis Wallet
         Then I choose Restore wallet button
         Then I enter wallet name, recovery phrase and passwords
         Then I expect to see main page
+        Then I should close the Mantis Wallet application
         Examples:
             #| network |
             #|Sagano Testnet |

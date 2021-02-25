@@ -29,26 +29,10 @@ Then(/^I should see that I am syncing or connecting to the selected Network "([^
     await homePage.isMantisStartedForTheSelectedNetwork(app,network);
 });
 
-Then(/^I should be able to accept Terms and conditions$/, async () => {
-    await homePage.verifyTermsAndConditions(app);
-    await homePage.acceptTermsAndConditions(app);
-});
-
-Then(/^I should see Create new Wallet and Restore Wallet options$/, async ()=> {
-    await homePage.verifyWalletOptionsAreDisplayed(app);
-});
-
-When(/^I do not accept Terms and conditions$/, async ()=> {
-    await homePage.verifyTermsAndConditions(app);
-    await homePage.doNotAcceptTermsAndConditions(app);
-});
-
-Then(/^I should see an Error Message$/, async ()=> {
-    await homePage.verifyErrorMessageWhenTermsAreNotAccepted(app);
-});
 Then(/^I should close the Mantis Wallet application$/, async ()=> {
     return await app.stop();
 });
+
 Then(/^I should reset Mantis Wallet config\.json$/, function () {
     helpers.resetMantisConfig(APP_CONF.BASE_CONF,APP_CONF.CONF_PATH);
 });
