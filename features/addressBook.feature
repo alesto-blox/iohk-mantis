@@ -2,7 +2,7 @@
 # Mantis Wallet address book feature
 # Steps in: ../steps/addressBook.js & ../steps/login.js
 #
-
+@WIP
  Feature: Address book on Mantis wallet
 
      As a regular user
