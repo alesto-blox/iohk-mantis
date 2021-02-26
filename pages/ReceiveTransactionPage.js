@@ -1,5 +1,6 @@
 //Receive Transaction Page
-
+const WAIT = require('../config/appConfig.js').WAIT;
+const expect = require('chai').expect;
 class ReceiveTransactionPage {
 
     get receiveButton() { return ('//button[contains(text(), "Receive")]')}

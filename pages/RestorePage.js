@@ -1,5 +1,7 @@
 //Restore Page
-
+const WAIT = require('../config/appConfig.js').WAIT;
+const expect = require('chai').expect;
+const testData = require('../test_data/restoreWalletData.json');
 class RestorePage {
 
     get restoreWalletText() { return ('//div[text()="Restore Wallet" and @class="title"]') }
@@ -16,7 +18,28 @@ class RestorePage {
     get noteForPasswordText() { return ('//div[@class="criteria"]') }
     get cancelButton() { return ('//span[text()="Cancel"]/..') }
     get nextButton() { return ('//span[text()="Next"]/..') }
-   
+
+    async enterRestoreDetails(app){
+        await app.client
+            .waitForVisible(this.walletNameField,WAIT)
+            .setValue(this.walletNameField, testData.WalletName);
+
+        await app.client
+            .waitForVisible(this.privateKeyField,WAIT)
+            .setValue(this.privateKeyField, testData.PVTKey);
+
+        await app.client
+            .waitForVisible(this.enterPasswordField,WAIT)
+            .setValue(this.enterPasswordField, testData.Password);
+
+        await app.client
+            .waitForVisible(this.repeatPasswordField,WAIT)
+            .setValue(this.repeatPasswordField, testData.Password);
+
+        await app.client
+            .waitForVisible(this.nextButton,WAIT)
+            .click(this.nextButton);
+    }
 }
 
 module.exports = new RestorePage()

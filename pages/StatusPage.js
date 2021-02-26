@@ -1,5 +1,6 @@
 //Status Page
-
+const WAIT = require('../config/appConfig.js').WAIT;
+const expect = require('chai').expect;
 class StatusPage {
 
     get machineText() { return ('//div[contains(text(), "Machine")]') }

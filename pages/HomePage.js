@@ -1,5 +1,5 @@
 //Home Page
-
+const WAIT = require('../config/appConfig.js').WAIT;
 const expect = require('chai').expect;
 class HomePage {
 
@@ -69,6 +69,12 @@ class HomePage {
             .getText(this.connectedNetwork)
         )
             .to.equal(network);
+    }
+
+    async clickRestoreWalletButton(app){
+        await app.client
+            .waitForVisible(this.restoreWalletButton,30000)
+            .click(this.restoreWalletButton);
     }
 }
 

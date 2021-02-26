@@ -1,5 +1,6 @@
 //Create Page
-
+const WAIT = require('../config/appConfig.js').WAIT;
+const expect = require('chai').expect;
 class CreatePage {
 
     get createWalletText() { return ('//div[text()="Create New Wallet" and @class="title"]') }

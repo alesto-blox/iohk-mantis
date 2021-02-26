@@ -1,21 +1,9 @@
-const Application = require('spectron').Application;
-const APP_PATH = require('../config/appConfig.js')[process.env.ENV].APP_PATH;
 const APP_CONF = require('../config/appConfig.js')[process.env.ENV];
-const { Given, When, Then } = require('@cucumber/cucumber');
-const expect = require('chai').expect;
+const { Given, When, Then} = require('@cucumber/cucumber');
 const helpers = require('../support/helpers.js');
-const app = require('../support/baseApp.js').app
-
-const {setDefaultTimeout} = require('@cucumber/cucumber');
-setDefaultTimeout(60 * 1000);
-
 const startPage = require('../pages/StartPage.js');
 const homePage = require('../pages/HomePage.js');
-
-// const app = new Application({
-//     path: APP_PATH,
-//     startTimeout: APP_CONF.START_TIMEOUT
-//   })
+const app = require('../support/baseApp.js').app
 
 Given(/^I open the Mantis wallet app$/, async () => {
     await helpers.timeout(5000);
@@ -34,6 +22,6 @@ Then(/^I should close the Mantis Wallet application$/, async ()=> {
     return await app.stop();
 });
 
-Then(/^I should reset Mantis Wallet config\.json$/, function () {
-    helpers.resetMantisConfig(APP_CONF.TEST_CONF_PATH,APP_CONF.APP_CONF_PATH);
+Then(/^I should reset Mantis Wallet config\.json$/, async ()=> {
+    await helpers.resetMantisConfig(APP_CONF.TEST_CONF_PATH,APP_CONF.APP_CONF_PATH);
 });
