@@ -1,8 +1,11 @@
 //Address Book Page
 
+const helpers = require('../support/helpers')
+const expect = require('chai').expect;
+
 class AddressBookPage {
 
-    get addressBookLink() {return ('//div[@class="link address_book active"]')}
+    get addressBookLink() {return ('//div[text()="Address book"]')}
     get myAddressBookText() { return ('//div[@class="main-title"]') }
     get firstContactText() { return ('//div[@class="row"][1]/span[@class="label"]')}
     get firstContactAddress() { return ('//div[@class="row"][1]/span[@class="address"]')}
@@ -22,7 +25,7 @@ class AddressBookPage {
 
     async goToAddressBook(app) {
         await app.client
-            .waitForVisible(this.addressBookLink,10000)
+            .waitForVisible(this.addressBookLink,30000)
             .click(this.addressBookLink)
     }
 

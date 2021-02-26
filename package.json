@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "cross-env APP_PATH=WIN_LOCAL ./node_modules/.bin/cucumber-js -r ./steps --format html:./reports/cucumber-html-report.html",
-    "linux": "cross-env APP_PATH=LINUX_LOCAL ./node_modules/.bin/cucumber-js -r ./steps"
+    "linux": "cross-env APP_PATH=LINUX_LOCAL ./node_modules/.bin/cucumber-js -r ./steps --tags @WIP"
   },
   "keywords": [],
   "author": "",

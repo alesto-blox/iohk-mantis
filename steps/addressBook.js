@@ -4,6 +4,7 @@ const APP_CONF = require('../config/appConfig.js');
 const { Given, When, Then } = require('@cucumber/cucumber');
 const expect = require('chai').expect;
 const helpers = require('../support/helpers.js');
+const app = require('../support/baseApp.js').app
 
 const {setDefaultTimeout} = require('@cucumber/cucumber');
 setDefaultTimeout(60 * 1000);
@@ -12,10 +13,10 @@ const startPage = require('../pages/StartPage.js');
 const homePage = require('../pages/HomePage.js')
 const addressBook = require(('../pages/AddressBookPage.js'))
 
-const app = new Application({
-    path: APP_PATH,
-    startTimeout: APP_CONF.START_TIMEOUT
-  })
+// const app = new Application({
+//     path: APP_PATH,
+//     startTimeout: APP_CONF.START_TIMEOUT
+//   })
 
 When(/^I click on address book button on main page$/, async () => {
     await addressBook.goToAddressBook(app)
