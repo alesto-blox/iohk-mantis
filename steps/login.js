@@ -1,6 +1,6 @@
 const Application = require('spectron').Application;
-const APP_PATH = require('../config/appConfig.js').PATH[process.env.APP_PATH];
-const APP_CONF = require('../config/appConfig.js');
+const APP_PATH = require('../config/appConfig.js')[process.env.ENV].APP_PATH;
+const APP_CONF = require('../config/appConfig.js')[process.env.ENV];
 const { Given, When, Then } = require('@cucumber/cucumber');
 const expect = require('chai').expect;
 const helpers = require('../support/helpers.js');
@@ -34,5 +34,5 @@ Then(/^I should close the Mantis Wallet application$/, async ()=> {
 });
 
 Then(/^I should reset Mantis Wallet config\.json$/, function () {
-    helpers.resetMantisConfig(APP_CONF.BASE_CONF,APP_CONF.CONF_PATH);
+    helpers.resetMantisConfig(APP_CONF.TEST_CONF_PATH,APP_CONF.APP_CONF_PATH);
 });

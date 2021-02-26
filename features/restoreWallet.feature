@@ -20,10 +20,10 @@ Feature: Create Mantis Wallet
         Then I expect to see main page
         Then I should close the Mantis Wallet application
         Examples:
-            #| network |
-            #|Sagano Testnet |
-            #|Mainnet  |
-            #|Mordor   |
+            | network |
+            |Sagano Testnet |
+            |Mainnet  |
+            |Mordor   |
 
     Scenario Outline: Restore Mantis wallet with recovery phrase
         Then I choose the available Network "<network>" in Mantis Wallet
@@ -33,7 +33,7 @@ Feature: Create Mantis Wallet
         Then I expect to see main page
         Then I should close the Mantis Wallet application
         Examples:
-            #| network |
-            #|Sagano Testnet |
-            #|Mainnet  |
-            #|Mordor   |
+            | network |
+            |Sagano Testnet |
+            |Mainnet  |
+            |Mordor   |

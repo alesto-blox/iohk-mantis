@@ -16,7 +16,7 @@
          Then I expect to see my address on Mantis wallet
          Then I should close the Mantis Wallet application
          Examples:
-             #|network |
-             #|Sagano Testnet |
-             #|Mainnet  |
-             #|Mordor   |
+             |network |
+             |Sagano Testnet |
+             |Mainnet  |
+             |Mordor   |
