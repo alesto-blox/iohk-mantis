@@ -20,7 +20,7 @@ Feature: Create Mantis Wallet
         Then I expect to see main page
         Then I should close the Mantis Wallet application
         Examples:
-            #|network        |
-            #|Sagano Testnet |
-            #|Mainnet  |
-            #|Mordor   |
+            |network        |
+            |Sagano Testnet |
+            |Mainnet  |
+            |Mordor   |

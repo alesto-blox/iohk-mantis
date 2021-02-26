@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env APP_PATH=WIN_LOCAL ./node_modules/.bin/cucumber-js -r ./steps --format html:./reports/cucumber-html-report.html",
-    "linux": "cross-env APP_PATH=LINUX_LOCAL ./node_modules/.bin/cucumber-js -r ./steps --tags @WIP"
+    "test": "cross-env ENV=WINDOWS ./node_modules/.bin/cucumber-js -r ./steps --format html:./reports/cucumber-html-report.html",
+    "linux": "cross-env ENV=LINUX ./node_modules/.bin/cucumber-js -r ./steps --tags @Test"
   },
   "keywords": [],
   "author": "",
