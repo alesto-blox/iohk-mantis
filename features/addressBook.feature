@@ -14,9 +14,9 @@
          Then I choose the available Network "<network>" in Mantis Wallet
          # TODO add steps to create or restore a wallet
          When I click on address book button on main page
-         #|Sagano Testnet|
-         #|Mainnet  |
-         #|Mordor   |
+         |Sagano Testnet|
+         |Mainnet  |
+         |Mordor   |
 
      Scenario: I see address book page on Mantis wallet
          Then I expect to see address book page on Mantis wallet

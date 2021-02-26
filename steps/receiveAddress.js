@@ -1,6 +1,6 @@
 const Application = require('spectron').Application;
-const APP_PATH = require('../config/appConfig.js').PATH[process.env.APP_PATH];
-const APP_CONF = require('../config/appConfig.js');
+const APP_PATH = require('../config/appConfig.js')[process.env.ENV].APP_PATH;
+const APP_CONF = require('../config/appConfig.js')[process.env.ENV];
 const { Given, When, Then } = require('@cucumber/cucumber');
 const expect = require('chai').expect;
 const helpers = require('../support/helpers.js');

@@ -19,7 +19,7 @@ Feature: Logout Mantis wallet
         Then I expect to be logged out of Mantis wallet
         Then I should close the Mantis Wallet application
         Examples:
-            #| network |
-            #|Sagano Testnet |
-            #|Mainnet  |
-            #|Mordor   |
+            | network |
+            |Sagano Testnet |
+            |Mainnet  |
+            |Mordor   |

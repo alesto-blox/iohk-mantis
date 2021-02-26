@@ -1,8 +1,11 @@
 #
+#
+#
+##
 # Mantis Wallet Login feature
 # Steps in: ../steps/login.js
 #
-
+@Test
 Feature: Login Mantis Wallet
 
     As a regular user
@@ -15,7 +18,7 @@ Feature: Login Mantis Wallet
         Then I should see that I am syncing or connecting to the selected Network "<network>"
         Then I should close the Mantis Wallet application
         Examples:
-            #| network |
-            #|Sagano Testnet |
-            #|Mainnet  |
-            #|Mordor   |
+            | network |
+            |Sagano Testnet |
+            |Mainnet  |
+            |Mordor   |
