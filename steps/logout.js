@@ -1,30 +1,19 @@
-const Application = require('spectron').Application;
-const APP_PATH = require('../config/appConfig.js')[process.env.ENV].APP_PATH;
 const APP_CONF = require('../config/appConfig.js')[process.env.ENV];
-const { Given, When, Then } = require('@cucumber/cucumber');
-const expect = require('chai').expect;
+const { Given, When, Then} = require('@cucumber/cucumber');
 const helpers = require('../support/helpers.js');
-
-const {setDefaultTimeout} = require('@cucumber/cucumber');
-setDefaultTimeout(60 * 1000);
-
-const startPage = require('../pages/StartPage.js');
 const homePage = require('../pages/HomePage.js');
+const logoutPage = require('../pages/LogoutPage.js');
+const app = require('../support/baseApp.js').app
 
-const app = new Application({
-    path: APP_PATH,
-    startTimeout: APP_CONF.START_TIMEOUT
-  })
-
-When(/^I click Log out button on main page$/, function () {
+When(/^I click Log out button on main page$/, async ()=>{
+    await logoutPage.logout(app);
+});
+When(/^I enter my password and check checkbox on remove wallet page$/, async ()=>{
+    await logoutPage.removeWallet(app);
+});
+When(/^I click on remove wallet button on remove wallet page$/, async ()=>{
 
 });
-When(/^I enter my password and check checkbox on remove wallet page$/, function () {
-
-});
-When(/^I click on remove wallet button on remove wallet page$/, function () {
-
-});
-Then(/^I expect to be logged out of Mantis wallet$/, function () {
+Then(/^I expect to be logged out of Mantis wallet$/, async ()=>{
 
 });

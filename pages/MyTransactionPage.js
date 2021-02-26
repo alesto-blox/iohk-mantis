@@ -1,5 +1,6 @@
 //My Transaction Page
-
+const WAIT = require('../config/appConfig.js').WAIT;
+const expect = require('chai').expect;
 class MyTransactionPage {
 
     get myTransactionsText() { return ('//div[text()="My transactions"]') }

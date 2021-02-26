@@ -1,5 +1,6 @@
 //Support Page
-
+const WAIT = require('../config/appConfig.js').WAIT;
+const expect = require('chai').expect;
 class SupportPage {
 
     get supportText() { return ('//div[contains(text(), "Support")]') }

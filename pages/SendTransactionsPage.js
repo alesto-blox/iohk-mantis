@@ -1,5 +1,6 @@
 //Send Transaction Page
-
+const WAIT = require('../config/appConfig.js').WAIT;
+const expect = require('chai').expect;
 class SendTransactionPage {
 
      //Send transaction selectors
