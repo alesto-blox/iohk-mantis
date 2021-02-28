@@ -15,24 +15,24 @@ class HomePage {
 
     async acceptTermsAndConditions(app){
         await app.client
-            .waitForVisible(this.acceptTermsAndConditionsButton,10000)
+            .waitForVisible(this.acceptTermsAndConditionsButton,WAIT)
             .click(this.acceptTermsAndConditionsButton);
 
         await app.client
-            .waitForVisible(this.nextButton,10000)
+            .waitForVisible(this.nextButton,WAIT)
             .click(this.nextButton);
     }
 
     async doNotAcceptTermsAndConditions(app){
         await app.client
-            .waitForVisible(this.nextButton,10000)
+            .waitForVisible(this.nextButton,WAIT)
             .click(this.nextButton);
     }
 
     async verifyTermsAndConditions(app){
 
         expect(await app.client
-            .waitForVisible(this.termsOfServiceTitle,10000)
+            .waitForVisible(this.termsOfServiceTitle,WAIT)
             .isVisible(this.termsOfServiceTitle)
         ).to.equal(true);
 
@@ -46,26 +46,26 @@ class HomePage {
 
     async verifyWalletOptionsAreDisplayed(app){
         expect(await app.client
-            .waitForVisible(this.createWalletButton,10000)
+            .waitForVisible(this.createWalletButton,WAIT)
             .isVisible(this.createWalletButton)
         ).to.equal(true);
 
         expect(await app.client
-            .waitForVisible(this.restoreWalletButton,10000)
+            .waitForVisible(this.restoreWalletButton,WAIT)
             .isVisible(this.restoreWalletButton)
         ).to.equal(true);
     }
 
     async verifyErrorMessageWhenTermsAreNotAccepted(app){
         expect(await app.client
-            .waitForVisible(this.errorDialog,10000)
+            .waitForVisible(this.errorDialog,WAIT)
             .getText(this.errorDialog)
         ).to.equal("Some fields require additional action before you can continue.")
     }
 
     async isMantisStartedForTheSelectedNetwork(app,network){
         expect(await app.client
-            .waitForVisible(this.connectedNetwork,10000)
+            .waitForVisible(this.connectedNetwork,WAIT)
             .getText(this.connectedNetwork)
         )
             .to.equal(network);
@@ -73,9 +73,16 @@ class HomePage {
 
     async clickRestoreWalletButton(app){
         await app.client
-            .waitForVisible(this.restoreWalletButton,30000)
+            .waitForVisible(this.restoreWalletButton,WAIT)
             .click(this.restoreWalletButton);
     }
+
+    async createWallet(app){
+        await app.client
+            .waitForVisible(this.createWalletButton,WAIT)
+            .click(this.createWalletButton);
+    }
+
 }
 
 module.exports = new HomePage()

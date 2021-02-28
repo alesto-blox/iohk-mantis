@@ -23,8 +23,20 @@ function resetMantisConfig(baseConfig,mantisConfig) {
     });
 }
 
+function readFileToArray(file){
+    return fs.readFileSync(file).toString().split("\n");
+}
+
+function clearFileContent(file){
+    fs.truncate(file,0,function (){
+        //console.log("Error: ",err)
+    })
+}
+
 module.exports = {
     timeout,
     writeToFileAppended,
-    resetMantisConfig
+    resetMantisConfig,
+    readFileToArray,
+    clearFileContent
 }

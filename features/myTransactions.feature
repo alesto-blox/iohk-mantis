@@ -3,7 +3,10 @@
 # Steps in: ../steps/myTransactions.js & ../steps/login.js
 #
 
- Feature: My Transactions on Mantis Wallet
+#TODO Makes no sense, send or receive a transaction and expect a change here instead of this
+@Transactions
+@Regression
+Feature: My Transactions on Mantis Wallet
 
      As a regular user
      I want to see my transactions
