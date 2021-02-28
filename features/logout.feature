@@ -3,6 +3,8 @@
 # Steps in: ../steps/logout.js & ../steps/login.js
 #
 
+@Logout
+@Regression
 Feature: Logout Mantis wallet
 
     As a regular user
@@ -21,5 +23,5 @@ Feature: Logout Mantis wallet
         Examples:
             | network |
             |Sagano Testnet |
-            |Mainnet  |
-            |Mordor   |
+            #|Mainnet  |
+            #|Mordor   |

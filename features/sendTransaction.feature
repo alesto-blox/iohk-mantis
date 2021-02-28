@@ -3,24 +3,26 @@
 # Steps in: ../steps/sendTransaction.js & ../steps/login.js
 #
 
- Feature: Send transaction on Mantis wallet
+@SendTransaction
+@Regression
+Feature: Send transaction on Mantis wallet
 
-       As a regular user
-       I want send ETC on Mantis Wallet
-       Because I want to send ETC to my friends
+      As a regular user
+      I want send ETC on Mantis Wallet
+      Because I want to send ETC to my friends
 
-       Background: I am on send transaction page
-             Given I open the Mantis wallet app
-             When I choose the available Network "<network>" in Mantis Wallet
-             # TODO add steps to create or restore a wallet
-             When I click send button on main page
-                  |Sagano Testnet|
-                  |Mainnet  |
-                  |Mordor   |
+      Background: I am on send transaction page
+            Given I open the Mantis wallet app
+            When I choose the available Network "<network>" in Mantis Wallet
+            # TODO add steps to create or restore a wallet
+            When I click send button on main page
+                 |Sagano Testnet|
+                 |Mainnet  |
+                 |Mordor   |
 
-       Scenario: I see send transaction page on Mantis wallet
-             Then I expect to see sent transaction page
-             Then I should close the Mantis Wallet application
+      Scenario: I see send transaction page on Mantis wallet
+            Then I expect to see sent transaction page
+            Then I should close the Mantis Wallet application
 
        Scenario: Send transaction on Mantis wallet
              When I enter recipient address on send transaction page

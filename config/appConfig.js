@@ -11,5 +11,10 @@ const APP_CONF = {
     },
     START_TIMEOUT:30000,
     WAIT:30000,
+    TEST_DATA:{
+        CreateWallet:"./test_data/CreateWalletData.txt",
+        WalletName:"TestWallet",
+        WalletPass:"TestPass123!"
+    }
 };
 module.exports = APP_CONF
