@@ -22,6 +22,10 @@ Then(/^I should close the Mantis Wallet application$/, async ()=> {
     return await app.stop();
 });
 
+Then(/^I choose Sagano Network in Mantis Wallet$/, async () => {
+    await startPage.login("Sagano Testnet", app);
+});
+
 Then(/^I should reset Mantis Wallet config\.json$/, async ()=> {
     await helpers.resetMantisConfig(APP_CONF.TEST_CONF_PATH,APP_CONF.APP_CONF_PATH);
 });
