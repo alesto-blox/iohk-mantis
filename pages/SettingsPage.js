@@ -25,7 +25,14 @@ class SettingsPage {
     get revealPrivateKeyButton() { return ('//button[@title="Reveal Private Key"]')}
     get privateKeyValue() { return ('//div[@class="qr-content"]')}
     get downloadPrivateKeyButton() { return ('//button[contains(text(), "Download")]')}
-    
+
+    async checkIfYouAreOnSettingsPage(app) {
+        expect(await app.client
+            .waitForVisible(this.mySettingsText, 10000)
+            .getText(this.mySettingsText)
+        )
+            .to.equal('My settings')
+    }
 }
 
 module.exports = new SettingsPage()

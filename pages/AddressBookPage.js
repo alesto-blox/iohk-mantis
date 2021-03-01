@@ -5,7 +5,6 @@ const helpers = require('../support/helpers')
 
 class AddressBookPage {
 
-    get addressBookLink() {return ('//div[text()="Address book"]')}
     get myAddressBookText() { return ('//div[@class="main-title"]') }
     get firstContactText() { return ('//div[@class="row"][1]/span[@class="label"]')}
     get firstContactAddress() { return ('//div[@class="row"][1]/span[@class="address"]')}
@@ -22,12 +21,6 @@ class AddressBookPage {
     get cancelButton() { return ('//span[contains(text(),"Cancel")]')}
     //Find selector for x for closing popup
     get cancelModalX() { return ('')}
-
-    async goToAddressBook(app) {
-        await app.client
-            .waitForVisible(this.addressBookLink,30000)
-            .click(this.addressBookLink)
-    }
 
     async checkIfYouAreOnAddressBookPage(app) {
         expect(await app.client
