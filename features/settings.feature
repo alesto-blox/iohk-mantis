@@ -3,6 +3,8 @@
 # Steps in: ../steps/settings.js & ../steps/login.js
 #
 
+@Settings
+@Regression
  Feature: Settings on Mantis wallet
 
      As a regular user

@@ -1,11 +1,11 @@
 #
-#
-#
-##
 # Mantis Wallet Login feature
 # Steps in: ../steps/login.js
 #
 
+@Login
+@Sync
+@Regression
 Feature: Login Mantis Wallet
 
     As a regular user
@@ -20,5 +20,5 @@ Feature: Login Mantis Wallet
         Examples:
             | network |
             |Sagano Testnet |
-            |Mainnet  |
-            |Mordor   |
+            #|Mainnet  |
+            #|Mordor   |

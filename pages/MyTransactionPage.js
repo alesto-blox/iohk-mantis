@@ -1,5 +1,6 @@
 //My Transaction Page
-
+const WAIT = require('../config/appConfig.js').WAIT;
+const expect = require('chai').expect;
 class MyTransactionPage {
 
     get myTransactionsText() { return ('//div[text()="My transactions"]') }
@@ -31,7 +32,14 @@ class MyTransactionPage {
     get transactionIdText() { return ('//div[text()="Transaction ID"]')}
     get transactionIdValue() { return ('//div[text()="Transaction ID"]/span[@class="monospace"]')}
     get viewInExplorerLink() { return ('//div[text()="Transaction ID"]/span[@class="Link styled"]')}
-     
+    get myTransactionsText(){return ('//div[@class="main-title" and text()=\'My transactions\']')}
+
+    async IsMyTransactionsDisplayed(app){
+        expect(await app.client
+            .waitForVisible(this.myTransactionsText,WAIT)
+            .isVisible(this.myTransactionsText)
+        ).to.equal(true);
+    }
 }
 
 module.exports = new MyTransactionPage()

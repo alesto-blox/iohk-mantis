@@ -1,36 +1,26 @@
-const Application = require('spectron').Application;
-const APP_PATH = require('../config/appConfig.js')[process.env.ENV].APP_PATH;
-const APP_CONF = require('../config/appConfig.js')[process.env.ENV];
-const { Given, When, Then } = require('@cucumber/cucumber');
-const expect = require('chai').expect;
+const APP_CONF = require('../config/appConfig.js');
+const { Given, When, Then} = require('@cucumber/cucumber');
 const helpers = require('../support/helpers.js');
-
-const {setDefaultTimeout} = require('@cucumber/cucumber');
-setDefaultTimeout(60 * 1000);
-
-const startPage = require('../pages/StartPage.js');
+const createPage = require('../pages/CreatePage.js');
 const homePage = require('../pages/HomePage.js');
+const app = require('../support/baseApp.js').app
 
-const app = new Application({
-    path: APP_PATH,
-    startTimeout: APP_CONF.START_TIMEOUT
-  })
-
-When(/^I choose Create wallet button$/, function () {
-
+When(/^I choose Create wallet button$/, async ()=>{
+    await homePage.createWallet(app);
 });
-Then(/^I enter wallet name and passwords$/, function () {
-
+Then(/^I enter wallet name and passwords$/, async ()=>{
+    await createPage.enterWalletNameAndPassword(app);
 });
-Then(/^I confirm that private key is there$/, function () {
-
+Then(/^I confirm that private key is there$/, async ()=>{
+    const privateKey = await createPage.getPrivateKey(app);
+    helpers.writeToFileAppended(APP_CONF.TEST_DATA.CreateWallet,privateKey);
 });
-Then(/^I remember recovery phrase$/, function () {
-
+Then(/^I remember recovery phrase$/, async ()=>{
+    const recoveryPhrase = await createPage.getRecoveryPhrase(app);
+    helpers.writeToFileAppended(APP_CONF.TEST_DATA.CreateWallet,recoveryPhrase);
 });
-Then(/^I re input recovery phrase$/, function () {
-
-});
-Then(/^I expect to see main page$/, function () {
-
+Then(/^I re input recovery phrase$/, async ()=>{
+    const phrase = await helpers.readFileToArray(APP_CONF.TEST_DATA.CreateWallet);
+    await createPage.reInputRecoveryPhrase(app,phrase)
+    await helpers.clearFileContent(APP_CONF.TEST_DATA.CreateWallet);
 });

@@ -1,7 +1,7 @@
 //Address Book Page
-
-const helpers = require('../support/helpers')
+const WAIT = require('../config/appConfig.js').WAIT;
 const expect = require('chai').expect;
+const helpers = require('../support/helpers')
 
 class AddressBookPage {
 

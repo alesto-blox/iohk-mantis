@@ -3,6 +3,8 @@
 # Steps in: ../steps/login.js
 #
 
+@TermsAndConditions
+@Regression
 Feature: Accept terms and conditions
 
     As a regular user when I login into Mantis Wallet application
@@ -19,8 +21,8 @@ Feature: Accept terms and conditions
         Examples:
             | network |
             |Sagano Testnet  |
-            |Mainnet  |
-            |Mordor   |
+            #|Mainnet  |
+            #|Mordor   |
 
     Scenario Outline: Accept Terms and Conditions
         Given I open the Mantis wallet app
@@ -32,5 +34,5 @@ Feature: Accept terms and conditions
         Examples:
             | network |
             |Sagano Testnet  |
-            |Mainnet  |
-            |Mordor   |
+            #|Mainnet  |
+            #|Mordor   |

@@ -3,6 +3,8 @@
 # Steps in: ../steps/addressBook.js & ../steps/login.js
 #
 
+@Address
+@Regression
  Feature: Address book on Mantis wallet
 
      As a regular user

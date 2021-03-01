@@ -1,5 +1,6 @@
 //Setting Page
-
+const WAIT = require('../config/appConfig.js').WAIT;
+const expect = require('chai').expect;
 class SettingsPage {
 
     get mySettingsText() { return ('//div[contains(text(),"My settings")]') }
