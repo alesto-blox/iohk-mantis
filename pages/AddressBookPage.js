@@ -12,12 +12,12 @@ class AddressBookPage {
     get firstContactRecicleBin() { return ('//div[@class="row"][1]/span[@class="actions"]/span[@class="delete"]')}  
     get firstContactEdit() { return ('//div[@class="row"][1]/span[@class="actions"]/span[@class="edit"]')}  
     get firstContactCopy() { return ('//div[@class="row"][1]/span[@class="address"]/span')}
-    get addNewButton() { return ('//div[@class="main-buttons"]/button')}
+    get addNewButton() { return ('//button[text()="Add new"]')}
     get newContactText() { return ('//div[@class="title" and contains(text(),"New Contact") ]')}
     get addressText() { return ('//label[contains(text(),"Address")]')}
-    get addressField() { return ('//label[contains(text(),"Address")]/..//input')}
+    get addressField() { return ('//input[@id="contact-address"]')}
     get labelText() { return ('//label[contains(text(),"Label")]')}
-    get labelField() { return ('//label[contains(text(),"Label")]/..//input')}
+    get labelField() { return ('//input[@id="contact-label"]')}
     get saveContactButton() { return ('//span[contains(text(),"Save Contact")]')}
     get cancelButton() { return ('//span[contains(text(),"Cancel")]')}
     //Find selector for x for closing popup
@@ -53,6 +53,12 @@ class AddressBookPage {
         await app.client
             .waitForEnabled(this.labelField, 10000)
             .setValue(this.labelField,"My address")
+    }
+
+    async clickSaveNewContact(app){
+        await app.client
+            .waitForEnabled(this.saveContactButton, 10000)
+            .click(this.saveContactButton)
     }
 
     async checkForNewContact(app) {

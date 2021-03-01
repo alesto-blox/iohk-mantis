@@ -5,7 +5,7 @@
 # Mantis Wallet Login feature
 # Steps in: ../steps/login.js
 #
-@Test
+
 Feature: Login Mantis Wallet
 
     As a regular user

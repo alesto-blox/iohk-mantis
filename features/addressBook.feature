@@ -2,21 +2,22 @@
 # Mantis Wallet address book feature
 # Steps in: ../steps/addressBook.js & ../steps/login.js
 #
-@WIP
+
  Feature: Address book on Mantis wallet
 
      As a regular user
      I want to see my address book
      Because I want to see my contacts
 
+#     TODO Write step to choose multiple networks
      Background: I am on address book page on Mantis wallet
          Given I open the Mantis wallet app
-         Then I choose the available Network "<network>" in Mantis Wallet
+         Then I choose Sagano Network in Mantis Wallet
+#             |Sagano Testnet|
+#             |Mainnet  |
+#             |Mordor   |
          # TODO add steps to create or restore a wallet
          When I click on address book button on main page
-         |Sagano Testnet|
-         |Mainnet  |
-         |Mordor   |
 
      Scenario: I see address book page on Mantis wallet
          Then I expect to see address book page on Mantis wallet
