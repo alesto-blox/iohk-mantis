@@ -12,31 +12,31 @@ class LoggedInPage {
 
     async goToAddressBook(app) {
         await app.client
-            .waitForVisible(this.addressBookLink,30000)
+            .waitForVisible(this.addressBookLink,WAIT)
             .click(this.addressBookLink)
     }
 
     async goToReceiveAddress(app) {
         await app.client
-            .waitForVisible(this.receiveButton,30000)
+            .waitForVisible(this.receiveButton,WAIT)
             .click(this.receiveButton)
     }
 
     async goToSettings(app) {
         await app.client
-            .waitForVisible(this.settingsLink,30000)
+            .waitForVisible(this.settingsLink,WAIT)
             .click(this.settingsLink)
     }
 
     async goToSupport(app){
         await app.client
-            .waitForVisible(this.supportLink,30000)
+            .waitForVisible(this.supportLink,WAIT)
             .click(this.supportLink)
     }
 
     async goToStatus(app) {
         await app.client
-            .waitForVisible(this.statusLink,30000)
+            .waitForVisible(this.statusLink,WAIT)
             .click(this.statusLink)
     }
 

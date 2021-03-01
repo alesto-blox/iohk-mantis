@@ -9,20 +9,20 @@ class StatusPage {
 
     async checkIfYouAreOnStatusPage(app) {
         expect(await app.client
-            .waitForVisible(this.machineText, 10000)
+            .waitForVisible(this.machineText, WAIT)
             .getText(this.machineText)
         )
-            .to.equal('My settings')
+            .to.equal('MACHINE')
         expect(await app.client
-            .waitForVisible(this.backendText, 10000)
+            .waitForVisible(this.backendText, WAIT)
             .getText(this.backendText)
         )
-            .to.equal('My settings')
+            .to.equal('BACKEND')
         expect(await app.client
-            .waitForVisible(this.mantisWalletText, 10000)
+            .waitForVisible(this.mantisWalletText, WAIT)
             .getText(this.mantisWalletText)
         )
-            .to.equal('My settings')
+            .to.equal('MANTIS WALLET')
     }
 
 }

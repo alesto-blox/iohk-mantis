@@ -28,7 +28,7 @@ class SettingsPage {
 
     async checkIfYouAreOnSettingsPage(app) {
         expect(await app.client
-            .waitForVisible(this.mySettingsText, 10000)
+            .waitForVisible(this.mySettingsText, WAIT)
             .getText(this.mySettingsText)
         )
             .to.equal('My settings')

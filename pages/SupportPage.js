@@ -9,10 +9,10 @@ class SupportPage {
 
     async checkIfYouAreOnSupportPage(app) {
         expect(await app.client
-            .waitForVisible(this.supportText, 10000)
+            .waitForVisible(this.supportText, WAIT)
             .getText(this.supportText)
         )
-            .to.equal('My settings')
+            .to.equal('Support')
     }
 }
 

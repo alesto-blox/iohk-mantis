@@ -13,11 +13,12 @@
 
      Background: I am on my settings page on Mantis wallet
          Given I open the Mantis wallet app
-         When I choose the available Network "<network>" in Mantis Wallet
+         When I choose Sagano Network in Mantis Wallet
+#         When I choose the available Network "<network>" in Mantis Wallet
          When I click on settings button on main page
-         |Sagano Testnet|
-         |Mainnet  |
-         |Mordor   |
+#         |Sagano Testnet|
+#         |Mainnet  |
+#         |Mordor   |
 
      Scenario: I see my settings page on Mantis wallet
          Then I expect to see my settings page
