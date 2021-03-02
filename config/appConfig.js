@@ -1,6 +1,6 @@
 const APP_CONF = {
     LINUX:{
-        APP_PATH: "/home/ubuntu/IOHK/Mantis-Wallet-0.1.1.AppImage",
+        APP_PATH: "/home/marko/IOHK/Mantis-Wallet-0.1.1.AppImage",
         APP_CONF_PATH: "/home/ubuntu/.mantis-wallet/config.json",
         TEST_CONF_PATH:"./test_data/config.json",
     },
