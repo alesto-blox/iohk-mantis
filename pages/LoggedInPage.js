@@ -1,7 +1,5 @@
 //Logged in page
-
 const WAIT = require('../config/appConfig.js').WAIT;
-const expect = require('chai').expect;
 class LoggedInPage {
 
     get addressBookLink() {return ('//div[text()="Address book"]')}

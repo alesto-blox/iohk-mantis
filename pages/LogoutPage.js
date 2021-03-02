@@ -1,6 +1,5 @@
 //Logout Page
 const WAIT = require('../config/appConfig.js').WAIT;
-const expect = require('chai').expect;
 const testData = require('../test_data/restoreWalletData.json');
 const helpers = require('../support/helpers.js');
 class LogoutPage {

@@ -1,7 +1,4 @@
-const APP_CONF = require('../config/appConfig.js')[process.env.ENV];
-const { Given, When, Then} = require('@cucumber/cucumber');
-const helpers = require('../support/helpers.js');
-const homePage = require('../pages/HomePage.js');
+const { When, Then} = require('@cucumber/cucumber');
 const logoutPage = require('../pages/LogoutPage.js');
 const app = require('../support/baseApp.js').app
 
@@ -12,8 +9,8 @@ When(/^I enter my password and check checkbox on remove wallet page$/, async ()=
     await logoutPage.removeWallet(app);
 });
 When(/^I click on remove wallet button on remove wallet page$/, async ()=>{
-
+    // TODO implement step
 });
 Then(/^I expect to be logged out of Mantis wallet$/, async ()=>{
-
+    // TODO implement step
 });

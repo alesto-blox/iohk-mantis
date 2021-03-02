@@ -5,7 +5,6 @@
 
 @Support
 @Regression
-    @WIP
 Feature: Support on Mantis wallet
 
     As a regular user

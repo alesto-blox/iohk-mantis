@@ -1,7 +1,6 @@
 //Create Page
 const APP_CONF = require('../config/appConfig.js');
 const WAIT = require('../config/appConfig.js').WAIT;
-const expect = require('chai').expect;
 const helpers = require('../support/helpers.js');
 class CreatePage {
 
@@ -51,6 +50,7 @@ class CreatePage {
             .waitForVisible(this.nextButton,WAIT)
             .click(this.nextButton);
     }
+
     async getPrivateKey(app){
         await app.client
             .waitForVisible(this.showPrivateKeyButton,WAIT)
@@ -66,6 +66,7 @@ class CreatePage {
 
         return privateKey;
     }
+
     async getRecoveryPhrase(app){
         const recoveryPhrase = await app.client
             .waitForVisible(this.recoveryWordsText, WAIT)
@@ -81,6 +82,7 @@ class CreatePage {
 
         return recoveryPhrase.toString().replace(/[^A-Za-z]+/g, '\n');
     }
+
     async reInputRecoveryPhrase(app,phrase){
         for (let i = 2; i < phrase.length-1; i++){
             await helpers.timeout(300)

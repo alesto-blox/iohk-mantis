@@ -1,5 +1,5 @@
 const APP_CONF = require('../config/appConfig.js');
-const { Given, When, Then} = require('@cucumber/cucumber');
+const { When, Then} = require('@cucumber/cucumber');
 const helpers = require('../support/helpers.js');
 const createPage = require('../pages/CreatePage.js');
 const homePage = require('../pages/HomePage.js');

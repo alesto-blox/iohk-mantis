@@ -1,6 +1,5 @@
 //Restore Page
 const WAIT = require('../config/appConfig.js').WAIT;
-const expect = require('chai').expect;
 const testData = require('../test_data/restoreWalletData.json');
 class RestorePage {
 
@@ -40,6 +39,7 @@ class RestorePage {
             .waitForVisible(this.nextButton,WAIT)
             .click(this.nextButton);
     }
+
 }
 
 module.exports = new RestorePage()

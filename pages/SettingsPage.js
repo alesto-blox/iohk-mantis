@@ -33,6 +33,7 @@ class SettingsPage {
         )
             .to.equal('My settings')
     }
+
 }
 
 module.exports = new SettingsPage()
