@@ -5,7 +5,6 @@
 
 @Address
 @Regression
-    @WIP
  Feature: Address book on Mantis wallet
 
      As a regular user
