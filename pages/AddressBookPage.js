@@ -1,15 +1,14 @@
 //Address Book Page
 const WAIT = require('../config/appConfig.js').WAIT;
 const expect = require('chai').expect;
-const helpers = require('../support/helpers')
-const walletData = require('../test_data/walletData.json')
+const TD = require('../test_data/testData.json');
 
 class AddressBookPage {
 
-    get myAddressBookText() { return ('//div[@class="main-title"]') }
+    get myAddressBookText() { return ('//div[@class="main-title"]')}
     get firstContactText() { return ('//div[@class="row"][1]/span[@class="label"]')}
     get firstContactAddress() { return ('//div[@class="row"][1]/span[@class="address"]')}
-    get firstContactRecicleBin() { return ('//div[@class="row"][1]/span[@class="actions"]/span[@class="delete"]')}  
+    get firstContactRecycleBin() { return ('//div[@class="row"][1]/span[@class="actions"]/span[@class="delete"]')}
     get firstContactEdit() { return ('//div[@class="row"][1]/span[@class="actions"]/span[@class="edit"]')}  
     get firstContactCopy() { return ('//div[@class="row"][1]/span[@class="address"]/span')}
     get addNewButton() { return ('//button[text()="Add new"]')}
@@ -20,7 +19,7 @@ class AddressBookPage {
     get labelField() { return ('//input[@id="contact-label"]')}
     get saveContactButton() { return ('//span[contains(text(),"Save Contact")]')}
     get cancelButton() { return ('//span[contains(text(),"Cancel")]')}
-    //Find selector for x for closing popup
+    // TODO Find selector for x for closing popup
     get cancelModalX() { return ('')}
 
     async checkIfYouAreOnAddressBookPage(app) {
@@ -40,13 +39,13 @@ class AddressBookPage {
     async addNewContactAddress(app){
         await app.client
             .waitForEnabled(this.addressField,WAIT)
-            .setValue(this.addressField,walletData.walletAddress)
+            .setValue(this.addressField,TD.Addresses.WalletAddress)
     }
 
     async addNewContactLabel(app){
         await app.client
             .waitForEnabled(this.labelField, WAIT)
-            .setValue(this.labelField,walletData.walletName)
+            .setValue(this.labelField,TD.Addresses.WalletName)
     }
 
     async clickSaveNewContact(app){
@@ -66,7 +65,7 @@ class AddressBookPage {
             .waitForVisible(this.firstContactAddress,WAIT)
             .getText(this.firstContactAddress)
         )
-            .to.equal("0xec49c61786376007494af082b02fac4adb4e4292")
+            .to.equal(TD.Addresses.WalletName)
     }
 }
 

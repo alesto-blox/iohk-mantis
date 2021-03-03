@@ -35,6 +35,7 @@ class SettingsPage {
             .to.equal('My settings')
     }
 
+
     async darkModeToggle(app) {
         expect(await app.client
             .waitForVisible(this.enableDarkModeText, WAIT)

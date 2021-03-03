@@ -40,6 +40,7 @@ class MyTransactionPage {
             .isVisible(this.myTransactionsText)
         ).to.equal(true);
     }
+
 }
 
 module.exports = new MyTransactionPage()

@@ -1,5 +1,4 @@
 //Receive Transaction Page
-
 const WAIT = require('../config/appConfig.js').WAIT;
 const expect = require('chai').expect;
 class ReceiveTransactionPage {
@@ -11,7 +10,7 @@ class ReceiveTransactionPage {
 
     async checkIfYouAreOnReceiveAddressPage(app) {
         expect(await app.client
-            .waitForVisible(this.yourAddressText, 10000)
+            .waitForVisible(this.yourAddressText, WAIT)
             .getText(this.yourAddressText)
         )
             .to.equal('Your Address')

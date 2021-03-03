@@ -5,8 +5,8 @@ class SendTransactionPage {
 
      //Send transaction selectors
     get sendTransactionText() { return ('//div[@class="title"]')}
-    get recepientText() { return ('//label[contains(text(),"Recipient")]')}
-    get recepientField() { return ('//*[@id="recipient-address"]')}
+    get recipientText() { return ('//label[contains(text(),"Recipient")]')}
+    get recipientField() { return ('//*[@id="recipient-address"]')}
     get selectAContactText() { return ('//label[contains(text(),"Select a Contact")]')}
     get amountText() { return ('//label[contains(text(),"Amount")]')}
     get amountField() { return ('//*[@id="tx-amount"]')}
@@ -25,7 +25,7 @@ class SendTransactionPage {
     get advancedButton() { return ('//span[contains(text(),"Advanced")]')}
      
      //Send transaction next page selectors    
-    get recepientAddressValue() { return('//label[contains(text(),"Recipient")]/..//input')}
+    get recipientAddressValue() { return('//label[contains(text(),"Recipient")]/..//input')}
     get amountTextOnNextPage() { return('//div[contains(text(),"Amount")]')}     
     get amountValue() { return('//div[contains(text(),"Amount")]/../div[@class="container"]/div[@class="amount"]')}
     get feeTextOnNextPage() { return('//div[contains(text(), "Fee") and @class="label"]')}
@@ -42,7 +42,7 @@ class SendTransactionPage {
     get gasPriceText() { return ('//label[contains(text(),"Gas price")]')}
     get gasPriceField() { return ('//label[contains(text(),"Gas price")]/..//input')}
     get dataText() { return ('//label[contains(text(),"Data")]')}
-    get datafield() { return ('//textarea[@id="tx-data"]')}
+    get dataField() { return ('//textarea[@id="tx-data"]')}
     get nonceText() { return ('//label[contains(text(),"Data")]')}
     get nonceField() { return ('//label[contains(text(),"Data")]/..//input')}
 

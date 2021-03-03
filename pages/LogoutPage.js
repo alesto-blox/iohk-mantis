@@ -1,7 +1,6 @@
 //Logout Page
 const WAIT = require('../config/appConfig.js').WAIT;
-const expect = require('chai').expect;
-const testData = require('../test_data/restoreWalletData.json');
+const TD = require('../test_data/testData.json');
 const helpers = require('../support/helpers.js');
 class LogoutPage {
 
@@ -22,10 +21,10 @@ class LogoutPage {
             .waitForVisible(this.logoutButton,WAIT)
             .click(this.logoutButton);
     }
-    async removeWallet(app){
+    async enterPasswordAndCheckCheckbox(app,pass){
         await app.client
             .waitForVisible(this.passwordField,WAIT)
-            .setValue(this.passwordField, testData.Password);
+            .setValue(this.passwordField, pass);
 
         await app.client
             .waitForVisible(this.restoreWarningText,WAIT)
@@ -34,11 +33,13 @@ class LogoutPage {
         await app.client
             .waitForVisible(this.deleteDataWarningText,WAIT)
             .click(this.deleteDataWarningText);
-
+    }
+    async removeWallet(app){
         await app.client
             .waitForVisible(this.removeWalletButton,WAIT)
             .click(this.removeWalletButton);
     }
+
 }
 
 module.exports = new LogoutPage()

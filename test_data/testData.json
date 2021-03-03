@@ -1,0 +1,45 @@
+{
+  "CreateWallet":{
+    "PVK": "",
+    "Phrases": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "WalletName":"TestWallet",
+    "WalletPass":"TestPass123!"
+  },
+  "RestoreWallet": {
+    "Password": "TestPass123!",
+    "PVTKey": "0xd238a17a8c2fabbcbf0346fea7c7910e96b5e3cf2fbe135584b670bb4e51daa6",
+    "WalletName":"MantisWallet",
+    "Address": "0x103e4d6fe1667e99bb8cbf24498988b706b5830a",
+    "Phrases": [
+      "shell",
+      "squirrel",
+      "tent",
+      "dress",
+      "oyster",
+      "release",
+      "interest",
+      "bounce",
+      "lobster",
+      "host",
+      "lamp",
+      "stage"
+    ]
+  },
+  "Addresses": {
+    "WalletName": "My address",
+    "WalletAddress": "0xec49c61786376007494af082b02fac4adb4e4292"
+  }
+}
