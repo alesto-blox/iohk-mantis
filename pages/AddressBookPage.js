@@ -1,7 +1,7 @@
 //Address Book Page
 const WAIT = require('../config/appConfig.js').WAIT;
 const expect = require('chai').expect;
-const walletData = require('../test_data/walletData.json');
+const TD = require('../test_data/testData.json');
 
 class AddressBookPage {
 
@@ -39,13 +39,13 @@ class AddressBookPage {
     async addNewContactAddress(app){
         await app.client
             .waitForEnabled(this.addressField,WAIT)
-            .setValue(this.addressField,walletData.walletAddress)
+            .setValue(this.addressField,TD.Addresses.WalletAddress)
     }
 
     async addNewContactLabel(app){
         await app.client
             .waitForEnabled(this.labelField, WAIT)
-            .setValue(this.labelField,walletData.walletName)
+            .setValue(this.labelField,TD.Addresses.WalletName)
     }
 
     async clickSaveNewContact(app){
@@ -65,7 +65,7 @@ class AddressBookPage {
             .waitForVisible(this.firstContactAddress,WAIT)
             .getText(this.firstContactAddress)
         )
-            .to.equal("0xec49c61786376007494af082b02fac4adb4e4292") // TODO pull from test data file
+            .to.equal(TD.Addresses.WalletName)
     }
 }
 

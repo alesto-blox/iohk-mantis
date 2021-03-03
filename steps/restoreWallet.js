@@ -10,5 +10,5 @@ Then(/^I enter wallet name, private key and passwords$/, async ()=> {
     await restorePage.enterRestoreDetails(app);
 });
 Then(/^I enter wallet name, recovery phrase and passwords$/, async ()=> {
-    // TODO implement step
+    await restorePage.enterRestorePhrasesDetails(app)
 });

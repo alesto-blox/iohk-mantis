@@ -1,6 +1,6 @@
 const { When, Then } = require('@cucumber/cucumber');
 const app = require('../support/baseApp.js').app
-const addressBook = require(('../pages/AddressBookPage.js'))
+const addressBook = require('../pages/AddressBookPage.js');
 const loggedInPage = require('../pages/LoggedInPage')
 
 When(/^I click on address book button on main page$/, async () => {
