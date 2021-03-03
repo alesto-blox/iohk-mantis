@@ -9,3 +9,17 @@ When(/^I click on settings button on main page$/, async ()=>{
 Then(/^I expect to see my settings page$/, async ()=>{
     await settingsPage.checkIfYouAreOnSettingsPage(app)
 });
+
+Then(/^I click enable dark mode$/, async ()=>{
+    await settingsPage.darkModeToggle(app)
+});
+
+Then(/^I expect to see color theme changed$/, async ()=>{
+    await settingsPage.checkColorThemeChanges(app)
+});
+
+Then(/^I can change language, date format and time format$/, async ()=> {
+    await settingsPage.checkLanguageOptions(app)
+    await settingsPage.checkDateOptions(app)
+    await settingsPage.checkTimeOptions(app)
+});

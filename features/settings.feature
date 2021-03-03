@@ -24,4 +24,12 @@
          Then I expect to see my settings page
          Then I should close the Mantis Wallet application
          # TODO maybe add some actual settings change scenarios
+    Scenario: I change Mantis Wallet color theme
+        Then I click enable dark mode
+        Then I expect to see color theme changed
+        Then I should close the Mantis Wallet application
+    @WIP
+    Scenario: I can change language, date format and time format
+        Then I can change language, date format and time format
+#        Then I should close the Mantis Wallet application
 
