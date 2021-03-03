@@ -12,7 +12,7 @@
 		"dateFormat": "MM/DD/YYYY",
 		"timeFormat": "12-hour",
 		"language": "en",
-		"mantisDatadir": "/home/ubuntu/.mantis-wallet/data/mantis"
+		"mantisDatadir": "/home/ubuntu/.mantis-wallet/mantis"
 	},
 	"tokens": {
 		"watched": {}

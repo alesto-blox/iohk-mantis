@@ -1,8 +1,7 @@
 //Create Page
-const APP_CONF = require('../config/appConfig.js');
 const WAIT = require('../config/appConfig.js').WAIT;
-const expect = require('chai').expect;
 const helpers = require('../support/helpers.js');
+const TD = require('../test_data/testData.json');
 class CreatePage {
 
     get createWalletText() { return ('//div[text()="Create New Wallet" and @class="title"]') }
@@ -37,15 +36,15 @@ class CreatePage {
     async enterWalletNameAndPassword(app){
         await app.client
             .waitForVisible(this.walletNameField,WAIT)
-            .setValue(this.walletNameField, APP_CONF.TEST_DATA.WalletName);
+            .setValue(this.walletNameField, TD.CreateWallet.WalletName);
 
         await app.client
             .waitForVisible(this.enterPasswordField,WAIT)
-            .setValue(this.enterPasswordField, APP_CONF.TEST_DATA.WalletPass);
+            .setValue(this.enterPasswordField, TD.CreateWallet.WalletPass);
 
         await app.client
             .waitForVisible(this.repeatPasswordField,WAIT)
-            .setValue(this.repeatPasswordField, APP_CONF.TEST_DATA.WalletPass);
+            .setValue(this.repeatPasswordField, TD.CreateWallet.WalletPass);
 
         await app.client
             .waitForVisible(this.nextButton,WAIT)
@@ -82,8 +81,8 @@ class CreatePage {
         return recoveryPhrase.toString().replace(/[^A-Za-z]+/g, '\n');
     }
     async reInputRecoveryPhrase(app,phrase){
-        for (let i = 2; i < phrase.length-1; i++){
-            await helpers.timeout(300)
+        for (let i = 0; i < phrase.length; i++){
+             await helpers.timeout(300)
              await app.client
                  .waitForVisible("//div[@class='word' and text()='"+phrase[i]+"']",WAIT)
                  .click("//div[@class='word' and text()='"+phrase[i]+"']");
