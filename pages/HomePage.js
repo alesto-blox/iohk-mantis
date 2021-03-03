@@ -22,13 +22,11 @@ class HomePage {
             .waitForVisible(this.nextButton,WAIT)
             .click(this.nextButton);
     }
-
     async doNotAcceptTermsAndConditions(app){
         await app.client
             .waitForVisible(this.nextButton,WAIT)
             .click(this.nextButton);
     }
-
     async verifyTermsAndConditions(app){
 
         expect(await app.client
@@ -37,13 +35,11 @@ class HomePage {
         ).to.equal(true);
 
         expect(await app.client
-            .waitForVisible(this.termsOfServiceText)
+            .waitForVisible(this.termsOfServiceText,WAIT)
             .isVisible(this.termsOfServiceText)
         ).to.equal(true);
-
         //TODO add an actual text comparison of terms and condition
     }
-
     async verifyWalletOptionsAreDisplayed(app){
         expect(await app.client
             .waitForVisible(this.createWalletButton,WAIT)
@@ -55,14 +51,12 @@ class HomePage {
             .isVisible(this.restoreWalletButton)
         ).to.equal(true);
     }
-
     async verifyErrorMessageWhenTermsAreNotAccepted(app){
         expect(await app.client
             .waitForVisible(this.errorDialog,WAIT)
             .getText(this.errorDialog)
         ).to.equal("Some fields require additional action before you can continue.")
     }
-
     async isMantisStartedForTheSelectedNetwork(app,network){
         expect(await app.client
             .waitForVisible(this.connectedNetwork,WAIT)
@@ -70,17 +64,28 @@ class HomePage {
         )
             .to.equal(network);
     }
-
     async clickRestoreWalletButton(app){
         await app.client
             .waitForVisible(this.restoreWalletButton,WAIT)
             .click(this.restoreWalletButton);
     }
-
     async createWallet(app){
         await app.client
             .waitForVisible(this.createWalletButton,WAIT)
             .click(this.createWalletButton);
+    }
+    async verifyLogout(app) {
+        expect(await app.client
+            .waitForVisible(this.createWalletButton,WAIT)
+            .getText(this.createWalletButton)
+        )
+            .to.equal("Create");
+
+        expect(await app.client
+            .waitForVisible(this.restoreWalletButton,WAIT)
+            .getText(this.restoreWalletButton)
+        )
+            .to.equal("Restore");
     }
 
 }

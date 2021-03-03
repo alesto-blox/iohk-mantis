@@ -10,11 +10,6 @@ const APP_CONF = {
         TEST_CONF_PATH:"C:\\Users\\aleks\\OneDrive\\Desktop\\IOHK\\iohk-mantis\\test_data\\config.json",
     },
     START_TIMEOUT:30000,
-    WAIT:30000,
-    TEST_DATA:{
-        CreateWallet:"./test_data/CreateWalletData.txt",
-        WalletName:"TestWallet",
-        WalletPass:"TestPass123!"
-    }
+    WAIT:30000
 };
 module.exports = APP_CONF

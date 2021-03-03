@@ -107,6 +107,7 @@ class StartPage {
                 break;
         }
     }
+
 }
 
 module.exports = new StartPage()

@@ -13,10 +13,14 @@ Feature: Login Mantis Wallet
     with selected Network
 
     Scenario Outline: Login into Mantis wallet
+
+        # Open the App and Select a Network
         Given I open the Mantis wallet app
         When I choose the available Network "<network>" in Mantis Wallet
         Then I should see that I am syncing or connecting to the selected Network "<network>"
+        # Close the App
         Then I should close the Mantis Wallet application
+
         Examples:
             | network |
             |Sagano Testnet |

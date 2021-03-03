@@ -21,11 +21,11 @@
          # TODO add steps to create or restore a wallet
          When I click on address book button on main page
 
-     Scenario: I see address book page on Mantis wallet
+     Scenario:I see address book page on Mantis wallet
          Then I expect to see address book page on Mantis wallet
          Then I should close the Mantis Wallet application
 
-     Scenario: I can add new contact address
+     Scenario:I can add new contact address
          Then I choose add new button
          Then I enter new contact address and label
          Then I expect to see new contact in my address book
