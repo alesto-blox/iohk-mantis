@@ -1,6 +1,9 @@
 //Setting Page
 const WAIT = require('../config/appConfig.js').WAIT;
 const expect = require('chai').expect;
+const configFilePath = require('../config/appConfig')[process.env.ENV].APP_CONF_PATH
+const TD = require('../test_data/testData.json')
+const helpers = require('../support/helpers')
 class SettingsPage {
 
     get mySettingsText() { return ('//div[contains(text(),"My settings")]') }
@@ -25,7 +28,7 @@ class SettingsPage {
     get securityInfoText() { return ('//div[contains(text(),"Please, make sure your screen")]')}
     get revealPrivateKeyButton() { return ('//button[@title="Reveal Private Key"]')}
     get privateKeyValue() { return ('//div[@class="qr-content"]')}
-    get downloadPrivateKeyButton() { return ('//button[contains(text(), "Download")]')}git
+    get downloadPrivateKeyButton() { return ('//button[contains(text(), "Download")]')}
 
     async checkIfYouAreOnSettingsPage(app) {
         expect(await app.client
@@ -34,42 +37,86 @@ class SettingsPage {
         )
             .to.equal('My settings')
     }
-
-
     async darkModeToggle(app) {
         expect(await app.client
             .waitForVisible(this.enableDarkModeText, WAIT)
             .getText(this.enableDarkModeText)
         )
             .to.equal('Enable Dark Mode')
+
         expect(await app.client
             .getAttribute(this.colorThemeAtribute,'class')
         )
             .to.equal('theme-dark')
+
         await app.client
             .waitForVisible(this.enableDarkModeSwitch, WAIT)
             .click(this.enableDarkModeSwitch)
     }
-
     async checkColorThemeChanges(app) {
         expect(await app.client
             .getAttribute(this.colorThemeAtribute,'class')
         )
             .to.equal('theme-light')
+
         await app.client
             .waitForVisible(this.enableDarkModeSwitch, WAIT)
             .click(this.enableDarkModeSwitch)
     }
-
     async checkLanguageOptions(app) {
         expect(await app.client
-            .waitForVisible(this.languageText)
+            .waitForVisible(this.languageText, WAIT)
             .getText(this.languageText)
         )
             .to.equal('Language')
-        const language = await app.client
-            .getText(this.languageDropDown)
-        console.log(language)
+
+        await this.pickLanguageFormat(app)
+    }
+    async pickLanguageFormat(app){
+        for(let i = 0; i<TD.LanguageFormat.length; i++){
+            await app.client
+                .waitForVisible(this.languageDropDown, WAIT)
+                .click(this.languageDropDown)
+
+            await app.client
+                .waitForVisible('//div[@class="ant-select-item-option-content" and text()="'+TD.LanguageFormat[i]+'"]',WAIT)
+                .click('//div[@class="ant-select-item-option-content" and text()="'+TD.LanguageFormat[i]+'"]')
+
+            expect(
+                helpers.readJSONFile(configFilePath).settings.language)
+                .to.equal('en')
+        }
+    }
+    async pickDateFormat(app){
+        for(let i = 0; i<TD.DateFormat.length; i++){
+                await app.client
+                    .waitForVisible(this.dateFormatDropDown, WAIT)
+                    .click(this.dateFormatDropDown)
+
+                await app.client
+                    .waitForVisible('//div[@class="ant-select-item-option-content" and text()="'+TD.DateFormat[i]+'"]',WAIT)
+                    .click('//div[@class="ant-select-item-option-content" and text()="'+TD.DateFormat[i]+'"]')
+
+            expect(
+                helpers.readJSONFile(configFilePath).settings.dateFormat)
+                .to.equal(TD.DateFormat[i])
+        }
+    }
+    async pickTimeFormat(app){
+        for(let i = 0; i<TD.TimeFormat.length; i++){
+            await app.client
+                .waitForVisible(this.timeFormatDropDown, WAIT)
+                .click(this.timeFormatDropDown)
+
+            await app.client
+                .waitForVisible('//div[@class="ant-select-item-option-content" and text()="'+TD.TimeFormat[i]+'"]',WAIT)
+                .click('//div[@class="ant-select-item-option-content" and text()="'+TD.TimeFormat[i]+'"]')
+
+            expect(
+                helpers.readJSONFile(configFilePath).settings.timeFormat)
+                .to.equal(TD.TimeFormat[i])
+        }
+
     }
     async checkDateOptions(app) {
         expect(await app.client
@@ -77,9 +124,8 @@ class SettingsPage {
             .getText(this.dateFormatText)
         )
             .to.equal('Date Format')
-        const language = await app.client
-            .getText(this.dateFormatDropDown)
-        console.log(language)
+
+         await this.pickDateFormat(app)
     }
     async checkTimeOptions(app) {
         expect(await app.client
@@ -88,10 +134,7 @@ class SettingsPage {
         )
             .to.equal('Time Format')
 
-        const language = await app.client
-            .click(this.timeFormatDropDown)
-            .getText(this.timeFormatDropDown)
-        console.log(language)
+        await this.pickTimeFormat(app)
     }
 }
 
