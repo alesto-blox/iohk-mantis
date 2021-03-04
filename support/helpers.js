@@ -33,10 +33,15 @@ function clearFileContent(file){
     })
 }
 
+function readJSONFile(jsonPath) {
+    return JSON.parse(fs.readFileSync(jsonPath, 'utf8'))
+}
+
 module.exports = {
     timeout,
     writeToFileAppended,
     resetMantisConfig,
     readFileToArray,
-    clearFileContent
+    clearFileContent,
+    readJSONFile
 }

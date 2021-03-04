@@ -41,5 +41,18 @@
   "Addresses": {
     "WalletName": "My address",
     "WalletAddress": "0xec49c61786376007494af082b02fac4adb4e4292"
-  }
+  },
+  "DateFormat": [
+    "MM/DD/YYYY",
+    "YYYY-MM-DD",
+    "DD-MM-YYYY",
+    "DD/MM/YYYY"
+  ],
+  "TimeFormat": [
+    "12-hour",
+    "24-hour"
+  ],
+  "LanguageFormat": [
+    "English"
+  ]
 }
