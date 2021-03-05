@@ -13,19 +13,22 @@ Feature: Logout Mantis wallet
 
     Scenario Outline: Logout Mantis wallet
 
-        # Open the app and select a network
+        # Open the App and Select a Network
+        Then I should reset Mantis Wallet config.json
         Given I open the Mantis wallet app
         When I choose the available Network "<network>" in Mantis Wallet
-        # Restore a wallet
+        # Accept Terms and conditions
+        Then I should be able to accept Terms and conditions
+        # Restore a Wallet
         Then I choose Restore wallet button
         Then I enter wallet name, private key and passwords
-        # Logout a wallet
+        # Logout a Wallet
         When I click Log out button on main page
         And I enter my password and check checkbox on remove wallet page
         And I click on remove wallet button on remove wallet page
-        Then I expect to be logged out of Mantis wallet
         # Close the App
         Then I should close the Mantis Wallet application
+        Then I should reset Mantis Wallet config.json
 
         Examples:
             | network |

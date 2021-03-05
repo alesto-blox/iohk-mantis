@@ -13,6 +13,7 @@ Feature: Create Mantis Wallet
     Scenario Outline: Restore Mantis wallet with private key
 
         # Open the App and Select a Network
+        Then I should reset Mantis Wallet config.json
         Given I open the Mantis wallet app
         Then I choose the available Network "<network>" in Mantis Wallet
         Then I should be able to accept Terms and conditions
