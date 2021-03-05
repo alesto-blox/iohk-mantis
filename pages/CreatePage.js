@@ -32,6 +32,8 @@ class CreatePage {
     get conditionRecoveryText() { return ('//input[@id="checkbox-recovery"]/../../span[not(@class="ant-checkbox")]') }
     get conditionRecoveryBox() { return ('//input[@id="checkbox-recovery"]/..') }
     get finishButton() { return ('//span[text()="Finish"]/..') }
+    get errorMessageText() { return ('//div[@class="ant-form-item-explain"]/div') }
+    get errorMessageBox() { return ('//div[@class="DialogError"]') }
 
     async enterWalletNameAndPassword(app){
         await app.client
@@ -45,6 +47,24 @@ class CreatePage {
         await app.client
             .waitForVisible(this.repeatPasswordField,WAIT)
             .setValue(this.repeatPasswordField, TD.CreateWallet.WalletPass);
+
+        await app.client
+            .waitForVisible(this.nextButton,WAIT)
+            .click(this.nextButton);
+    }
+    async enterWalletNameAndPassword(app,pass,confirmPass){
+        await app.client
+            .waitForVisible(this.walletNameField,WAIT)
+            .setValue(this.walletNameField, TD.CreateWallet.WalletName);
+
+        await app.client
+            .waitForVisible(this.enterPasswordField,WAIT)
+            .setValue(this.enterPasswordField, pass);
+
+        await app.client
+            .waitForVisible(this.repeatPasswordField,WAIT)
+            .setValue(this.repeatPasswordField, confirmPass
+            );
 
         await app.client
             .waitForVisible(this.nextButton,WAIT)
@@ -99,6 +119,19 @@ class CreatePage {
         await app.client
             .waitForVisible(this.finishButton,WAIT)
             .click(this.finishButton);
+    }
+    async validateErrorMessages(app,message){
+        expect(await app.client
+            .waitForVisible(this.errorMessageText,WAIT)
+            .getText(this.errorMessageText)
+        )
+            .to.equal(message);
+
+        expect(await app.client
+            .waitForVisible(this.errorMessageBox,WAIT)
+            .getText(this.errorMessageBox)
+        )
+            .to.equal("Some fields require additional action before you can continue.");
     }
 }
 

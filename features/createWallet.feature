@@ -39,3 +39,30 @@ Feature: Create Mantis Wallet
             |Sagano Testnet |
 #           |Mainnet  |
 #           |Mordor   |
+
+    Scenario Outline: Create Mantis wallet password validations
+
+        # Open the App and Select a Network
+        Then I should reset Mantis Wallet config.json
+        Given I open the Mantis wallet app
+        Then I choose the available Network "<network>" in Mantis Wallet
+        # Accept Terms and conditions
+        Then I should be able to accept Terms and conditions
+        # Create a Wallet
+        Then I choose Create wallet button
+        Then I enter wallet name and "<password>" and "<confirmPass>"
+        Then I should see an Error "<message>"
+        # Close the App
+        Then I should close the Mantis Wallet application
+        Then I should reset Mantis Wallet config.json
+
+        Examples:
+            |network        | password | confirmPass | message                                    |
+            |Sagano Testnet | qwertQ1  | qwertQ1     | Password needs to be at least 8 characters |
+            |Sagano Testnet | qwertyu1 | qwertyu1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+            |Sagano Testnet | QWERTYU1 | QWERTYU1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+            |Sagano Testnet | qwertyUQ | qwertyUQ    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+            |Sagano Testnet | qwertQ1q | qwertQ1w    | Passwords don't match |
+            |Sagano Testnet | empty    | empty       | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+#           |Mainnet  |
+#           |Mordor   |

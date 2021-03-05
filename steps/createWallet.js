@@ -22,3 +22,9 @@ Then(/^I remember recovery phrase$/, async ()=>{
 Then(/^I re input recovery phrase$/, async ()=>{
     await createPage.reInputRecoveryPhrase(app,TD.CreateWallet.Phrases)
 });
+Then(/^I enter wallet name and (.*)$/, async (pass,confirmPass)=> {
+    await createPage.enterWalletNameAndPassword(app,pass,confirmPass);
+});
+Then(/^I should see an Error (.*)$/, async (message)=> {
+    await createPage.validateErrorMessages(app,message);
+});
