@@ -15,11 +15,16 @@ Feature: Login Mantis Wallet
     Scenario Outline: Login into Mantis wallet
 
         # Open the App and Select a Network
+        Then I should reset Mantis Wallet config.json
         Given I open the Mantis wallet app
-        When I choose the available Network "<network>" in Mantis Wallet
+        Then I choose the available Network "<network>" in Mantis Wallet
+        # Accept Terms and conditions
+        Then I should be able to accept Terms and conditions
+        # Check Sync
         Then I should see that I am syncing or connecting to the selected Network "<network>"
         # Close the App
         Then I should close the Mantis Wallet application
+        Then I should reset Mantis Wallet config.json
 
         Examples:
             | network |

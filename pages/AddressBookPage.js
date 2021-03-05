@@ -65,7 +65,7 @@ class AddressBookPage {
             .waitForVisible(this.firstContactAddress,WAIT)
             .getText(this.firstContactAddress)
         )
-            .to.equal(TD.Addresses.WalletName)
+            .to.equal(TD.Addresses.WalletAddress)
     }
 }
 

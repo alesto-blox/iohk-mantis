@@ -79,13 +79,13 @@ class HomePage {
             .waitForVisible(this.createWalletButton,WAIT)
             .getText(this.createWalletButton)
         )
-            .to.equal("Create");
+            .to.equal("CREATE");
 
         expect(await app.client
             .waitForVisible(this.restoreWalletButton,WAIT)
             .getText(this.restoreWalletButton)
         )
-            .to.equal("Restore");
+            .to.equal("RESTORE");
     }
 
 }
