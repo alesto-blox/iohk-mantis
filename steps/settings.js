@@ -23,3 +23,11 @@ Then(/^I can change language, date format and time format$/, async ()=> {
     await settingsPage.checkDateOptions(app)
     await settingsPage.checkTimeOptions(app)
 });
+
+Then(/^I change "([^"]*)" in Settings$/, async (network)=> {
+    await settingsPage.checkNetworkOptions(network,app)
+});
+
+Then(/^I can check wallet directory$/, async ()=> {
+    await settingsPage.checkCurrentDirectory(app)
+});
