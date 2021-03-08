@@ -2,6 +2,7 @@
 const WAIT = require('../config/appConfig.js').WAIT;
 const helpers = require('../support/helpers.js');
 const TD = require('../test_data/testData.json');
+const expect = require('chai').expect;
 class CreatePage {
 
     get createWalletText() { return ('//div[text()="Create New Wallet" and @class="title"]') }
@@ -34,8 +35,9 @@ class CreatePage {
     get finishButton() { return ('//span[text()="Finish"]/..') }
     get errorMessageText() { return ('//div[@class="ant-form-item-explain"]/div') }
     get errorMessageBox() { return ('//div[@class="DialogError"]') }
+    get errorMessageWalletNameText() { return ('//div[@class="DialogInput"]//div[@class="ant-form-item-explain"]/div') }
 
-    async enterWalletNameAndPassword(app){
+    async enterWalletNameAndPasswords(app){
         await app.client
             .waitForVisible(this.walletNameField,WAIT)
             .setValue(this.walletNameField, TD.CreateWallet.WalletName);
@@ -52,19 +54,53 @@ class CreatePage {
             .waitForVisible(this.nextButton,WAIT)
             .click(this.nextButton);
     }
-    async enterWalletNameAndPassword(app,pass,confirmPass){
+    async enterWalletNameAndPasswordValidations(app,pass,confirmPass){
         await app.client
             .waitForVisible(this.walletNameField,WAIT)
             .setValue(this.walletNameField, TD.CreateWallet.WalletName);
 
+        if(pass === "empty"){
+            await app.client
+                .waitForVisible(this.enterPasswordField,WAIT)
+                .setValue(this.enterPasswordField, "");
+
+            await app.client
+                .waitForVisible(this.repeatPasswordField,WAIT)
+                .setValue(this.repeatPasswordField, ""
+                );
+        } else {
+            await app.client
+                .waitForVisible(this.enterPasswordField,WAIT)
+                .setValue(this.enterPasswordField, pass);
+
+            await app.client
+                .waitForVisible(this.repeatPasswordField,WAIT)
+                .setValue(this.repeatPasswordField, confirmPass
+                );
+        }
+
+        await app.client
+            .waitForVisible(this.nextButton,WAIT)
+            .click(this.nextButton);
+    }
+    async enterWalletNameAndPassword(app,name){
+        if(name === "empty"){
+            await app.client
+                .waitForVisible(this.walletNameField,WAIT)
+                .setValue(this.walletNameField, "");
+        } else {
+            await app.client
+                .waitForVisible(this.walletNameField,WAIT)
+                .setValue(this.walletNameField, name);
+        }
+
         await app.client
             .waitForVisible(this.enterPasswordField,WAIT)
-            .setValue(this.enterPasswordField, pass);
+            .setValue(this.enterPasswordField, TD.CreateWallet.WalletPass);
 
         await app.client
             .waitForVisible(this.repeatPasswordField,WAIT)
-            .setValue(this.repeatPasswordField, confirmPass
-            );
+            .setValue(this.repeatPasswordField, TD.CreateWallet.WalletPass);
 
         await app.client
             .waitForVisible(this.nextButton,WAIT)
@@ -101,11 +137,12 @@ class CreatePage {
         return recoveryPhrase.toString().replace(/[^A-Za-z]+/g, '\n');
     }
     async reInputRecoveryPhrase(app,phrase){
-        for (let i = 0; i < phrase.length; i++){
+        const words = phrase.split("\n");
+        for (let i = 1; i < words.length; i++){
              await helpers.timeout(300)
              await app.client
-                 .waitForVisible("//div[@class='word' and text()='"+phrase[i]+"']",WAIT)
-                 .click("//div[@class='word' and text()='"+phrase[i]+"']");
+                 .waitForVisible("//div[@class='word' and text()='"+words[i]+"']",WAIT)
+                 .click("//div[@class='word' and text()='"+words[i]+"']");
         }
 
         await app.client
@@ -121,9 +158,22 @@ class CreatePage {
             .click(this.finishButton);
     }
     async validateErrorMessages(app,message){
-        expect(await app.client
+        const errMsg = await app.client
             .waitForVisible(this.errorMessageText,WAIT)
             .getText(this.errorMessageText)
+        expect('"'+errMsg+'"')
+            .to.equal(message);
+
+        expect(await app.client
+            .waitForVisible(this.errorMessageBox,WAIT)
+            .getText(this.errorMessageBox)
+        )
+            .to.equal("Some fields require additional action before you can continue.");
+    }
+    async validateWalletNameErrorMessages(app,message){
+        expect(await app.client
+            .waitForVisible(this.errorMessageWalletNameText,WAIT)
+            .getText(this.errorMessageWalletNameText)
         )
             .to.equal(message);
 

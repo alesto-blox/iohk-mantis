@@ -3,28 +3,32 @@ const createPage = require('../pages/CreatePage.js');
 const homePage = require('../pages/HomePage.js');
 const TD = require('../test_data/testData.json');
 const app = require('../support/baseApp.js').app
+let recoveryPhrase = "";
 
 When(/^I choose Create wallet button$/, async ()=>{
     await homePage.createWallet(app);
 });
 Then(/^I enter wallet name and passwords$/, async ()=>{
-    await createPage.enterWalletNameAndPassword(app);
+    await createPage.enterWalletNameAndPasswords(app);
 });
 Then(/^I confirm that private key is there$/, async ()=>{
     TD.CreateWallet.PVK = await createPage.getPrivateKey(app);
 });
 Then(/^I remember recovery phrase$/, async ()=>{
-    const recoveryPhrase = await createPage.getRecoveryPhrase(app);
-    for(let i =0; i<recoveryPhrase.length; i++){
-        TD.CreateWallet.Phrases[i] = recoveryPhrase[i];
-    }
+    recoveryPhrase = await createPage.getRecoveryPhrase(app);
 });
 Then(/^I re input recovery phrase$/, async ()=>{
-    await createPage.reInputRecoveryPhrase(app,TD.CreateWallet.Phrases)
-});
-Then(/^I enter wallet name and (.*)$/, async (pass,confirmPass)=> {
-    await createPage.enterWalletNameAndPassword(app,pass,confirmPass);
+    await createPage.reInputRecoveryPhrase(app,recoveryPhrase)
 });
 Then(/^I should see an Error (.*)$/, async (message)=> {
     await createPage.validateErrorMessages(app,message);
+});
+Then(/^I enter wallet "([^"]*)" and passwords$/, async (name)=> {
+    await createPage.enterWalletNameAndPassword(app,name);
+});
+Then(/^I should see a wallet name Error "([^"]*)"$/, async (message)=> {
+    await createPage.validateWalletNameErrorMessages(app,message);
+});
+Then(/^I enter wallet name and "([^"]*)" and "([^"]*)"$/, async (pass,confirmPass)=> {
+     await createPage.enterWalletNameAndPasswordValidations(app,pass,confirmPass);
 });
