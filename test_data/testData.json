@@ -54,5 +54,25 @@
   ],
   "LanguageFormat": [
     "English"
-  ]
+  ],
+  "StatusInfo": [
+    "Platform:",
+    "Platform version:",
+    "CPU:",
+    "Memory:",
+    "Mantis Wallet version:",
+    "Mantis Wallet main process ID:",
+    "Mantis Wallet renderer process ID:",
+    "Mantis Wallet local directory:",
+    "Network:",
+    "Node status:",
+    "Node process ID:",
+    "Wallet RPC address:",
+    "Synchronization:",
+    "Current block:",
+    "Highest known block:"
+  ],
+  "SupportDescription":
+    "If you encounter a bug, don't hesitate to contact our support team in IOHK.\nTo make it easier for us to diagnose your problem, please, include your debug logs in the bug report.\nYou can save your logs easily by clicking the Export Logs button below."
+
 }

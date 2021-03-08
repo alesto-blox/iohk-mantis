@@ -29,6 +29,14 @@ class SettingsPage {
     get revealPrivateKeyButton() { return ('//button[@title="Reveal Private Key"]')}
     get privateKeyValue() { return ('//div[@class="qr-content"]')}
     get downloadPrivateKeyButton() { return ('//button[contains(text(), "Download")]')}
+    get saganoNetwork() { return ('//div[@class="ant-select-item-option-content" and contains(text(),"Sagano")]') }
+    get mainnetNetwork() { return ('//div[@class="ant-select-item-option-content" and contains(text(),"Mainnet")]') }
+    get mordorNetwork() { return ('//div[@class="ant-select-item-option-content" and contains(text(),"Mordor")]') }
+    get customNetwork() { return ('//div[@class="ant-select-item-option-content" and contains(text(),"Custom")]') }
+    get confirmButton() { return ('//button[@data-testid="right-button"]') }
+    get confirmMainnetText() { return ('//input[@class="ant-input input"]') }
+    get mantisDataDirectoryText() { return ('//div[text()="Mantis data directory"]')}
+    get mantisDataDirectoryValue() { return ('//div[text()="Mantis data directory"]/..//input')}
 
     async checkIfYouAreOnSettingsPage(app) {
         expect(await app.client
@@ -136,6 +144,134 @@ class SettingsPage {
 
         await this.pickTimeFormat(app)
     }
+    async checkNetworkOptions(network,app) {
+
+        const selectedNetwork = await app.client
+            .waitForVisible(this.networkDropDown,WAIT)
+            .getText(this.networkDropDown);
+
+        switch (network) {
+            case "Sagano Testnet":
+                if (selectedNetwork !== 'Sagano Testnet') {
+                    await app.client
+                        .click(this.networkDropDown);
+
+                    await app.client
+                        .waitForVisible(this.saganoNetwork,WAIT)
+                        .click(this.saganoNetwork);
+
+                    await app.client
+                        .waitForVisible(this.confirmButton,WAIT)
+                        .click(this.confirmButton);
+                }
+
+                expect(await app.client
+                    .waitForVisible(this.networkDropDown,WAIT)
+                    .getText(this.networkDropDown)
+                ).to.equal(network);
+
+                expect(
+                    helpers.readJSONFile(configFilePath).networkName)
+                    .to.equal('testnet-internal-nomad')
+
+                break;
+
+            case "Mainnet":
+                if (selectedNetwork !== 'Mainnet') {
+                    await app.client
+                        .click(this.networkDropDown);
+
+                    await app.client
+                        .waitForVisible(this.mainnetNetwork,WAIT)
+                        .click(this.mainnetNetwork);
+
+                    await app.client
+                        .waitForVisible(this.confirmMainnetText,WAIT)
+                        .setValue(this.confirmMainnetText, "MAINNET");
+
+                    await app.client
+                        .waitForVisible(this.confirmButton,WAIT)
+                        .click(this.confirmButton);
+                }
+
+                expect(await app.client
+                    .waitForVisible(this.networkDropDown,WAIT)
+                    .getText(this.networkDropDown)
+                )
+                    .to.equal(network);
+
+                expect(
+                    helpers.readJSONFile(configFilePath).networkName)
+                    .to.equal('etc')
+
+                break;
+
+            case "Mordor":
+                if (selectedNetwork !== 'Mordor') {
+                    await app.client
+                        .click(this.networkDropDown);
+
+                    await app.client
+                        .waitForVisible(this.mordorNetwork,WAIT)
+                        .click(this.mordorNetwork);
+
+                    await app.client
+                        .waitForVisible(this.confirmButton,WAIT)
+                        .click(this.confirmButton);
+                }
+
+                expect(await app.client
+                    .waitForVisible(this.networkDropDown,WAIT)
+                    .getText(this.networkDropDown)
+                ).to.equal(network);
+
+                expect(
+                    helpers.readJSONFile(configFilePath).networkName)
+                    .to.equal('mordor')
+
+                break;
+
+            case "Custom":
+                if (selectedNetwork !== 'Custom') {
+                    await app.client
+                        .click(this.networkDropDown);
+
+                    await app.client
+                        .waitForVisible(this.customNetwork,WAIT)
+                        .click(this.customNetwork);
+
+                    await app.client
+                        .waitForVisible(this.confirmMainnetText,WAIT)
+                        .setValue(this.confirmMainnetText, "Custom");
+
+                    await app.client
+                        .waitForVisible(this.confirmButton,WAIT)
+                        .click(this.confirmButton);
+                }
+
+                expect(
+                    helpers.readJSONFile(configFilePath).networkName)
+                    .to.equal('Custom')
+
+                break;
+        }
+    }
+    async checkCurrentDirectory(app){
+        expect(await app.client
+            .waitForVisible(this.mantisDataDirectoryText, WAIT)
+            .getText(this.mantisDataDirectoryText)
+        )
+            .to.equal('Mantis data directory')
+
+        const walletDirectory = await app.client
+            .waitForVisible(this.mantisDataDirectoryValue,WAIT)
+            .getValue(this.mantisDataDirectoryValue)
+
+        expect(
+            helpers.readJSONFile(configFilePath).settings.mantisDatadir)
+            .to.equal(walletDirectory)
+    }
+
 }
 
 module.exports = new SettingsPage()

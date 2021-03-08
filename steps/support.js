@@ -8,4 +8,5 @@ When(/^I click on support button on main page$/, async ()=>{
 });
 Then(/^I expect to see support page$/, async ()=>{
    await supportPage.checkIfYouAreOnSupportPage(app)
+   await supportPage.closeSupportPage(app)
 });
