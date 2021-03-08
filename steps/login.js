@@ -3,6 +3,7 @@ const { Given, When, Then} = require('@cucumber/cucumber');
 const helpers = require('../support/helpers.js');
 const startPage = require('../pages/StartPage.js');
 const homePage = require('../pages/HomePage.js');
+const statusPage = require('../pages/StatusPage.js')
 const app = require('../support/baseApp.js').app
 
 Given(/^I open the Mantis wallet app$/, async () => {
@@ -23,4 +24,9 @@ Then(/^I choose Sagano Network in Mantis Wallet$/, async () => {
 });
 Then(/^I should reset Mantis Wallet config\.json$/, async ()=> {
     await helpers.resetMantisConfig(APP_CONF.TEST_CONF_PATH,APP_CONF.APP_CONF_PATH);
+});
+Then(/^I can see details of system$/, async ()=> {
+    await startPage.clickOnShowDetails(app)
+    await statusPage.checkIfYouAreOnStatusPage(app)
+    await statusPage.closeStatusPage(app)
 });

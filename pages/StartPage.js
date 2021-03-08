@@ -108,6 +108,12 @@ class StartPage {
         }
     }
 
+    async clickOnShowDetails(app) {
+        await app.client
+            .waitForVisible(this.showDetails, WAIT)
+            .click(this.showDetails)
+    }
+
 }
 
 module.exports = new StartPage()
