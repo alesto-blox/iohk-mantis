@@ -11,6 +11,12 @@ class AddressBookPage {
     get firstContactRecycleBin() { return ('//div[@class="row"][1]/span[@class="actions"]/span[@class="delete"]')}
     get firstContactEdit() { return ('//div[@class="row"][1]/span[@class="actions"]/span[@class="edit"]')}  
     get firstContactCopy() { return ('//div[@class="row"][1]/span[@class="address"]/span')}
+    get deleteContact() { return ('//span[@class="delete"]')}
+    get deleteContactText() { return ('//div[text()="Delete Contact"]')}
+    get areYouSureDeleteContactText() {return ('//p[contains(text(),"Are you sure")]')}
+    get deleteButtonOnPopup() { return ('//span[text()="Delete"]')}
+    get noSavedContactText() { return ('//div[text()="No saved contacts"]')}
+    get editContact() { return ('//span[@class="edit"]')}
     get addNewButton() { return ('//button[text()="Add new"]')}
     get newContactText() { return ('//div[@class="title" and contains(text(),"New Contact") ]')}
     get addressText() { return ('//label[contains(text(),"Address")]')}
@@ -57,12 +63,12 @@ class AddressBookPage {
             .click(this.saveContactButton)
     }
 
-    async checkForNewContact(app) {
+    async checkForNewContact(app, label) {
         expect(await app.client
             .waitForVisible(this.firstContactText,WAIT)
             .getText(this.firstContactText)
         )
-            .to.equal("My address")
+            .to.equal(label)
 
         expect(await  app.client
             .waitForVisible(this.firstContactAddress,WAIT)
@@ -92,6 +98,43 @@ class AddressBookPage {
             .waitForVisible(this.addressMustBeSetText, WAIT)
             .getText(this.addressMustBeSetText))
             .to.equal(TD.Addresses.InvalidAddressError)
+    }
+
+    async clickEditContact(app) {
+        await app.client
+            .waitForVisible(this.editContact,WAIT)
+            .click(this.editContact)
+    }
+
+    async deleteExistingContact(app) {
+        await app.client
+            .waitForVisible(this.deleteContact,WAIT)
+            .click(this.deleteContact)
+
+        expect(await app.client
+            .waitForVisible(this.deleteContactText,WAIT)
+            .getText(this.deleteContactText)
+        )
+            .to.equal(TD.Addresses.DeleteContactText)
+
+        expect(await app.client
+            .waitForVisible(this.areYouSureDeleteContactText,WAIT)
+            .getText(this.areYouSureDeleteContactText)
+        )
+            .to.equal(TD.Addresses.AreYouSureText)
+
+        await app.client
+            .waitForVisible(this.deleteButtonOnPopup,WAIT)
+            .click(this.deleteButtonOnPopup)
+
+    }
+
+    async checkIfAddressBookIsEmpty(app) {
+        expect(await app.client
+            .waitForVisible(this.noSavedContactText,WAIT)
+            .getText(this.noSavedContactText)
+        )
+            .to.equal(TD.Addresses.NoSavedContactText)
     }
 }
 

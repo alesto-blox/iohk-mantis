@@ -1,7 +1,7 @@
 //Logout Page
 const WAIT = require('../config/appConfig.js').WAIT;
-const TD = require('../test_data/testData.json');
 const helpers = require('../support/helpers.js');
+const expect = require('chai').expect;
 class LogoutPage {
 
     get logoutButton() { return ('//span[contains(text(),"Log out")]') }
@@ -39,7 +39,10 @@ class LogoutPage {
             .waitForVisible(this.removeWalletButton,WAIT)
             .click(this.removeWalletButton);
     }
-
+    async checkIfLogoutButtonIsDisabled(app){
+        expect(await app.client.getHTML(this.logoutButton))
+            .to.include('disabled')
+    }
 }
 
 module.exports = new LogoutPage()
