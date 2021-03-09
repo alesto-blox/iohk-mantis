@@ -1,9 +1,14 @@
 //Home Page
 const WAIT = require('../config/appConfig.js').WAIT;
 const expect = require('chai').expect;
+const TD = require('../test_data/testData.json')
+const chaiFiles = require('chai-files')
+const chai = require('chai')
+chai.use(chaiFiles);
+const {file} = require("chai-files");
 class HomePage {
 
-    get termsOfServiceTitle() { return ('//div[@class="title"]') };
+    get termsOfServiceTitle() { return ('//div[@class="title" and contains(text(),"IOHK")]') };
     get termsOfServiceText() { return ('//div[@class="scrollable"]') };
     get acceptTermsAndConditionsButton() { return ('div#termsAndConditionsApproval') };
     get acceptTermsAndConditionsSpan() { return ('//span[@class="ant-checkbox-inner"]') };
@@ -35,10 +40,20 @@ class HomePage {
         ).to.equal(true);
 
         expect(await app.client
+            .waitForVisible(this.termsOfServiceTitle,WAIT)
+            .getText(this.termsOfServiceTitle)
+        ).to.equal(TD.TOS.TOSTitle);
+
+        expect(await app.client
             .waitForVisible(this.termsOfServiceText,WAIT)
             .isVisible(this.termsOfServiceText)
         ).to.equal(true);
-        //TODO add an actual text comparison of terms and condition
+
+        expect(await app.client
+            .waitForVisible(this.termsOfServiceText,WAIT)
+            .getText(this.termsOfServiceText)
+        ).to.equal(file('./test_data/TermsOfServiceAgreement.txt'));
+
     }
     async verifyWalletOptionsAreDisplayed(app){
         expect(await app.client

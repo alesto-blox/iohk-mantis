@@ -40,7 +40,15 @@
   },
   "Addresses": {
     "WalletName": "My address",
-    "WalletAddress": "0xec49c61786376007494af082b02fac4adb4e4292"
+    "WalletAddress": "0xec49c61786376007494af082b02fac4adb4e4292",
+    "EmptyWalletName": "",
+    "EmptyWalletAddress": "",
+    "InvalidWalletAddress": "invalidAddress123",
+    "NewContactError": "Some fields require additional action before you can continue.",
+    "InvalidAddressError": "Invalid address"
+  },
+  "TOS": {
+    "TOSTitle": "IOHK Terms of Service Agreement"
   },
   "DateFormat": [
     "MM/DD/YYYY",

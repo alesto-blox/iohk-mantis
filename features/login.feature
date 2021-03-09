@@ -31,3 +31,24 @@ Feature: Login Mantis Wallet
             |Sagano Testnet |
             #|Mainnet  |
             #|Mordor   |
+
+    Scenario Outline: I can view details
+
+        # Open the App and Select a Network
+        Then I should reset Mantis Wallet config.json
+        Given I open the Mantis wallet app
+        Then I can see details of system
+        Then I choose the available Network "<network>" in Mantis Wallet
+        # Accept Terms and conditions
+        Then I should be able to accept Terms and conditions
+        # Check Sync
+        Then I should see that I am syncing or connecting to the selected Network "<network>"
+        # Close the App
+        Then I should close the Mantis Wallet application
+        Then I should reset Mantis Wallet config.json
+
+        Examples:
+            | network |
+            |Sagano Testnet |
+            #|Mainnet  |
+            #|Mordor   |

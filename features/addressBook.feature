@@ -47,4 +47,42 @@ Feature: Address book on Mantis wallet
         And I click on remove wallet button on remove wallet page
         # Close the App
         Then I should close the Mantis Wallet application
+
+    Scenario:I can not add new contact address with empty address
+        # Add new Address
+        Then I choose add new button
+        Then I enter new contact with empty address and label
+        # Check the Address Page
+        Then Save button should be non-clickable
+        When I click Log out button on main page
+        And I enter my password and check checkbox on remove wallet page
+        And I click on remove wallet button on remove wallet page
+        # Close the App
+        Then I should close the Mantis Wallet application
+        Then I should reset Mantis Wallet config.json
+
+    Scenario:I can not add new contact address with empty label
+        # Add new Address
+        Then I choose add new button
+        Then I enter new contact with address and empty label
+        # Check the Address Page
+        Then Save button should be non-clickable
+        When I click Log out button on main page
+        And I enter my password and check checkbox on remove wallet page
+        And I click on remove wallet button on remove wallet page
+        # Close the App
+        Then I should close the Mantis Wallet application
+        Then I should reset Mantis Wallet config.json
+
+    Scenario:I can not add new contact address with invalid address
+        # Add new Address
+        Then I choose add new button
+        Then I enter new contact with invalid address and label
+        # Check the Address Page
+        Then I should see error message
+        When I click Log out button on main page
+        And I enter my password and check checkbox on remove wallet page
+        And I click on remove wallet button on remove wallet page
+        # Close the App
+        Then I should close the Mantis Wallet application
         Then I should reset Mantis Wallet config.json
