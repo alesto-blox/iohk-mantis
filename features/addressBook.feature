@@ -21,6 +21,7 @@ Feature: Address book on Mantis wallet
            Then I enter wallet name, private key and passwords
            When I click on address book button on main page
 
+  @Address01
     Scenario:I see address book page on Mantis wallet
         Then I expect to see address book page on Mantis wallet
         When I click Log out button on main page
@@ -29,6 +30,7 @@ Feature: Address book on Mantis wallet
         Then I should close the Mantis Wallet application
          And I reset Mantis Wallet config.json
 
+  @Address02
     Scenario:I can add new contact address
         Then I choose add new button
         Then I enter new contact address and label
@@ -39,6 +41,7 @@ Feature: Address book on Mantis wallet
         Then I should close the Mantis Wallet application
          And I reset Mantis Wallet config.json
 
+  @Address03
     Scenario:I can not add new contact address with empty address
         Then I choose add new button
         Then I enter new contact with empty address and label
@@ -49,6 +52,7 @@ Feature: Address book on Mantis wallet
         Then I should close the Mantis Wallet application
          And I reset Mantis Wallet config.json
 
+  @Address04
     Scenario:I can not add new contact address with empty label
         Then I choose add new button
         Then I enter new contact with address and empty label
@@ -59,6 +63,7 @@ Feature: Address book on Mantis wallet
         Then I should close the Mantis Wallet application
          And I reset Mantis Wallet config.json
 
+  @Address05
     Scenario:I can not add new contact address with invalid address
         Then I choose add new button
         Then I enter new contact with invalid address and label
@@ -69,6 +74,7 @@ Feature: Address book on Mantis wallet
         Then I should close the Mantis Wallet application
          And I reset Mantis Wallet config.json
 
+  @Address06
     Scenario:I can edit existing contact address
         Then I choose add new button
         Then I enter new contact address and label
@@ -81,6 +87,7 @@ Feature: Address book on Mantis wallet
         Then I should close the Mantis Wallet application
         And I reset Mantis Wallet config.json
 
+  @Address07
     Scenario:I can delete existing contact address
         Then I choose add new button
         Then I enter new contact address and label

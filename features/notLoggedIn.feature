@@ -15,6 +15,7 @@ Feature: Not Logged in Mantis Wallet
         Given I reset Mantis Wallet config.json
         And I open the Mantis wallet app
 
+    @NotLoggedIn01
     Scenario Outline:I should not have Address Book
         Then I choose the available Network "<network>" in Mantis Wallet
         Then I should be able to accept Terms and conditions
@@ -29,6 +30,7 @@ Feature: Not Logged in Mantis Wallet
             #|Mainnet  |
             #|Mordor   |
 
+    @NotLoggedIn02
     Scenario Outline:I should not have Transactions
         Then I choose the available Network "<network>" in Mantis Wallet
         Then I should be able to accept Terms and conditions
@@ -43,6 +45,7 @@ Feature: Not Logged in Mantis Wallet
             #|Mainnet  |
             #|Mordor   |
 
+    @NotLoggedIn03
     Scenario Outline:Logout button should be disabled
         Then I choose the available Network "<network>" in Mantis Wallet
         Then I should be able to accept Terms and conditions

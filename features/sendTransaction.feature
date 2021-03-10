@@ -14,7 +14,7 @@ Feature: Send transaction on Mantis wallet
             Given I reset Mantis Wallet config.json
               And I open the Mantis wallet app
 
-
+      @SendTransaction01
       Scenario Outline : I see send transaction page on Mantis wallet
             Then I choose the available Network "<network>" in Mantis Wallet
             Then I should be able to accept Terms and conditions
@@ -34,6 +34,7 @@ Feature: Send transaction on Mantis wallet
                   #|Mainnet  |
                   #|Mordor   |
 
+      @SendTransaction02
        Scenario Outline: Send transaction on Mantis wallet
              Then I choose the available Network "<network>" in Mantis Wallet
              Then I should be able to accept Terms and conditions
@@ -55,6 +56,7 @@ Feature: Send transaction on Mantis wallet
                   #|Mainnet  |
                   #|Mordor   |
 
+      @SendTransaction03
         Scenario Outline: Send transaction on Mantis wallet and choose recipient address from my contacts
               Then I choose the available Network "<network>" in Mantis Wallet
               Then I should be able to accept Terms and conditions
@@ -77,6 +79,7 @@ Feature: Send transaction on Mantis wallet
                   #|Mainnet  |
                   #|Mordor   |
 
+      @SendTransaction04
        Scenario Outline: Send transaction on Mantis wallet advanced tab
              Then I choose the available Network "<network>" in Mantis Wallet
              Then I should be able to accept Terms and conditions
@@ -99,6 +102,7 @@ Feature: Send transaction on Mantis wallet
                   #|Mainnet  |
                   #|Mordor   |
 
+      @SendTransaction05
         Scenario Outline: Send transaction on Mantis wallet advanced tab and choose recipient address from my contacts
               Then I choose the available Network "<network>" in Mantis Wallet
               Then I should be able to accept Terms and conditions

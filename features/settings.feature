@@ -21,6 +21,7 @@
      And I enter wallet name, private key and passwords
      And I click on settings button on main page
 
+   @Settings01
      Scenario: I see my settings page on Mantis wallet
          Then I expect to see my settings page
          When I click Log out button on main page
@@ -29,6 +30,7 @@
          Then I should close the Mantis Wallet application
          And I reset Mantis Wallet config.json
 
+   @Settings02
     Scenario: I change Mantis Wallet color theme
         When I click enable dark mode
         Then I expect to see color theme changed
@@ -38,6 +40,7 @@
         Then I should close the Mantis Wallet application
         And I reset Mantis Wallet config.json
 
+   @Settings03
     Scenario: I can change language, date format and time format
         Then I can change language, date format and time format
         When I click Log out button on main page
@@ -46,6 +49,7 @@
         Then I should close the Mantis Wallet application
         And I reset Mantis Wallet config.json
 
+   @Settings04
     Scenario Outline: I can change Network
         Then I change "<network>" in Settings
         When I click Log out button on main page
@@ -61,6 +65,7 @@
             |Mordor   |
             |Custom   |
 
+   @Settings05
      Scenario: Check wallet directory
         Then I can check wallet directory
         When I click Log out button on main page

@@ -4,7 +4,7 @@
 #
 
 @Status
-@RegressionAnd
+@Regression
 Feature: Status on Mantis wallet
 
     As a regular user
@@ -19,6 +19,7 @@ Feature: Status on Mantis wallet
         Then I choose Restore wallet button
         And I enter wallet name, private key and passwords
 
+    @Status01
     Scenario: Status page on Mantis wallet
         When I click on status button on main page on Mantis wallet
         Then I expect to see status page on Mantis wallet

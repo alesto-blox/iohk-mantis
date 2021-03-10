@@ -14,6 +14,7 @@ Feature: Accept terms and conditions
         Given I reset Mantis Wallet config.json
         And I open the Mantis wallet app
 
+    @TermsAndConditions01
     Scenario Outline: Accept Terms and Conditions
         When I choose the available Network "<network>" in Mantis Wallet
         Then I should see that I am syncing or connecting to the selected Network "<network>"
@@ -28,6 +29,7 @@ Feature: Accept terms and conditions
             #|Mainnet  |
             #|Mordor   |
 
+    @TermsAndConditions02
     Scenario Outline: Accept Terms and Conditions
         When I choose the available Network "<network>" in Mantis Wallet
         Then I should see that I am syncing or connecting to the selected Network "<network>"

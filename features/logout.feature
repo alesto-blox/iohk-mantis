@@ -10,6 +10,7 @@ Feature: Logout Mantis wallet
     I want to be able to logout
     Because I am done with using Mantis wallet
 
+  @Logout01
     Scenario Outline: Logout Mantis wallet
         Given I reset Mantis Wallet config.json
           And I open the Mantis wallet app

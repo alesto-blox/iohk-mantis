@@ -15,6 +15,7 @@ Feature: Create Mantis Wallet
         Given I reset Mantis Wallet config.json
           And I open the Mantis wallet app
 
+    @CreateWallet01
     Scenario Outline: Create Mantis wallet
         Then I choose the available Network "<network>" in Mantis Wallet
         Then I should be able to accept Terms and conditions
@@ -36,6 +37,7 @@ Feature: Create Mantis Wallet
 #           |Mainnet  |
 #           |Mordor   |
 
+    @CreateWallet02
     Scenario Outline: Create Mantis wallet password validations
         Then I choose the available Network "<network>" in Mantis Wallet
         Then I should be able to accept Terms and conditions
@@ -56,6 +58,7 @@ Feature: Create Mantis Wallet
 #           |Mainnet  |
 #           |Mordor   |
 
+    @CreateWallet03
     Scenario Outline: Create Mantis wallet name validations
         Then I choose the available Network "<network>" in Mantis Wallet
         Then I should be able to accept Terms and conditions
@@ -71,6 +74,7 @@ Feature: Create Mantis Wallet
 #           |Mainnet  |
 #           |Mordor   |
 
+    @CreateWallet04
     Scenario Outline: Create Mantis wallet verify download PVK
         Then I choose the available Network "<network>" in Mantis Wallet
         Then I should be able to accept Terms and conditions
@@ -87,6 +91,7 @@ Feature: Create Mantis Wallet
 #           |Mainnet  |
 #           |Mordor   |
 
+    @CreateWallet05
     Scenario Outline: Cancel creating Mantis wallet
         Then I choose the available Network "<network>" in Mantis Wallet
         Then I should be able to accept Terms and conditions
@@ -102,6 +107,7 @@ Feature: Create Mantis Wallet
 #           |Mainnet  |
 #           |Mordor   |
 
+    @CreateWallet06
     Scenario Outline: Cancel creating Mantis wallet after getting word phrases
         Then I choose the available Network "<network>" in Mantis Wallet
         Then I should be able to accept Terms and conditions
@@ -121,6 +127,7 @@ Feature: Create Mantis Wallet
 #           |Mainnet  |
 #           |Mordor   |
 
+    @CreateWallet07
     Scenario Outline: Create Mantis wallet and do not accept Recovery Conditions
         Then I choose the available Network "<network>" in Mantis Wallet
         Then I should be able to accept Terms and conditions
@@ -138,6 +145,7 @@ Feature: Create Mantis Wallet
 #           |Mainnet  |
 #           |Mordor   |
 
+    @CreateWallet08
     Scenario Outline: Create Mantis wallet and do not accept Locally Conditions
         Then I choose the available Network "<network>" in Mantis Wallet
         Then I should be able to accept Terms and conditions
@@ -155,6 +163,7 @@ Feature: Create Mantis Wallet
 #           |Mainnet  |
 #           |Mordor   |
 
+    @CreateWallet09
     Scenario Outline: Create Mantis wallet with incorrect word phrases order
         Then I choose the available Network "<network>" in Mantis Wallet
         Then I should be able to accept Terms and conditions
@@ -172,6 +181,7 @@ Feature: Create Mantis Wallet
 #           |Mainnet  |
 #           |Mordor   |
 
+    @CreateWallet10
     Scenario Outline: Create Mantis wallet - click back from phrases reinput
         Then I choose the available Network "<network>" in Mantis Wallet
         Then I should be able to accept Terms and conditions
@@ -191,6 +201,7 @@ Feature: Create Mantis Wallet
 #           |Mainnet  |
 #           |Mordor   |
 
+    @CreateWallet11
     Scenario Outline: Create Mantis wallet - clear input of recovery phrases
         Then I choose the available Network "<network>" in Mantis Wallet
         Then I should be able to accept Terms and conditions
@@ -208,6 +219,7 @@ Feature: Create Mantis Wallet
 #           |Mainnet  |
 #           |Mordor   |
 
+    @CreateWallet12
     Scenario Outline: Create Mantis wallet - Verify that I cannot create a wallet without reinput
         Then I choose the available Network "<network>" in Mantis Wallet
         Then I should be able to accept Terms and conditions

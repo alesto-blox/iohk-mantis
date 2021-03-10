@@ -14,6 +14,7 @@ Feature: Create Mantis Wallet
         Given I reset Mantis Wallet config.json
         And I open the Mantis wallet app
 
+    @RestoreWallet01
     Scenario Outline: Restore Mantis wallet with private key
         Then I choose the available Network "<network>" in Mantis Wallet
         Then I should be able to accept Terms and conditions
@@ -31,6 +32,7 @@ Feature: Create Mantis Wallet
             #|Mainnet  |
             #|Mordor   |
 
+    @RestoreWallet02
     Scenario Outline: Restore Mantis wallet with word phrases
         Then I choose the available Network "<network>" in Mantis Wallet
         Then I should be able to accept Terms and conditions
@@ -48,6 +50,7 @@ Feature: Create Mantis Wallet
             #|Mainnet  |
             #|Mordor   |
 
+    @RestoreWallet03
     Scenario Outline: Restore Mantis wallet without wallet name
         Then I choose the available Network "<network>" in Mantis Wallet
         Then I should be able to accept Terms and conditions
