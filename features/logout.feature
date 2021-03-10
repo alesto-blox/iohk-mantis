@@ -15,10 +15,58 @@ Feature: Logout Mantis wallet
   @Smoke
   Scenario Outline: Logout Mantis wallet
     Given I restore Mantis Wallet on "<network>"
-    Then I click Log out button on main page
-    And I enter my password and check checkbox on remove wallet page
-    And I click on remove wallet button on remove wallet page
-        #Then I log out
+    Then I log out
+    And I close Mantis Wallet
+
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
+
+  @Logout02
+  Scenario Outline: Logout Mantis wallet
+    Given I restore Mantis Wallet on "<network>"
+    When I try to log out without password
+    Then I should see invalid key error
+    And I close Mantis Wallet
+
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
+
+  @Logout03
+  Scenario Outline: Logout Mantis wallet
+    Given I restore Mantis Wallet on "<network>"
+    When I try to log out without confirmation
+    Then I should see Additional Action Error
+    And I close Mantis Wallet
+
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
+
+  @Logout04
+  Scenario Outline: Logout Mantis wallet
+    Given I restore Mantis Wallet on "<network>"
+    When I try to log out with wrong password
+    Then I should see invalid key error
+    And I close Mantis Wallet
+
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
+
+  @Logout05
+  Scenario Outline: Logout Mantis wallet
+    Given I restore Mantis Wallet on "<network>"
+    When I try to logout and I cancel
     And I close Mantis Wallet
 
     Examples:
