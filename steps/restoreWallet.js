@@ -18,3 +18,18 @@ Then(/^I enter private key and passwords without the wallet name$/, async () => 
 Then(/^I dont enter private key and I enter passwords and wallet name$/, async () => {
     await restorePage.enterRestoreDetailsWithoutPVK(app);
 });
+Then(/^I enter passwords wallet name and incorrect PVK$/, async () => {
+    await restorePage.enterRestoreDetailsWrongPVK(app);
+});
+When(/^I enter "([^"]*)" and "([^"]*)" wallet name and PVK$/, async (pass, confirmPass) => {
+    await restorePage.enterRestoreDetailsInvalidPass(app, pass, confirmPass)
+});
+When(/^I choose recovery phrases$/, async ()=> {
+    await restorePage.clickRecoveryPhrases(app)
+});
+When(/^I enter wallet name and passwords without word phrases$/, async ()=> {
+    await restorePage.enterRestoreDetailsWithoutWordPhrases(app);
+});
+Then(/^I enter wallet name, incorrect recovery phrase and passwords$/, async ()=> {
+    await restorePage.enterRestoreIncorrectPhrasesDetails(app);
+});

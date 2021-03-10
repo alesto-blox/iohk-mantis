@@ -20,6 +20,7 @@
     "LRegression": "cross-env ENV=LINUX ./node_modules/.bin/cucumber-js -r ./steps --tags @Regression --format html:./reports/cucumber-html-report.html",
     "LNotLoggedIn": "cross-env ENV=LINUX ./node_modules/.bin/cucumber-js -r ./steps --tags @NotLoggedIn --format html:./reports/cucumber-html-report.html",
     "LSmoke": "cross-env ENV=LINUX ./node_modules/.bin/cucumber-js -r ./steps --tags @Smoke --format html:./reports/cucumber-html-report.html",
+    "L": "cross-env ENV=LINUX ./node_modules/.bin/cucumber-js -r ./steps --tags @RestoreWallet08 --format html:./reports/cucumber-html-report.html",
     "WINDOWS SCRIPTS": " * * * ",
     "WAddress": "cross-env ENV=WINDOWS ./node_modules/.bin/cucumber-js -r ./steps --tags @Address --format html:./reports/cucumber-html-report.html",
     "WCreateWallet": "cross-env ENV=WINDOWS ./node_modules/.bin/cucumber-js -r ./steps --tags @CreateWallet --format html:./reports/cucumber-html-report.html",
