@@ -21,6 +21,7 @@
   "RestoreWallet": {
     "Password": "TestPass123!",
     "PVTKey": "0xd238a17a8c2fabbcbf0346fea7c7910e96b5e3cf2fbe135584b670bb4e51daa6",
+    "IncorrectPVTKey": "0xd238a17a8c2fabbcbf0346fea7c7910456b5e3cf2fbert5584b670bbre51daa6",
     "WalletName": "MantisWallet",
     "Address": "0x103e4d6fe1667e99bb8cbf24498988b706b5830a",
     "Phrases": [
@@ -95,5 +96,7 @@
   "ErrorPhrases":"The phrase is incorrect",
   "WalletNameErrorMessage": "Name shouldn't be empty",
   "PVKIncorrectPassError":"Key derivation failed - possibly wrong password",
-  "PVKErrorMessage": "Private key must be set"
+  "PVKErrorMessage": "Private key must be set",
+  "IncorrectPVKErrorMessage": "Invalid private key",
+  "InvalidSeedPhrase": "Invalid seed phrase"
 }

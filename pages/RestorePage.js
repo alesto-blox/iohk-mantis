@@ -146,6 +146,131 @@ class RestorePage {
         )
             .to.equal(TD.AdditionalActionError);
     }
+    async enterRestoreDetailsWrongPVK(app){
+        await app.client
+            .waitForVisible(this.walletNameField,WAIT)
+            .setValue(this.walletNameField, TD.RestoreWallet.WalletName);
+
+        await app.client
+            .waitForVisible(this.privateKeyField,WAIT)
+            .setValue(this.privateKeyField, TD.RestoreWallet.IncorrectPVTKey);
+
+        await app.client
+            .waitForVisible(this.enterPasswordField,WAIT)
+            .setValue(this.enterPasswordField, TD.RestoreWallet.Password);
+
+        await app.client
+            .waitForVisible(this.repeatPasswordField,WAIT)
+            .setValue(this.repeatPasswordField, TD.RestoreWallet.Password);
+
+        await app.client
+            .waitForVisible(this.nextButton,WAIT)
+            .click(this.nextButton);
+
+        const errMsg = await app.client
+            .waitForVisible(this.pvkError,WAIT)
+            .getText(this.pvkError)
+        expect(errMsg)
+            .to.equal(TD.IncorrectPVKErrorMessage);
+
+        expect(await app.client
+            .waitForVisible(this.errorMessageBox,WAIT)
+            .getText(this.errorMessageBox)
+        )
+            .to.equal(TD.AdditionalActionError);
+    }
+    async enterRestoreDetailsInvalidPass(app,pass,confirmPass){
+        await app.client
+            .waitForVisible(this.walletNameField,WAIT)
+            .setValue(this.walletNameField, TD.RestoreWallet.WalletName);
+
+        await app.client
+            .waitForVisible(this.privateKeyField,WAIT)
+            .setValue(this.privateKeyField, TD.RestoreWallet.PVTKey);
+
+        await app.client
+            .waitForVisible(this.enterPasswordField,WAIT)
+            .setValue(this.enterPasswordField, pass);
+
+        await app.client
+            .waitForVisible(this.repeatPasswordField,WAIT)
+            .setValue(this.repeatPasswordField, confirmPass);
+
+        await app.client
+            .waitForVisible(this.nextButton,WAIT)
+            .click(this.nextButton);
+    }
+    async clickRecoveryPhrases(app){
+        await app.client
+            .waitForVisible(this.recoveryPhraseButton,WAIT)
+            .click(this.recoveryPhraseButton);
+    }
+    async enterRestoreDetailsWithoutWordPhrases(app){
+        await app.client
+            .waitForVisible(this.walletNameField,WAIT)
+            .setValue(this.walletNameField, TD.RestoreWallet.WalletName);
+
+        await app.client
+            .waitForVisible(this.recoveryPhraseButton,WAIT)
+            .click(this.recoveryPhraseButton);
+
+        await app.client
+            .waitForVisible(this.enterPasswordField,WAIT)
+            .setValue(this.enterPasswordField, TD.RestoreWallet.Password);
+
+        await app.client
+            .waitForVisible(this.repeatPasswordField,WAIT)
+            .setValue(this.repeatPasswordField, TD.RestoreWallet.Password);
+
+        await app.client
+            .waitForVisible(this.nextButton,WAIT)
+            .click(this.nextButton);
+
+        expect(await app.client
+            .waitForVisible(this.errorMessageBox,WAIT)
+            .getText(this.errorMessageBox)
+        )
+            .to.equal(TD.InvalidSeedPhrase);
+    }
+    async enterRestoreIncorrectPhrasesDetails(app){
+        await app.client
+            .waitForVisible(this.walletNameField,WAIT)
+            .setValue(this.walletNameField, TD.RestoreWallet.WalletName);
+
+        await app.client
+            .waitForVisible(this.recoveryPhraseButton,WAIT)
+            .click(this.recoveryPhraseButton);
+
+        for(let i = TD.RestoreWallet.Phrases.length-1; i>1;i--) {
+            if(i !== TD.RestoreWallet.Phrases.length-1){
+                await app.client
+                    .waitForVisible(this.recoveryPhraseField, WAIT)
+                    .setValue(this.recoveryPhraseField, TD.RestoreWallet.Phrases[i]+" ");
+            } else {
+                await app.client
+                    .waitForVisible(this.recoveryPhraseField, WAIT)
+                    .setValue(this.recoveryPhraseField, TD.RestoreWallet.Phrases[i]);
+            }
+        }
+
+        await app.client
+            .waitForVisible(this.enterPasswordField,WAIT)
+            .setValue(this.enterPasswordField, TD.RestoreWallet.Password);
+
+        await app.client
+            .waitForVisible(this.repeatPasswordField,WAIT)
+            .setValue(this.repeatPasswordField, TD.RestoreWallet.Password);
+
+        await app.client
+            .waitForVisible(this.nextButton,WAIT)
+            .click(this.nextButton);
+
+        expect(await app.client
+            .waitForVisible(this.errorMessageBox,WAIT)
+            .getText(this.errorMessageBox)
+        )
+            .to.equal(TD.InvalidSeedPhrase);
+    }
 }
 
 module.exports = new RestorePage()
