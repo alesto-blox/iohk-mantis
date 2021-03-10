@@ -11,6 +11,7 @@ Feature: Not Logged in Mantis Wallet
   I open Mantis Wallet application
   I should see start page
 
+  @NotLoggedIn01
   Scenario Outline:I should not have Address Book
     Given I start Mantis Wallet on "<network>" and accept terms and conditions
     When I click on address book button on main page
@@ -23,6 +24,7 @@ Feature: Not Logged in Mantis Wallet
       | Mainnet        |
       | Mordor         |
 
+  @NotLoggedIn02
   Scenario Outline:I should not have Transactions
     Given I start Mantis Wallet on "<network>" and accept terms and conditions
     When I click on transactions button on main page
@@ -35,6 +37,7 @@ Feature: Not Logged in Mantis Wallet
       | Mainnet        |
       | Mordor         |
 
+  @NotLoggedIn03
   Scenario Outline:Logout button should be disabled
     Given I start Mantis Wallet on "<network>" and accept terms and conditions
     Then Logout button should be disabled

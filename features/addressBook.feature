@@ -11,6 +11,8 @@ Feature: Address book on Mantis wallet
   I want to see my address book
   Because I want to see my contacts
 
+  @Address01
+  @Smoke
   Scenario Outline:I see address book page on Mantis wallet
     Given I restore Mantis Wallet on "<network>"
     When I click on address book button on main page
@@ -24,6 +26,8 @@ Feature: Address book on Mantis wallet
       | Mainnet        |
       | Mordor         |
 
+  @Address02
+  @Smoke
   Scenario Outline:I can add new contact address
     Given I restore Mantis Wallet on "<network>"
     When I click on address book button on main page
@@ -39,6 +43,7 @@ Feature: Address book on Mantis wallet
       | Mainnet        |
       | Mordor         |
 
+  @Address03
   Scenario Outline:I can not add new contact address with empty address
     Given I restore Mantis Wallet on "<network>"
     When I click on address book button on main page
@@ -54,6 +59,7 @@ Feature: Address book on Mantis wallet
       | Mainnet        |
       | Mordor         |
 
+  @Address04
   Scenario Outline:I can not add new contact address with empty label
     Given I restore Mantis Wallet on "<network>"
     When I click on address book button on main page
@@ -69,6 +75,7 @@ Feature: Address book on Mantis wallet
       | Mainnet        |
       | Mordor         |
 
+  @Address05
   Scenario Outline:I can not add new contact address with invalid address
     Given I restore Mantis Wallet on "<network>"
     When I click on address book button on main page
@@ -84,6 +91,7 @@ Feature: Address book on Mantis wallet
       | Mainnet        |
       | Mordor         |
 
+  @Address06
   Scenario Outline:I can edit existing contact address
     Given I restore Mantis Wallet on "<network>"
     When I click on address book button on main page
@@ -101,6 +109,7 @@ Feature: Address book on Mantis wallet
       | Mainnet        |
       | Mordor         |
 
+  @Address07
   Scenario Outline:I can delete existing contact address
     Given I restore Mantis Wallet on "<network>"
     When I click on address book button on main page

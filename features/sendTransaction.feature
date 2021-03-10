@@ -9,7 +9,7 @@
 #      As a regular user
 #      I want send ETC on Mantis Wallet
 #      Because I want to send ETC to my friends
-#
+#      @SendTransaction01
 #      Scenario Outline : I see send transaction page on Mantis wallet
 #            Given I reset Mantis Wallet config.json
 #            And I open the Mantis wallet app
@@ -30,7 +30,7 @@
 #                  |Sagano Testnet  |
 #                  #|Mainnet  |
 #                  #|Mordor   |
-#
+#      @SendTransaction02
 #       Scenario Outline: Send transaction on Mantis wallet
 #             Given I reset Mantis Wallet config.json
 #             And I open the Mantis wallet app
@@ -53,7 +53,8 @@
 #                   |Sagano Testnet  |
 #                  #|Mainnet  |
 #                  #|Mordor   |
-#
+#      @SendTransaction03
+#      @Smoke
 #        Scenario Outline: Send transaction on Mantis wallet and choose recipient address from my contacts
 #              Given I reset Mantis Wallet config.json
 #              And I open the Mantis wallet app
@@ -77,7 +78,7 @@
 #                    |Sagano Testnet  |
 #                  #|Mainnet  |
 #                  #|Mordor   |
-#
+#      @SendTransaction04
 #       Scenario Outline: Send transaction on Mantis wallet advanced tab
 #             Given I reset Mantis Wallet config.json
 #             And I open the Mantis wallet app
@@ -101,7 +102,7 @@
 #                   |Sagano Testnet  |
 #                  #|Mainnet  |
 #                  #|Mordor   |
-#
+#      @SendTransaction05
 #        Scenario Outline: Send transaction on Mantis wallet advanced tab and choose recipient address from my contacts
 #              Given I reset Mantis Wallet config.json
 #              And I open the Mantis wallet app

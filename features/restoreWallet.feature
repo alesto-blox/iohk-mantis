@@ -11,6 +11,8 @@ Feature: Create Mantis Wallet
   I want to restore wallet
   with selected Network
 
+  @RestoreWallet01
+  @Smoke
   Scenario Outline: Restore Mantis wallet with private key
     Given I restore Mantis Wallet on "<network>"
     And I log out
@@ -22,6 +24,7 @@ Feature: Create Mantis Wallet
       | Mainnet        |
       | Mordor         |
 
+  @RestoreWallet02
   Scenario Outline: Restore Mantis wallet with word phrases
     Given I start restoring a wallet on "<network>"
     Then I enter wallet name, recovery phrase and passwords
@@ -36,6 +39,7 @@ Feature: Create Mantis Wallet
       | Mainnet        |
       | Mordor         |
 
+  @RestoreWallet03
   Scenario Outline: Restore Mantis wallet without wallet name
     Given I start restoring a wallet on "<network>"
     Then I enter private key and passwords without the wallet name
@@ -47,6 +51,7 @@ Feature: Create Mantis Wallet
       | Mainnet        |
       | Mordor         |
 
+  @RestoreWallet04
   Scenario Outline: Restore Mantis wallet with empty pvk
     Given I start restoring a wallet on "<network>"
     Then I dont enter private key and I enter passwords and wallet name

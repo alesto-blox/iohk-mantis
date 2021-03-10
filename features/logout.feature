@@ -11,6 +11,8 @@ Feature: Logout Mantis wallet
   I want to be able to logout
   Because I am done with using Mantis wallet
 
+  @Logout01
+  @Smoke
   Scenario Outline: Logout Mantis wallet
     Given I restore Mantis Wallet on "<network>"
     Then I click Log out button on main page

@@ -11,6 +11,8 @@ Feature: Create Mantis Wallet
   I want to create new wallet
   with selected Network
 
+  @CreateWallet01
+  @Smoke
   Scenario Outline: Create Mantis wallet
     Given I start creation of a wallet on "<network>"
     Then I enter wallet name and passwords
@@ -27,6 +29,7 @@ Feature: Create Mantis Wallet
       | Mainnet        |
       | Mordor         |
 
+  @CreateWallet02
   Scenario Outline: Create Mantis wallet password validations
     Given I start creation of a wallet on "<network>"
     Then I enter wallet name and "<password>" and "<confirmPass>"
@@ -54,6 +57,7 @@ Feature: Create Mantis Wallet
       | Mordor         | qwertQ1q | qwertQ1w    | Passwords don't match                                                           |
       | Mordor         | empty    | empty       | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
 
+  @CreateWallet03
   Scenario Outline: Create Mantis wallet name validations
     Given I start creation of a wallet on "<network>"
     Then I enter wallet "<name>" and passwords
@@ -66,6 +70,7 @@ Feature: Create Mantis Wallet
       | Mainnet        | empty | Name shouldn't be empty |
       | Mordor         | empty | Name shouldn't be empty |
 
+  @CreateWallet04
   Scenario Outline: Create Mantis wallet verify download PVK
     Given I start creation of a wallet on "<network>"
     Then I enter wallet name and passwords
@@ -79,6 +84,7 @@ Feature: Create Mantis Wallet
       | Mainnet        |
       | Mordor         |
 
+  @CreateWallet05
   Scenario Outline: Cancel creating Mantis wallet
     Given I start creation of a wallet on "<network>"
     Then I enter wallet name and passwords
@@ -91,6 +97,7 @@ Feature: Create Mantis Wallet
       | Mainnet        |
       | Mordor         |
 
+  @CreateWallet06
   Scenario Outline: Cancel creating Mantis wallet after getting word phrases
     Given I start creation of a wallet on "<network>"
     Then I enter wallet name and passwords
@@ -107,6 +114,7 @@ Feature: Create Mantis Wallet
       | Mainnet        |
       | Mordor         |
 
+  @CreateWallet07
   Scenario Outline: Create Mantis wallet and do not accept Recovery Conditions
     Given I start creation of a wallet on "<network>"
     Then I enter wallet name and passwords
@@ -121,6 +129,7 @@ Feature: Create Mantis Wallet
       | Mainnet        |
       | Mordor         |
 
+  @CreateWallet08
   Scenario Outline: Create Mantis wallet and do not accept Locally Conditions
     Given I start creation of a wallet on "<network>"
     Then I enter wallet name and passwords
@@ -135,6 +144,7 @@ Feature: Create Mantis Wallet
       | Mainnet        |
       | Mordor         |
 
+  @CreateWallet09
   Scenario Outline: Create Mantis wallet with incorrect word phrases order
     Given I start creation of a wallet on "<network>"
     Then I enter wallet name and passwords
@@ -149,6 +159,7 @@ Feature: Create Mantis Wallet
       | Mainnet        |
       | Mordor         |
 
+  @CreateWallet10
   Scenario Outline: Create Mantis wallet - click back from phrases reinput
     Given I start creation of a wallet on "<network>"
     Then I enter wallet name and passwords
@@ -165,6 +176,7 @@ Feature: Create Mantis Wallet
       | Mainnet        |
       | Mordor         |
 
+  @CreateWallet11
   Scenario Outline: Create Mantis wallet - clear input of recovery phrases
     Given I start creation of a wallet on "<network>"
     Then I enter wallet name and passwords
@@ -179,6 +191,7 @@ Feature: Create Mantis Wallet
       | Mainnet        |
       | Mordor         |
 
+  @CreateWallet12
   Scenario Outline: Create Mantis wallet - Verify that I cannot create a wallet without reinput
     Given I start creation of a wallet on "<network>"
     Then I enter wallet name and passwords
