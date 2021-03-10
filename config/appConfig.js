@@ -9,6 +9,11 @@ const APP_CONF = {
         APP_CONF_PATH: "C:\\Users\\aleks\\.mantis-wallet\\config.json",
         TEST_CONF_PATH:"C:\\Users\\aleks\\OneDrive\\Desktop\\IOHK\\iohk-mantis\\test_data\\config.json",
     },
+    MAC:{
+        APP_PATH: "",
+        APP_CONF_PATH: "",
+        TEST_CONF_PATH:"",
+    },
     START_TIMEOUT:30000,
     WAIT:30000
 };
