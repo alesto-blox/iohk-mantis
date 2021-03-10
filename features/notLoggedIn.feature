@@ -7,54 +7,44 @@
 @Regression
 Feature: Not Logged in Mantis Wallet
 
-    As a not logged in user
-    I open Mantis Wallet application
-    I should see start page
+  As a not logged in user
+  I open Mantis Wallet application
+  I should see start page
 
-    Background: I open Mantis wallet
-        Given I reset Mantis Wallet config.json
-        And I open the Mantis wallet app
+  @NotLoggedIn01
+  Scenario Outline:I should not have Address Book
+    Given I start Mantis Wallet on "<network>" and accept terms and conditions
+    When I click on address book button on main page
+    Then AddressBook should be Unavailable
+    And I close Mantis Wallet
 
-    @NotLoggedIn01
-    Scenario Outline:I should not have Address Book
-        Then I choose the available Network "<network>" in Mantis Wallet
-        Then I should be able to accept Terms and conditions
-        When I click on address book button on main page
-        Then AddressBook should be Unavailable
-        Then I should close the Mantis Wallet application
-         And I reset Mantis Wallet config.json
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
 
-        Examples:
-            | network |
-            |Sagano Testnet |
-            #|Mainnet  |
-            #|Mordor   |
+  @NotLoggedIn02
+  Scenario Outline:I should not have Transactions
+    Given I start Mantis Wallet on "<network>" and accept terms and conditions
+    When I click on transactions button on main page
+    Then I should see Create and Restore options
+    And I close Mantis Wallet
 
-    @NotLoggedIn02
-    Scenario Outline:I should not have Transactions
-        Then I choose the available Network "<network>" in Mantis Wallet
-        Then I should be able to accept Terms and conditions
-        When I click on transactions button on main page
-        Then I should see Create and Restore options
-        Then I should close the Mantis Wallet application
-        And I reset Mantis Wallet config.json
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
 
-        Examples:
-            | network |
-            |Sagano Testnet |
-            #|Mainnet  |
-            #|Mordor   |
+  @NotLoggedIn03
+  Scenario Outline:Logout button should be disabled
+    Given I start Mantis Wallet on "<network>" and accept terms and conditions
+    Then Logout button should be disabled
+    And I close Mantis Wallet
 
-    @NotLoggedIn03
-    Scenario Outline:Logout button should be disabled
-        Then I choose the available Network "<network>" in Mantis Wallet
-        Then I should be able to accept Terms and conditions
-        Then Logout button should be disabled
-        Then I should close the Mantis Wallet application
-        And I reset Mantis Wallet config.json
-
-        Examples:
-            | network |
-            |Sagano Testnet |
-            #|Mainnet  |
-            #|Mordor   |
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |

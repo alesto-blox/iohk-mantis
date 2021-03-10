@@ -5,100 +5,126 @@
 
 @Settings
 @Regression
- Feature: Settings on Mantis wallet
+Feature: Settings on Mantis wallet
 
-     As a regular user
-     I want to see my settings
-     Because I want to customize my settings
+  As a regular user
+  I want to see my settings
+  Because I want to customize my settings
 
+  @Settings01
+    @Smoke
+  Scenario Outline: I see my settings page on Mantis wallet
+    Given I restore Mantis Wallet on "<network>"
+    And I click on settings button on main page
+    Then I expect to see my settings page
+    Then I log out
+    And I close Mantis Wallet
 
-   Background:I am on my settings page on Mantis wallet
-     Given I reset Mantis Wallet config.json
-     And I open the Mantis wallet app
-     And I choose Sagano Network in Mantis Wallet
-     Then I should be able to accept Terms and conditions
-     Then I choose Restore wallet button
-     And I enter wallet name, private key and passwords
-     And I click on settings button on main page
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
 
-   @Settings01
-   @Smoke
-     Scenario: I see my settings page on Mantis wallet
-         Then I expect to see my settings page
-         When I click Log out button on main page
-         And I enter my password and check checkbox on remove wallet page
-         And I click on remove wallet button on remove wallet page
-         Then I should close the Mantis Wallet application
-         And I reset Mantis Wallet config.json
+  @Settings02
+  Scenario Outline: I change Mantis Wallet color theme
+    Given I restore Mantis Wallet on "<network>"
+    And I click on settings button on main page
+    When I click enable dark mode
+    Then I expect to see color theme changed
+    Then I log out
+    And I close Mantis Wallet
 
-   @Settings02
-    Scenario: I change Mantis Wallet color theme
-        When I click enable dark mode
-        Then I expect to see color theme changed
-        When I click Log out button on main page
-        And I enter my password and check checkbox on remove wallet page
-        And I click on remove wallet button on remove wallet page
-        Then I should close the Mantis Wallet application
-        And I reset Mantis Wallet config.json
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
 
-   @Settings03
-    Scenario: I can change language, date format and time format
-        Then I can change language, date format and time format
-        When I click Log out button on main page
-        And I enter my password and check checkbox on remove wallet page
-        And I click on remove wallet button on remove wallet page
-        Then I should close the Mantis Wallet application
-        And I reset Mantis Wallet config.json
+  @Settings03
+  Scenario Outline: I can change language, date format and time format
+    Given I restore Mantis Wallet on "<network>"
+    And I click on settings button on main page
+    Then I can change language, date format and time format
+    Then I log out
+    And I close Mantis Wallet
 
-   @Settings04
-    Scenario Outline: I can change Network
-        Then I change "<network>" in Settings
-        When I click Log out button on main page
-        And I enter my password and check checkbox on remove wallet page
-        And I click on remove wallet button on remove wallet page
-        Then I should close the Mantis Wallet application
-        And I reset Mantis Wallet config.json
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
 
-        Examples:
-            | network |
-            |Sagano Testnet |
-            |Mainnet  |
-            |Mordor   |
-            |Custom   |
+  @Settings04
+  Scenario Outline: I can change Network
+    Given I restore Mantis Wallet on "<network>"
+    And I click on settings button on main page
+    Then I change "<networkChange>" in Settings
+    Then I log out
+    And I close Mantis Wallet
 
-   @Settings05
-     Scenario: Check wallet directory
-        Then I can check wallet directory
-        When I click Log out button on main page
-        And I enter my password and check checkbox on remove wallet page
-        And I click on remove wallet button on remove wallet page
-        Then I should close the Mantis Wallet application
-        And I reset Mantis Wallet config.json
+    Examples:
+      | network        | networkChange  |
+      | Sagano Testnet | Mainnet        |
+      | Sagano Testnet | Mordor         |
+      | Sagano Testnet | Custom         |
+      | Mainnet        | Sagano Testnet |
+      | Mainnet        | Mordor         |
+      | Mainnet        | Custom         |
+      | Mordor         | Sagano Testnet |
+      | Mordor         | Mainnet        |
+      | Mordor         | Custom         |
+      | Custom         | Sagano Testnet |
+      | Custom         | Mordor         |
+      | Custom         | Mainnet        |
 
-   @Settings06
-    Scenario: Export private key
-       Then I click Export private key button
-       Then I enter my password and click unlock
-       Then I expect to see export private key and it is blurred
-       When I click on switch
-       Then I should see private key
-       When I click Log out button on main page
-       And I enter my password and check checkbox on remove wallet page
-       And I click on remove wallet button on remove wallet page
-       Then I should close the Mantis Wallet application
-       And I reset Mantis Wallet config.json
+  @Settings05
+  Scenario Outline: Check wallet directory
+    Given I restore Mantis Wallet on "<network>"
+    And I click on settings button on main page
+    Then I can check wallet directory
+    Then I log out
+    And I close Mantis Wallet
 
-   @Settings07
-   Scenario Outline: Export private key password validation
-        Then I click Export private key button
-        Then I enter "<password>" and click unlock
-        Then I should see error message for wrong pass
-        When I click Log out button on main page
-        And I enter my password and check checkbox on remove wallet page
-        And I click on remove wallet button on remove wallet page
-        Then I should close the Mantis Wallet application
-        And I reset Mantis Wallet config.json
-     Examples:
-            | password |
-            |Qwerty123 |
-            |empty    |
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
+
+  @Settings06
+  Scenario Outline: Export private key
+    Given I restore Mantis Wallet on "<network>"
+    And I click on settings button on main page
+    Then I click Export private key button
+    Then I enter my password and click unlock
+    Then I expect to see export private key and it is blurred
+    When I click on switch
+    Then I should see private key
+    Then I log out
+    And I close Mantis Wallet
+
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
+
+  @Settings07
+  Scenario Outline: Export private key password
+    Given I restore Mantis Wallet on "<network>"
+    And I click on settings button on main page
+    Then I click Export private key button
+    Then I enter "<password>" and click unlock
+    Then I should see error message for wrong pass
+    Then I log out
+    And I close Mantis Wallet
+
+    Examples:
+      | network        | password  |
+      | Sagano Testnet | Qwerty123 |
+      | Sagano Testnet | empty     |
+      | Mordor         | Qwerty123 |
+      | Mordor         | empty     |
+      | Mainnet        | Qwerty123 |
+      | Mainnet        | empty     |

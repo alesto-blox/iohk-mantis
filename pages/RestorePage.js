@@ -20,6 +20,7 @@ class RestorePage {
     get nextButton() { return ('//span[text()="Next"]/..') }
     get walletNameError() { return ('//div[@class="ant-form-item-explain"]/div') }
     get errorMessageBox() { return ('//div[@class="DialogError"]') }
+    get pvkError() { return ('//div[@class="ant-form-item-explain"]/div') }
 
     async enterRestoreDetails(app){
         await app.client
@@ -75,7 +76,6 @@ class RestorePage {
             .waitForVisible(this.nextButton,WAIT)
             .click(this.nextButton);
     }
-
     async enterRestorePhrasesDetailsWithoutWalletName(app){
         await app.client
             .waitForVisible(this.recoveryPhraseButton,WAIT)
@@ -117,7 +117,35 @@ class RestorePage {
         )
             .to.equal(TD.AdditionalActionError);
     }
+    async enterRestoreDetailsWithoutPVK(app){
+        await app.client
+            .waitForVisible(this.walletNameField,WAIT)
+            .setValue(this.walletNameField, TD.RestoreWallet.WalletName);
 
+        await app.client
+            .waitForVisible(this.enterPasswordField,WAIT)
+            .setValue(this.enterPasswordField, TD.RestoreWallet.Password);
+
+        await app.client
+            .waitForVisible(this.repeatPasswordField,WAIT)
+            .setValue(this.repeatPasswordField, TD.RestoreWallet.Password);
+
+        await app.client
+            .waitForVisible(this.nextButton,WAIT)
+            .click(this.nextButton);
+
+        const errMsg = await app.client
+            .waitForVisible(this.pvkError,WAIT)
+            .getText(this.pvkError)
+        expect(errMsg)
+            .to.equal(TD.PVKErrorMessage);
+
+        expect(await app.client
+            .waitForVisible(this.errorMessageBox,WAIT)
+            .getText(this.errorMessageBox)
+        )
+            .to.equal(TD.AdditionalActionError);
+    }
 }
 
 module.exports = new RestorePage()

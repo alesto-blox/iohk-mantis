@@ -7,97 +7,122 @@
 @Regression
 Feature: Address book on Mantis wallet
 
-    As a regular user
-    I want to see my address book
-    Because I want to see my contacts
-
-#   TODO Write step to choose multiple networks
-    Background: I am on address book page on Mantis wallet
-          Given I reset Mantis Wallet config.json
-            And I open the Mantis wallet app
-           Then I choose Sagano Network in Mantis Wallet
-           Then I should be able to accept Terms and conditions
-           Then I choose Restore wallet button
-           Then I enter wallet name, private key and passwords
-           When I click on address book button on main page
+  As a regular user
+  I want to see my address book
+  Because I want to see my contacts
 
   @Address01
   @Smoke
-    Scenario:I see address book page on Mantis wallet
-        Then I expect to see address book page on Mantis wallet
-        When I click Log out button on main page
-         And I enter my password and check checkbox on remove wallet page
-         And I click on remove wallet button on remove wallet page
-        Then I should close the Mantis Wallet application
-         And I reset Mantis Wallet config.json
+  Scenario Outline:I see address book page on Mantis wallet
+    Given I restore Mantis Wallet on "<network>"
+    When I click on address book button on main page
+    Then I expect to see address book page on Mantis wallet
+    Then I log out
+    And I close Mantis Wallet
+
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
 
   @Address02
   @Smoke
-    Scenario:I can add new contact address
-        Then I choose add new button
-        Then I enter new contact address and label
-        Then I expect to see new contact in my address book
-        When I click Log out button on main page
-         And I enter my password and check checkbox on remove wallet page
-         And I click on remove wallet button on remove wallet page
-        Then I should close the Mantis Wallet application
-         And I reset Mantis Wallet config.json
+  Scenario Outline:I can add new contact address
+    Given I restore Mantis Wallet on "<network>"
+    When I click on address book button on main page
+    Then I choose add new button
+    Then I enter new contact address and label
+    Then I expect to see new contact in my address book
+    Then I log out
+    And I close Mantis Wallet
+
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
 
   @Address03
-    Scenario:I can not add new contact address with empty address
-        Then I choose add new button
-        Then I enter new contact with empty address and label
-        Then Save button should be non-clickable
-        When I click Log out button on main page
-         And I enter my password and check checkbox on remove wallet page
-         And I click on remove wallet button on remove wallet page
-        Then I should close the Mantis Wallet application
-         And I reset Mantis Wallet config.json
+  Scenario Outline:I can not add new contact address with empty address
+    Given I restore Mantis Wallet on "<network>"
+    When I click on address book button on main page
+    Then I choose add new button
+    Then I enter new contact with empty address and label
+    Then Save button should be non-clickable
+    Then I log out
+    And I close Mantis Wallet
+
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
 
   @Address04
-    Scenario:I can not add new contact address with empty label
-        Then I choose add new button
-        Then I enter new contact with address and empty label
-        Then Save button should be non-clickable
-        When I click Log out button on main page
-         And I enter my password and check checkbox on remove wallet page
-         And I click on remove wallet button on remove wallet page
-        Then I should close the Mantis Wallet application
-         And I reset Mantis Wallet config.json
+  Scenario Outline:I can not add new contact address with empty label
+    Given I restore Mantis Wallet on "<network>"
+    When I click on address book button on main page
+    Then I choose add new button
+    Then I enter new contact with address and empty label
+    Then Save button should be non-clickable
+    Then I log out
+    And I close Mantis Wallet
+
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
 
   @Address05
-    Scenario:I can not add new contact address with invalid address
-        Then I choose add new button
-        Then I enter new contact with invalid address and label
-        Then I should see error message
-        When I click Log out button on main page
-         And I enter my password and check checkbox on remove wallet page
-         And I click on remove wallet button on remove wallet page
-        Then I should close the Mantis Wallet application
-         And I reset Mantis Wallet config.json
+  Scenario Outline:I can not add new contact address with invalid address
+    Given I restore Mantis Wallet on "<network>"
+    When I click on address book button on main page
+    Then I choose add new button
+    Then I enter new contact with invalid address and label
+    Then I should see error message
+    Then I log out
+    And I close Mantis Wallet
+
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
 
   @Address06
-    Scenario:I can edit existing contact address
-        Then I choose add new button
-        Then I enter new contact address and label
-        Then I expect to see new contact in my address book
-        Then I edit existing contact
-        When I expect to see edited contact
-        When I click Log out button on main page
-        And I enter my password and check checkbox on remove wallet page
-        And I click on remove wallet button on remove wallet page
-        Then I should close the Mantis Wallet application
-        And I reset Mantis Wallet config.json
+  Scenario Outline:I can edit existing contact address
+    Given I restore Mantis Wallet on "<network>"
+    When I click on address book button on main page
+    Then I choose add new button
+    Then I enter new contact address and label
+    Then I expect to see new contact in my address book
+    Then I edit existing contact
+    When I expect to see edited contact
+    Then I log out
+    And I close Mantis Wallet
+
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
 
   @Address07
-    Scenario:I can delete existing contact address
-        Then I choose add new button
-        Then I enter new contact address and label
-        Then I expect to see new contact in my address book
-        Then I delete existing contact
-        When I should have empty address book
-        When I click Log out button on main page
-        And I enter my password and check checkbox on remove wallet page
-        And I click on remove wallet button on remove wallet page
-        Then I should close the Mantis Wallet application
-        And I reset Mantis Wallet config.json
+  Scenario Outline:I can delete existing contact address
+    Given I restore Mantis Wallet on "<network>"
+    When I click on address book button on main page
+    Then I choose add new button
+    Then I enter new contact address and label
+    Then I expect to see new contact in my address book
+    Then I delete existing contact
+    When I should have empty address book
+    Then I log out
+    And I close Mantis Wallet
+
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
