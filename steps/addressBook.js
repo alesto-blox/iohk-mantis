@@ -19,7 +19,7 @@ Then(/^I enter new contact address and label$/, async () => {
     await addressBook.clickSaveNewContact(app)
 });
 Then(/^I expect to see new contact in my address book$/, async () => {
-    await addressBook.checkForNewContact(app)
+    await addressBook.checkForNewContact(app,TD.Addresses.WalletName)
 });
 Then(/^I enter new contact with empty address and label$/,  async () => {
     await addressBook.addNewContactAddress(app, TD.Addresses.EmptyWalletAddress)
@@ -41,4 +41,18 @@ Then(/^I enter new contact with invalid address and label$/, async () => {
 Then(/^I should see error message$/, async () => {
     await addressBook.saveInvalidContactErrorMessage(app)
     await addressBook.closeAddNewContact(app)
+});
+Then(/^I edit existing contact$/, async () => {
+    await addressBook.clickEditContact(app)
+    await addressBook.addNewContactLabel(app,TD.Addresses.EditedWalletName)
+    await addressBook.clickSaveNewContact(app)
+});
+When(/^I expect to see edited contact$/, async () => {
+    await addressBook.checkForNewContact(app,TD.Addresses.WalletName+TD.Addresses.EditedWalletName)
+});
+Then(/^I delete existing contact$/, async () => {
+    await addressBook.deleteExistingContact(app)
+});
+When(/^I should have empty address book$/, async () => {
+    await addressBook.checkIfAddressBookIsEmpty(app)
 });

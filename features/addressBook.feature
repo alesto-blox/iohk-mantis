@@ -86,3 +86,33 @@ Feature: Address book on Mantis wallet
         # Close the App
         Then I should close the Mantis Wallet application
         Then I should reset Mantis Wallet config.json
+
+    Scenario:I can edit existing contact address
+        # Add new Address
+        Then I choose add new button
+        Then I enter new contact address and label
+        Then I expect to see new contact in my address book
+        #Edit Contact
+        Then I edit existing contact
+        When I expect to see edited contact
+        # Logout a Wallet
+        When I click Log out button on main page
+        And I enter my password and check checkbox on remove wallet page
+        And I click on remove wallet button on remove wallet page
+        # Close the App
+        Then I should close the Mantis Wallet application
+
+    Scenario:I can delete existing contact address
+        # Add new Address
+        Then I choose add new button
+        Then I enter new contact address and label
+        Then I expect to see new contact in my address book
+        #Delete Contact
+        Then I delete existing contact
+        When I should have empty address book
+        # Logout a Wallet
+        When I click Log out button on main page
+        And I enter my password and check checkbox on remove wallet page
+        And I click on remove wallet button on remove wallet page
+        # Close the App
+        Then I should close the Mantis Wallet application

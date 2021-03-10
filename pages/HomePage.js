@@ -16,7 +16,8 @@ class HomePage {
     get errorDialog() { return ('//div[@class="DialogError"]') };
     get createWalletButton() { return ('//div[text()="Create"]') };
     get restoreWalletButton() { return ('//div[text()="Restore"]') };
-    get connectedNetwork(){return ('//div[@class="network"]')}
+    get connectedNetwork() {return ('//div[@class="network"]')}
+    get addressBookNeedAddressInfo() { return ('//div[text()="You need a wallet to continue"]')}
 
     async acceptTermsAndConditions(app){
         await app.client
@@ -101,6 +102,27 @@ class HomePage {
             .getText(this.restoreWalletButton)
         )
             .to.equal("RESTORE");
+    }
+    async addressBookIsUnavailable(app){
+        expect(await app.client
+            .waitForVisible(this.addressBookNeedAddressInfo,WAIT)
+            .getText(this.addressBookNeedAddressInfo)
+        )
+            .to.equal(TD.Addresses.NeedWalletToSeeAddressBookText);
+    }
+    async checkIfCreateButtonIsDisplayed(app){
+        expect(await app.client
+            .waitForVisible(this.createWalletButton,WAIT)
+            .getText(this.createWalletButton)
+        )
+            .to.equal('CREATE');
+    }
+    async checkIfRestoreButtonIsDisplayed(app){
+        expect(await app.client
+            .waitForVisible(this.restoreWalletButton,WAIT)
+            .getText(this.restoreWalletButton)
+        )
+            .to.equal('RESTORE');
     }
 
 }
