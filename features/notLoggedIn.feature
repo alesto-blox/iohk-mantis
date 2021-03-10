@@ -12,28 +12,46 @@ Feature: Not Logged in Mantis Wallet
     I should see start page
 
     Background: I open Mantis wallet
-        # Open the App and Select a Network
-        Then I should reset Mantis Wallet config.json
-        Given I open the Mantis wallet app
-        Then I choose Sagano Network in Mantis Wallet
-        # Accept Terms and Conditions
-        Then I should be able to accept Terms and conditions
+        Given I reset Mantis Wallet config.json
+        And I open the Mantis wallet app
 
-    Scenario:I should not have Address Book
-        # Check the Address Page
+    Scenario Outline:I should not have Address Book
+        Then I choose the available Network "<network>" in Mantis Wallet
+        Then I should be able to accept Terms and conditions
         When I click on address book button on main page
         Then AddressBook should be Unavailable
-        # Close the App
         Then I should close the Mantis Wallet application
+         And I reset Mantis Wallet config.json
 
-    Scenario:I should not have Transactions
-        # Check the Transactions Page
+        Examples:
+            | network |
+            |Sagano Testnet |
+            #|Mainnet  |
+            #|Mordor   |
+
+    Scenario Outline:I should not have Transactions
+        Then I choose the available Network "<network>" in Mantis Wallet
+        Then I should be able to accept Terms and conditions
         When I click on transactions button on main page
         Then I should see Create and Restore options
-        # Close the App
         Then I should close the Mantis Wallet application
+        And I reset Mantis Wallet config.json
 
-    Scenario:Logout button should be disabled
+        Examples:
+            | network |
+            |Sagano Testnet |
+            #|Mainnet  |
+            #|Mordor   |
+
+    Scenario Outline:Logout button should be disabled
+        Then I choose the available Network "<network>" in Mantis Wallet
+        Then I should be able to accept Terms and conditions
         Then Logout button should be disabled
-        # Close the App
         Then I should close the Mantis Wallet application
+        And I reset Mantis Wallet config.json
+
+        Examples:
+            | network |
+            |Sagano Testnet |
+            #|Mainnet  |
+            #|Mordor   |
