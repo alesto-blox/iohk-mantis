@@ -40,12 +40,17 @@
   },
   "Addresses": {
     "WalletName": "My address",
+    "EditedWalletName": "Edited address",
     "WalletAddress": "0xec49c61786376007494af082b02fac4adb4e4292",
     "EmptyWalletName": "",
     "EmptyWalletAddress": "",
     "InvalidWalletAddress": "invalidAddress123",
     "NewContactError": "Some fields require additional action before you can continue.",
-    "InvalidAddressError": "Invalid address"
+    "InvalidAddressError": "Invalid address",
+    "DeleteContactText": "Delete Contact",
+    "AreYouSureText": "Are you sure you want to delete this contact?",
+    "NoSavedContactText": "No saved contacts",
+    "NeedWalletToSeeAddressBookText": "You need a wallet to continue"
   },
   "TOS": {
     "TOSTitle": "IOHK Terms of Service Agreement"
