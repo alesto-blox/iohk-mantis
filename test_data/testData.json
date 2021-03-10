@@ -84,6 +84,6 @@
     "If you encounter a bug, don't hesitate to contact our support team in IOHK.\nTo make it easier for us to diagnose your problem, please, include your debug logs in the bug report.\nYou can save your logs easily by clicking the Export Logs button below.",
   "ErrorColor": "rgba(255,0,0,1)",
   "AdditionalActionError": "Some fields require additional action before you can continue.",
-  "ErrorPhrases":"The phrase is incorrect"
-
+  "ErrorPhrases":"The phrase is incorrect",
+  "WalletNameErrorMessage": "Name shouldn't be empty"
 }

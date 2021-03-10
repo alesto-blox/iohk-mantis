@@ -1,6 +1,7 @@
 //Restore Page
 const WAIT = require('../config/appConfig.js').WAIT;
 const TD = require('../test_data/testData.json');
+const expect = require('chai').expect;
 class RestorePage {
 
     get restoreWalletText() { return ('//div[text()="Restore Wallet" and @class="title"]') }
@@ -17,6 +18,8 @@ class RestorePage {
     get noteForPasswordText() { return ('//div[@class="criteria"]') }
     get cancelButton() { return ('//span[text()="Cancel"]/..') }
     get nextButton() { return ('//span[text()="Next"]/..') }
+    get walletNameError() { return ('//div[@class="ant-form-item-explain"]/div') }
+    get errorMessageBox() { return ('//div[@class="DialogError"]') }
 
     async enterRestoreDetails(app){
         await app.client
@@ -71,6 +74,48 @@ class RestorePage {
         await app.client
             .waitForVisible(this.nextButton,WAIT)
             .click(this.nextButton);
+    }
+
+    async enterRestorePhrasesDetailsWithoutWalletName(app){
+        await app.client
+            .waitForVisible(this.recoveryPhraseButton,WAIT)
+            .click(this.recoveryPhraseButton);
+
+        for(let i =0; i<TD.RestoreWallet.Phrases.length;i++) {
+            if(i !== TD.RestoreWallet.Phrases.length-1){
+                await app.client
+                    .waitForVisible(this.recoveryPhraseField, WAIT)
+                    .setValue(this.recoveryPhraseField, TD.RestoreWallet.Phrases[i]+" ");
+            } else {
+                await app.client
+                    .waitForVisible(this.recoveryPhraseField, WAIT)
+                    .setValue(this.recoveryPhraseField, TD.RestoreWallet.Phrases[i]);
+            }
+        }
+
+        await app.client
+            .waitForVisible(this.enterPasswordField,WAIT)
+            .setValue(this.enterPasswordField, TD.RestoreWallet.Password);
+
+        await app.client
+            .waitForVisible(this.repeatPasswordField,WAIT)
+            .setValue(this.repeatPasswordField, TD.RestoreWallet.Password);
+
+        await app.client
+            .waitForVisible(this.nextButton,WAIT)
+            .click(this.nextButton);
+
+        const errMsg = await app.client
+            .waitForVisible(this.walletNameError,WAIT)
+            .getText(this.walletNameError)
+        expect(errMsg)
+            .to.equal(TD.WalletNameErrorMessage);
+
+        expect(await app.client
+            .waitForVisible(this.errorMessageBox,WAIT)
+            .getText(this.errorMessageBox)
+        )
+            .to.equal(TD.AdditionalActionError);
     }
 
 }

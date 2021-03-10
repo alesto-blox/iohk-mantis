@@ -20,5 +20,5 @@ Feature: Receive address on Mantis wallet
         Examples:
             |network |
             |Sagano Testnet |
-#            |Mainnet  |
-#            |Mordor   |
+            #|Mainnet  |
+            #|Mordor   |
