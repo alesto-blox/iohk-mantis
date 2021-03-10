@@ -18,6 +18,7 @@
     "LSupport": "cross-env ENV=LINUX ./node_modules/.bin/cucumber-js -r ./steps --tags @Support --format html:./reports/cucumber-html-report.html",
     "LTermsAndConditions": "cross-env ENV=LINUX ./node_modules/.bin/cucumber-js -r ./steps --tags @TermsAndConditions --format html:./reports/cucumber-html-report.html",
     "LRegression": "cross-env ENV=LINUX ./node_modules/.bin/cucumber-js -r ./steps --tags @Regression --format html:./reports/cucumber-html-report.html",
+    "LSmoke": "cross-env ENV=LINUX ./node_modules/.bin/cucumber-js -r ./steps --tags @Smoke --format html:./reports/cucumber-html-report.html",
     "LNotLoggedIn": "cross-env ENV=LINUX ./node_modules/.bin/cucumber-js -r ./steps --tags @NotLoggedIn --format html:./reports/cucumber-html-report.html",
     "WINDOWS SCRIPTS": " * * * ",
     "WAddress": "cross-env ENV=WINDOWS ./node_modules/.bin/cucumber-js -r ./steps --tags @Address --format html:./reports/cucumber-html-report.html",
@@ -33,6 +34,7 @@
     "WSupport": "cross-env ENV=WINDOWS ./node_modules/.bin/cucumber-js -r ./steps --tags @Support --format html:./reports/cucumber-html-report.html",
     "WTermsAndConditions": "cross-env ENV=WINDOWS ./node_modules/.bin/cucumber-js -r ./steps --tags @TermsAndConditions --format html:./reports/cucumber-html-report.html",
     "WRegression": "cross-env ENV=WINDOWS ./node_modules/.bin/cucumber-js -r ./steps --tags @Regression --format html:./reports/cucumber-html-report.html",
+    "WSmoke": "cross-env ENV=WINDOWS ./node_modules/.bin/cucumber-js -r ./steps --tags @Smoke --format html:./reports/cucumber-html-report.html",
     "WNotLoggedIn": "cross-env ENV=WINDOWS ./node_modules/.bin/cucumber-js -r ./steps --tags @NotLoggedIn --format html:./reports/cucumber-html-report.html",
     "MAC SCRIPTS": " * * * ",
     "MAddress": "cross-env ENV=MAC ./node_modules/.bin/cucumber-js -r ./steps --tags @Address --format html:./reports/cucumber-html-report.html",
@@ -48,6 +50,7 @@
     "MSupport": "cross-env ENV=MAC ./node_modules/.bin/cucumber-js -r ./steps --tags @Support --format html:./reports/cucumber-html-report.html",
     "MTermsAndConditions": "cross-env ENV=MAC ./node_modules/.bin/cucumber-js -r ./steps --tags @TermsAndConditions --format html:./reports/cucumber-html-report.html",
     "MRegression": "cross-env ENV=MAC ./node_modules/.bin/cucumber-js -r ./steps --tags @Regression --format html:./reports/cucumber-html-report.html",
+    "MSmoke": "cross-env ENV=MAC ./node_modules/.bin/cucumber-js -r ./steps --tags @Smoke --format html:./reports/cucumber-html-report.html",
     "MNotLoggedIn": "cross-env ENV=MAC ./node_modules/.bin/cucumber-js -r ./steps --tags @NotLoggedIn --format html:./reports/cucumber-html-report.html"
   },
   "keywords": [],

@@ -1,4 +1,4 @@
-const { When, Then } = require('@cucumber/cucumber');
+const {When, Then} = require('@cucumber/cucumber');
 const app = require('../support/baseApp.js').app
 const addressBook = require('../pages/AddressBookPage.js');
 const loggedInPage = require('../pages/LoggedInPage')
@@ -19,17 +19,17 @@ Then(/^I enter new contact address and label$/, async () => {
     await addressBook.clickSaveNewContact(app)
 });
 Then(/^I expect to see new contact in my address book$/, async () => {
-    await addressBook.checkForNewContact(app,TD.Addresses.WalletName)
+    await addressBook.checkForNewContact(app, TD.Addresses.WalletName)
 });
-Then(/^I enter new contact with empty address and label$/,  async () => {
+Then(/^I enter new contact with empty address and label$/, async () => {
     await addressBook.addNewContactAddress(app, TD.Addresses.EmptyWalletAddress)
     await addressBook.addNewContactLabel(app, TD.Addresses.WalletName)
 });
-Then(/^Save button should be non\-clickable$/,  async () => {
+Then(/^Save button should be non\-clickable$/, async () => {
     await addressBook.saveButtonIsNonClickable(app)
     await addressBook.closeAddNewContact(app)
 });
-Then(/^I enter new contact with address and empty label$/, async () =>  {
+Then(/^I enter new contact with address and empty label$/, async () => {
     await addressBook.addNewContactAddress(app, TD.Addresses.WalletAddress)
     await addressBook.addNewContactLabel(app, TD.Addresses.EmptyWalletName)
 });
@@ -44,11 +44,11 @@ Then(/^I should see error message$/, async () => {
 });
 Then(/^I edit existing contact$/, async () => {
     await addressBook.clickEditContact(app)
-    await addressBook.addNewContactLabel(app,TD.Addresses.EditedWalletName)
+    await addressBook.addNewContactLabel(app, TD.Addresses.EditedWalletName)
     await addressBook.clickSaveNewContact(app)
 });
 When(/^I expect to see edited contact$/, async () => {
-    await addressBook.checkForNewContact(app,TD.Addresses.WalletName+TD.Addresses.EditedWalletName)
+    await addressBook.checkForNewContact(app, TD.Addresses.WalletName + TD.Addresses.EditedWalletName)
 });
 Then(/^I delete existing contact$/, async () => {
     await addressBook.deleteExistingContact(app)
