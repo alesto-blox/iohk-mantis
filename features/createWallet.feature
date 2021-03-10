@@ -7,220 +7,188 @@
 @Regression
 Feature: Create Mantis Wallet
 
-    As a regular user
-    I want to create new wallet
-    with selected Network
+  As a regular user
+  I want to create new wallet
+  with selected Network
 
-    Background:
-        Given I reset Mantis Wallet config.json
-          And I open the Mantis wallet app
+  Scenario Outline: Create Mantis wallet
+    Given I start creation of a wallet on "<network>"
+    Then I enter wallet name and passwords
+    Then I confirm that private key is there
+    Then I remember recovery phrase
+    Then I re input recovery phrase
+    Then I expect to see my transactions page
+    Then I log out
+    And I close Mantis Wallet
 
-    Scenario Outline: Create Mantis wallet
-        Then I choose the available Network "<network>" in Mantis Wallet
-        Then I should be able to accept Terms and conditions
-        Then I choose Create wallet button
-        Then I enter wallet name and passwords
-        Then I confirm that private key is there
-        Then I remember recovery phrase
-        Then I re input recovery phrase
-        Then I expect to see my transactions page
-        When I click Log out button on main page
-         And I enter my password and check checkbox on remove wallet page
-         And I click on remove wallet button on remove wallet page
-        Then I should close the Mantis Wallet application
-         And I reset Mantis Wallet config.json
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
 
-        Examples:
-            |network        |
-            |Sagano Testnet |
-#           |Mainnet  |
-#           |Mordor   |
+  Scenario Outline: Create Mantis wallet password validations
+    Given I start creation of a wallet on "<network>"
+    Then I enter wallet name and "<password>" and "<confirmPass>"
+    Then I should see an Error "<message>"
+    And I close Mantis Wallet
 
-    Scenario Outline: Create Mantis wallet password validations
-        Then I choose the available Network "<network>" in Mantis Wallet
-        Then I should be able to accept Terms and conditions
-        Then I choose Create wallet button
-        Then I enter wallet name and "<password>" and "<confirmPass>"
-        Then I should see an Error "<message>"
-        Then I should close the Mantis Wallet application
-         And I reset Mantis Wallet config.json
+    Examples:
+      | network        | password | confirmPass | message                                                                         |
+      | Sagano Testnet | qwertQ1  | qwertQ1     | Password needs to be at least 8 characters                                      |
+      | Sagano Testnet | qwertyu1 | qwertyu1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+      | Sagano Testnet | QWERTYU1 | QWERTYU1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+      | Sagano Testnet | qwertyUQ | qwertyUQ    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+      | Sagano Testnet | qwertQ1q | qwertQ1w    | Passwords don't match                                                           |
+      | Sagano Testnet | empty    | empty       | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+      | Mainnet        | qwertQ1  | qwertQ1     | Password needs to be at least 8 characters                                      |
+      | Mainnet        | qwertyu1 | qwertyu1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+      | Mainnet        | QWERTYU1 | QWERTYU1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+      | Mainnet        | qwertyUQ | qwertyUQ    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+      | Mainnet        | qwertQ1q | qwertQ1w    | Passwords don't match                                                           |
+      | Mainnet        | empty    | empty       | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+      | Mordor         | qwertQ1  | qwertQ1     | Password needs to be at least 8 characters                                      |
+      | Mordor         | qwertyu1 | qwertyu1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+      | Mordor         | QWERTYU1 | QWERTYU1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+      | Mordor         | qwertyUQ | qwertyUQ    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+      | Mordor         | qwertQ1q | qwertQ1w    | Passwords don't match                                                           |
+      | Mordor         | empty    | empty       | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
 
-        Examples:
-            |network        |password   |confirmPass |message                                    |
-            |Sagano Testnet |qwertQ1    |qwertQ1     |Password needs to be at least 8 characters |
-            |Sagano Testnet |qwertyu1   |qwertyu1    |Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-            |Sagano Testnet |QWERTYU1   |QWERTYU1    |Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-            |Sagano Testnet |qwertyUQ   |qwertyUQ    |Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-            |Sagano Testnet |qwertQ1q   |qwertQ1w    |Passwords don't match |
-            |Sagano Testnet |empty      |empty       |Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-#           |Mainnet  |
-#           |Mordor   |
+  Scenario Outline: Create Mantis wallet name validations
+    Given I start creation of a wallet on "<network>"
+    Then I enter wallet "<name>" and passwords
+    Then I should see a wallet name Error "<message>"
+    And I close Mantis Wallet
 
-    Scenario Outline: Create Mantis wallet name validations
-        Then I choose the available Network "<network>" in Mantis Wallet
-        Then I should be able to accept Terms and conditions
-        Then I choose Create wallet button
-        Then I enter wallet "<name>" and passwords
-        Then I should see a wallet name Error "<message>"
-        Then I should close the Mantis Wallet application
-         And I reset Mantis Wallet config.json
+    Examples:
+      | network        | name  | message                 |
+      | Sagano Testnet | empty | Name shouldn't be empty |
+      | Mainnet        | empty | Name shouldn't be empty |
+      | Mordor         | empty | Name shouldn't be empty |
 
-        Examples:
-            |network        | name     | message                 |
-            |Sagano Testnet | empty    | Name shouldn't be empty |
-#           |Mainnet  |
-#           |Mordor   |
+  Scenario Outline: Create Mantis wallet verify download PVK
+    Given I start creation of a wallet on "<network>"
+    Then I enter wallet name and passwords
+    Then I verify download button
+    Then I cancel creating wallet
+    And I close Mantis Wallet
 
-    Scenario Outline: Create Mantis wallet verify download PVK
-        Then I choose the available Network "<network>" in Mantis Wallet
-        Then I should be able to accept Terms and conditions
-        Then I choose Create wallet button
-        Then I enter wallet name and passwords
-        Then I verify download button
-        Then I cancel creating wallet
-        Then I should close the Mantis Wallet application
-         And I reset Mantis Wallet config.json
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
 
-        Examples:
-            |network        |
-            |Sagano Testnet |
-#           |Mainnet  |
-#           |Mordor   |
+  Scenario Outline: Cancel creating Mantis wallet
+    Given I start creation of a wallet on "<network>"
+    Then I enter wallet name and passwords
+    Then I cancel creating wallet
+    And I close Mantis Wallet
 
-    Scenario Outline: Cancel creating Mantis wallet
-        Then I choose the available Network "<network>" in Mantis Wallet
-        Then I should be able to accept Terms and conditions
-        Then I choose Create wallet button
-        Then I enter wallet name and passwords
-        Then I cancel creating wallet
-        Then I should close the Mantis Wallet application
-         And I reset Mantis Wallet config.json
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
 
-        Examples:
-            |network        |
-            |Sagano Testnet |
-#           |Mainnet  |
-#           |Mordor   |
+  Scenario Outline: Cancel creating Mantis wallet after getting word phrases
+    Given I start creation of a wallet on "<network>"
+    Then I enter wallet name and passwords
+    Then I confirm that private key is there
+    Then I remember recovery phrase
+    Then I click back
+    Then I click back
+    Then I cancel creating wallet
+    And I close Mantis Wallet
 
-    Scenario Outline: Cancel creating Mantis wallet after getting word phrases
-        Then I choose the available Network "<network>" in Mantis Wallet
-        Then I should be able to accept Terms and conditions
-        Then I choose Create wallet button
-        Then I enter wallet name and passwords
-        Then I confirm that private key is there
-        Then I remember recovery phrase
-        Then I click back
-        Then I click back
-        Then I cancel creating wallet
-        Then I should close the Mantis Wallet application
-         And I reset Mantis Wallet config.json
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
 
-        Examples:
-            |network        |
-            |Sagano Testnet |
-#           |Mainnet  |
-#           |Mordor   |
+  Scenario Outline: Create Mantis wallet and do not accept Recovery Conditions
+    Given I start creation of a wallet on "<network>"
+    Then I enter wallet name and passwords
+    Then I confirm that private key is there
+    Then I remember recovery phrase
+    Then I re input recovery phrase without accepting Recovery conditions
+    And I close Mantis Wallet
 
-    Scenario Outline: Create Mantis wallet and do not accept Recovery Conditions
-        Then I choose the available Network "<network>" in Mantis Wallet
-        Then I should be able to accept Terms and conditions
-        Then I choose Create wallet button
-        Then I enter wallet name and passwords
-        Then I confirm that private key is there
-        Then I remember recovery phrase
-        Then I re input recovery phrase without accepting Recovery conditions
-        Then I should close the Mantis Wallet application
-         And I reset Mantis Wallet config.json
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
 
-        Examples:
-            |network        |
-            |Sagano Testnet |
-#           |Mainnet  |
-#           |Mordor   |
+  Scenario Outline: Create Mantis wallet and do not accept Locally Conditions
+    Given I start creation of a wallet on "<network>"
+    Then I enter wallet name and passwords
+    Then I confirm that private key is there
+    Then I remember recovery phrase
+    Then I re input recovery phrase without accepting Locally conditions
+    And I close Mantis Wallet
 
-    Scenario Outline: Create Mantis wallet and do not accept Locally Conditions
-        Then I choose the available Network "<network>" in Mantis Wallet
-        Then I should be able to accept Terms and conditions
-        Then I choose Create wallet button
-        Then I enter wallet name and passwords
-        Then I confirm that private key is there
-        Then I remember recovery phrase
-        Then I re input recovery phrase without accepting Locally conditions
-        Then I should close the Mantis Wallet application
-         And I reset Mantis Wallet config.json
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
 
-        Examples:
-            |network        |
-            |Sagano Testnet |
-#           |Mainnet  |
-#           |Mordor   |
+  Scenario Outline: Create Mantis wallet with incorrect word phrases order
+    Given I start creation of a wallet on "<network>"
+    Then I enter wallet name and passwords
+    Then I confirm that private key is there
+    Then I remember recovery phrase
+    Then I re input recovery phrase in wrong order
+    And I close Mantis Wallet
 
-    Scenario Outline: Create Mantis wallet with incorrect word phrases order
-        Then I choose the available Network "<network>" in Mantis Wallet
-        Then I should be able to accept Terms and conditions
-        Then I choose Create wallet button
-        Then I enter wallet name and passwords
-        Then I confirm that private key is there
-        Then I remember recovery phrase
-        Then I re input recovery phrase in wrong order
-        Then I should close the Mantis Wallet application
-         And I reset Mantis Wallet config.json
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
 
-        Examples:
-            |network        |
-            |Sagano Testnet |
-#           |Mainnet  |
-#           |Mordor   |
+  Scenario Outline: Create Mantis wallet - click back from phrases reinput
+    Given I start creation of a wallet on "<network>"
+    Then I enter wallet name and passwords
+    Then I confirm that private key is there
+    Then I remember recovery phrase
+    Then I re input recovery phrase and I click back
+    Then I click back
+    Then I cancel creating wallet
+    And I close Mantis Wallet
 
-    Scenario Outline: Create Mantis wallet - click back from phrases reinput
-        Then I choose the available Network "<network>" in Mantis Wallet
-        Then I should be able to accept Terms and conditions
-        Then I choose Create wallet button
-        Then I enter wallet name and passwords
-        Then I confirm that private key is there
-        Then I remember recovery phrase
-        Then I re input recovery phrase and I click back
-        Then I click back
-        Then I cancel creating wallet
-        Then I should close the Mantis Wallet application
-         And I reset Mantis Wallet config.json
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
 
-        Examples:
-            |network        |
-            |Sagano Testnet |
-#           |Mainnet  |
-#           |Mordor   |
+  Scenario Outline: Create Mantis wallet - clear input of recovery phrases
+    Given I start creation of a wallet on "<network>"
+    Then I enter wallet name and passwords
+    Then I confirm that private key is there
+    Then I remember recovery phrase
+    Then I reinput recovery phrase and I clear text
+    And I close Mantis Wallet
 
-    Scenario Outline: Create Mantis wallet - clear input of recovery phrases
-        Then I choose the available Network "<network>" in Mantis Wallet
-        Then I should be able to accept Terms and conditions
-        Then I choose Create wallet button
-        Then I enter wallet name and passwords
-        Then I confirm that private key is there
-        Then I remember recovery phrase
-        Then I reinput recovery phrase and I clear text
-        Then I should close the Mantis Wallet application
-         And I reset Mantis Wallet config.json
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
 
-        Examples:
-            |network        |
-            |Sagano Testnet |
-#           |Mainnet  |
-#           |Mordor   |
+  Scenario Outline: Create Mantis wallet - Verify that I cannot create a wallet without reinput
+    Given I start creation of a wallet on "<network>"
+    Then I enter wallet name and passwords
+    Then I confirm that private key is there
+    Then I remember recovery phrase
+    Then I confirm that wallet cant be created without word phrases
+    And I close Mantis Wallet
 
-    Scenario Outline: Create Mantis wallet - Verify that I cannot create a wallet without reinput
-        Then I choose the available Network "<network>" in Mantis Wallet
-        Then I should be able to accept Terms and conditions
-        Then I choose Create wallet button
-        Then I enter wallet name and passwords
-        Then I confirm that private key is there
-        Then I remember recovery phrase
-        Then I confirm that wallet cant be created without word phrases
-        Then I should close the Mantis Wallet application
-         And I reset Mantis Wallet config.json
-
-        Examples:
-            |network        |
-            |Sagano Testnet |
-#           |Mainnet  |
-#           |Mordor   |
+    Examples:
+      | network        |
+      | Sagano Testnet |
+      | Mainnet        |
+      | Mordor         |
