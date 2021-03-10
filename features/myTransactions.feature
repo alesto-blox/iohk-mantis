@@ -15,6 +15,7 @@ Feature: My Transactions on Mantis Wallet
              And I open the Mantis wallet app
 
   @Transactions01
+  @Smoke
      Scenario Outline: I see my transactions page on Mantis wallet
                   Then I choose the available Network "<network>" in Mantis Wallet
                   Then I should be able to accept Terms and conditions

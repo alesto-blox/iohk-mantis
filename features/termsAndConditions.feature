@@ -15,6 +15,7 @@ Feature: Accept terms and conditions
         And I open the Mantis wallet app
 
     @TermsAndConditions01
+    @Smoke
     Scenario Outline: Accept Terms and Conditions
         When I choose the available Network "<network>" in Mantis Wallet
         Then I should see that I am syncing or connecting to the selected Network "<network>"

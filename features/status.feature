@@ -20,6 +20,7 @@ Feature: Status on Mantis wallet
         And I enter wallet name, private key and passwords
 
     @Status01
+    @Smoke
     Scenario: Status page on Mantis wallet
         When I click on status button on main page on Mantis wallet
         Then I expect to see status page on Mantis wallet

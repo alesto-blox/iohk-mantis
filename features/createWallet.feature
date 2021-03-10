@@ -16,6 +16,7 @@ Feature: Create Mantis Wallet
           And I open the Mantis wallet app
 
     @CreateWallet01
+    @Smoke
     Scenario Outline: Create Mantis wallet
         Then I choose the available Network "<network>" in Mantis Wallet
         Then I should be able to accept Terms and conditions

@@ -11,6 +11,7 @@ Feature: Logout Mantis wallet
     Because I am done with using Mantis wallet
 
   @Logout01
+  @Smoke
     Scenario Outline: Logout Mantis wallet
         Given I reset Mantis Wallet config.json
           And I open the Mantis wallet app

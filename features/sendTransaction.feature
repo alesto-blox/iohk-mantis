@@ -15,7 +15,7 @@ Feature: Send transaction on Mantis wallet
               And I open the Mantis wallet app
 
       @SendTransaction01
-      Scenario Outline : I see send transaction page on Mantis wallet
+      Scenario Outline: I see send transaction page on Mantis wallet
             Then I choose the available Network "<network>" in Mantis Wallet
             Then I should be able to accept Terms and conditions
             Then I choose Restore wallet button
@@ -35,6 +35,7 @@ Feature: Send transaction on Mantis wallet
                   #|Mordor   |
 
       @SendTransaction02
+      @Smoke
        Scenario Outline: Send transaction on Mantis wallet
              Then I choose the available Network "<network>" in Mantis Wallet
              Then I should be able to accept Terms and conditions

@@ -38,6 +38,10 @@
       "stage"
     ]
   },
+  "PVKBlurred": {
+    "True":"DialogQRCode blurred",
+    "False": "DialogQRCode"
+  },
   "Addresses": {
     "WalletName": "My address",
     "EditedWalletName": "Edited address",
@@ -90,5 +94,6 @@
   "ErrorColor": "rgba(255,0,0,1)",
   "AdditionalActionError": "Some fields require additional action before you can continue.",
   "ErrorPhrases":"The phrase is incorrect",
-  "WalletNameErrorMessage": "Name shouldn't be empty"
+  "WalletNameErrorMessage": "Name shouldn't be empty",
+  "PVKIncorrectPassError":"Key derivation failed - possibly wrong password"
 }

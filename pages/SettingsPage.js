@@ -25,8 +25,10 @@ class SettingsPage {
     get closeButton() { return ('//span[contains(text(),"Close")]')}
     get unlockButton() { return ('//span[contains(text(),"Unlock")]')}
     get revealPrivateKeyText() { return ('//div[contains(text(),"Reveal")]')}
+    get errorMessageText() { return ('//div[@class="DialogError"]')}
     get securityInfoText() { return ('//div[contains(text(),"Please, make sure your screen")]')}
     get revealPrivateKeyButton() { return ('//button[@title="Reveal Private Key"]')}
+    get blurredPrivateKey() { return ('//div[contains(@class,"DialogQRCode")]')}
     get privateKeyValue() { return ('//div[@class="qr-content"]')}
     get downloadPrivateKeyButton() { return ('//button[contains(text(), "Download")]')}
     get saganoNetwork() { return ('//div[@class="ant-select-item-option-content" and contains(text(),"Sagano")]') }
@@ -270,6 +272,55 @@ class SettingsPage {
         expect(
             helpers.readJSONFile(configFilePath).settings.mantisDatadir)
             .to.equal(walletDirectory)
+    }
+    async clickOnExportPrivateKey(app){
+        await app.client
+            .waitForVisible(this.exportPrivateKeyButton, WAIT)
+            .click(this.exportPrivateKeyButton)
+    }
+    async enterPassword(app,pass){
+        if(pass === "empty"){
+            await app.client
+                .waitForVisible(this.enterYourPasswordField, WAIT)
+                .setValue(this.enterYourPasswordField,"")
+        } else {
+             await app.client
+                 .waitForVisible(this.enterYourPasswordField, WAIT)
+                 .setValue(this.enterYourPasswordField,pass)
+        }
+    }
+    async clickOnUnlockButton(app){
+        await app.client
+            .waitForVisible(this.unlockButton, WAIT)
+            .click(this.unlockButton)
+    }
+    async checkIfYouAreOnExportPrivateKey(app){
+        expect(await app.client
+            .waitForVisible(this.revealPrivateKeyText, WAIT)
+            .getText(this.revealPrivateKeyText)
+        )
+            .to.equal('Reveal Private Key')
+    }
+    async checkIfPrivateKeyIsBlurred(app, blurred){
+    expect(await app.client
+        .getAttribute(this.blurredPrivateKey,'class')
+    ).to.equal(blurred)
+    }
+    async blurredToggle(app){
+        await app.client
+            .waitForVisible(this.revealPrivateKeyButton, WAIT)
+            .click(this.revealPrivateKeyButton)
+    }
+    async clickCloseButton(app) {
+        await app.client
+            .waitForVisible(this.closeButton, WAIT)
+            .click(this.closeButton)
+    }
+    async errorMessageDisplayed(app){
+        expect(await app.client
+            .waitForVisible(this.errorMessageText,WAIT)
+            .getText(this.errorMessageText)
+        ).to.equal(TD.PVKIncorrectPassError)
     }
 
 }

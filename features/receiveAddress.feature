@@ -12,6 +12,7 @@ Feature: Receive address on Mantis wallet
     Because I want to send my address to another user
 
     @Receive01
+    @Smoke
     Scenario Outline: My address on Mantis wallet
         Given I open the Mantis wallet app
         When I choose the available Network "<network>" in Mantis Wallet

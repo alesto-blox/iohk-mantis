@@ -22,6 +22,7 @@ Feature: Address book on Mantis wallet
            When I click on address book button on main page
 
   @Address01
+  @Smoke
     Scenario:I see address book page on Mantis wallet
         Then I expect to see address book page on Mantis wallet
         When I click Log out button on main page
@@ -31,6 +32,7 @@ Feature: Address book on Mantis wallet
          And I reset Mantis Wallet config.json
 
   @Address02
+  @Smoke
     Scenario:I can add new contact address
         Then I choose add new button
         Then I enter new contact address and label

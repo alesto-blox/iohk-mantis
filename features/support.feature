@@ -20,6 +20,7 @@ Feature: Support on Mantis wallet
         And I enter wallet name, private key and passwords
 
     @Support01
+    @Smoke
     Scenario: I see support page on Mantis wallet
         When I click on support button on main page
         Then I expect to see support page

@@ -22,6 +22,7 @@
      And I click on settings button on main page
 
    @Settings01
+   @Smoke
      Scenario: I see my settings page on Mantis wallet
          Then I expect to see my settings page
          When I click Log out button on main page
@@ -73,3 +74,31 @@
         And I click on remove wallet button on remove wallet page
         Then I should close the Mantis Wallet application
         And I reset Mantis Wallet config.json
+
+   @Settings06
+    Scenario: Export private key
+       Then I click Export private key button
+       Then I enter my password and click unlock
+       Then I expect to see export private key and it is blurred
+       When I click on switch
+       Then I should see private key
+       When I click Log out button on main page
+       And I enter my password and check checkbox on remove wallet page
+       And I click on remove wallet button on remove wallet page
+       Then I should close the Mantis Wallet application
+       And I reset Mantis Wallet config.json
+
+   @Settings07
+   Scenario Outline: Export private key password validation
+        Then I click Export private key button
+        Then I enter "<password>" and click unlock
+        Then I should see error message for wrong pass
+        When I click Log out button on main page
+        And I enter my password and check checkbox on remove wallet page
+        And I click on remove wallet button on remove wallet page
+        Then I should close the Mantis Wallet application
+        And I reset Mantis Wallet config.json
+     Examples:
+            | password |
+            |Qwerty123 |
+            |empty    |
