@@ -11,7 +11,6 @@ Feature: Accept terms and conditions
   for the first time I should read and accept Terms and Conditions
 
   @TermsAndConditions01
-  @Smoke
   Scenario Outline: Accept Terms and Conditions
     Given I start Mantis wallet on "<network>"
     And I should be able to accept Terms and conditions

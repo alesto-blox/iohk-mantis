@@ -12,7 +12,6 @@ Feature: Logout Mantis wallet
   Because I am done with using Mantis wallet
 
   @Logout01
-  @Smoke
   Scenario Outline: Logout Mantis wallet
     Given I restore Mantis Wallet on "<network>"
     Then I log out

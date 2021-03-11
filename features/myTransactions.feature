@@ -12,7 +12,6 @@ Feature: My Transactions on Mantis Wallet
   Because I want to see my transactions
 
   @Transactions01
-  @Smoke
   Scenario Outline: I see my transactions page on Mantis wallet
     Given I restore Mantis Wallet on "<network>"
     When I click on transactions button on main page

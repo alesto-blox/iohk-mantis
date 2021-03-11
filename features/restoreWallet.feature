@@ -25,6 +25,7 @@ Feature: Create Mantis Wallet
       | Mordor         |
 
   @RestoreWallet02
+  @Smoke
   Scenario Outline: Restore Mantis wallet with word phrases
     Given I start restoring a wallet on "<network>"
     Then I enter wallet name, recovery phrase and passwords
