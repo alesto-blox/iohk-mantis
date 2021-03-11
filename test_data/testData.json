@@ -38,7 +38,12 @@
       "lamp",
       "stage"
     ]
-  },
+  },"BackupWallet": {
+  "Password": "TestPass123!",
+  "PVTKey": "0x33385a9edc8b6315778a43b41a3582573a51eaf0463f039f938e147bb537b5a2",
+  "WalletName": "MantisWalletBackup",
+  "Address": "0xec49c61786376007494af082b02fac4adb4e4292"
+},
   "PVKBlurred": {
     "True":"DialogQRCode blurred",
     "False": "DialogQRCode"

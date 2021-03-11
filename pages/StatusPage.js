@@ -10,23 +10,36 @@ class StatusPage {
     get closeModalButton() { return ('//span[@aria-label="close"]')}
 
     async checkIfYouAreOnStatusPage(app) {
+        await this.checkForMachineText(app)
+        await this.checkForBackendText(app)
+        await this.checkForMantisWalletText(app)
+        await this.checkStatusOptions(app)
+    }
+
+    async checkForMachineText(app){
         expect(await app.client
             .waitForVisible(this.machineText, WAIT)
             .getText(this.machineText)
         )
             .to.equal('MACHINE')
+    }
+
+    async checkForBackendText(app){
         expect(await app.client
             .waitForVisible(this.backendText, WAIT)
             .getText(this.backendText)
         )
             .to.equal('BACKEND')
+    }
+
+    async checkForMantisWalletText(app){
         expect(await app.client
             .waitForVisible(this.mantisWalletText, WAIT)
             .getText(this.mantisWalletText)
         )
             .to.equal('MANTIS WALLET')
-        await this.checkStatusOptions(app)
     }
+
     async checkStatusOptions(app){
         for(let i = 0; i<TD.StatusInfo.length; i++){
 
@@ -38,6 +51,7 @@ class StatusPage {
                 .to.equal(TD.StatusInfo[i])
         }
     }
+
     async closeStatusPage(app){
         await app.client
             .waitForVisible(this.closeModalButton,WAIT)

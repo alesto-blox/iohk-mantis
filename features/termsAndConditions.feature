@@ -20,8 +20,8 @@ Feature: Accept terms and conditions
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @TermsAndConditions02
   Scenario Outline: Accept Terms and Conditions
@@ -33,5 +33,5 @@ Feature: Accept terms and conditions
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |

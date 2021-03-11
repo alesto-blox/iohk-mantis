@@ -21,5 +21,5 @@ Feature: My Transactions on Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |

@@ -22,8 +22,8 @@ Feature: Address book on Mantis wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @Address02
   Scenario Outline:I can add new contact address
@@ -38,8 +38,8 @@ Feature: Address book on Mantis wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @Address03
   Scenario Outline:I can not add new contact address with empty address
@@ -54,8 +54,8 @@ Feature: Address book on Mantis wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @Address04
   Scenario Outline:I can not add new contact address with empty label
@@ -70,8 +70,8 @@ Feature: Address book on Mantis wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @Address05
   Scenario Outline:I can not add new contact address with invalid address
@@ -86,8 +86,8 @@ Feature: Address book on Mantis wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @Address06
   Scenario Outline:I can edit existing contact address
@@ -104,8 +104,8 @@ Feature: Address book on Mantis wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @Address07
   Scenario Outline:I can delete existing contact address
@@ -122,5 +122,5 @@ Feature: Address book on Mantis wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
