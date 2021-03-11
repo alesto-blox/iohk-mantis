@@ -26,8 +26,8 @@ Feature: Create Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @CreateWallet02
   Scenario Outline: Create Mantis wallet password validations
@@ -44,18 +44,18 @@ Feature: Create Mantis Wallet
       | Sagano Testnet | qwertyUQ | qwertyUQ    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
       | Sagano Testnet | qwertQ1q | qwertQ1w    | Passwords don't match                                                           |
       | Sagano Testnet | empty    | empty       | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-      | Mainnet        | qwertQ1  | qwertQ1     | Password needs to be at least 8 characters                                      |
-      | Mainnet        | qwertyu1 | qwertyu1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-      | Mainnet        | QWERTYU1 | QWERTYU1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-      | Mainnet        | qwertyUQ | qwertyUQ    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-      | Mainnet        | qwertQ1q | qwertQ1w    | Passwords don't match                                                           |
-      | Mainnet        | empty    | empty       | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-      | Mordor         | qwertQ1  | qwertQ1     | Password needs to be at least 8 characters                                      |
-      | Mordor         | qwertyu1 | qwertyu1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-      | Mordor         | QWERTYU1 | QWERTYU1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-      | Mordor         | qwertyUQ | qwertyUQ    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-      | Mordor         | qwertQ1q | qwertQ1w    | Passwords don't match                                                           |
-      | Mordor         | empty    | empty       | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+#      | Mainnet        | qwertQ1  | qwertQ1     | Password needs to be at least 8 characters                                      |
+#      | Mainnet        | qwertyu1 | qwertyu1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+#      | Mainnet        | QWERTYU1 | QWERTYU1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+#      | Mainnet        | qwertyUQ | qwertyUQ    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+#      | Mainnet        | qwertQ1q | qwertQ1w    | Passwords don't match                                                           |
+#      | Mainnet        | empty    | empty       | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+#      | Mordor         | qwertQ1  | qwertQ1     | Password needs to be at least 8 characters                                      |
+#      | Mordor         | qwertyu1 | qwertyu1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+#      | Mordor         | QWERTYU1 | QWERTYU1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+#      | Mordor         | qwertyUQ | qwertyUQ    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+#      | Mordor         | qwertQ1q | qwertQ1w    | Passwords don't match                                                           |
+#      | Mordor         | empty    | empty       | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
 
   @CreateWallet03
   Scenario Outline: Create Mantis wallet name validations
@@ -67,8 +67,8 @@ Feature: Create Mantis Wallet
     Examples:
       | network        | name  | message                 |
       | Sagano Testnet | empty | Name shouldn't be empty |
-      | Mainnet        | empty | Name shouldn't be empty |
-      | Mordor         | empty | Name shouldn't be empty |
+#      | Mainnet        | empty | Name shouldn't be empty |
+#      | Mordor         | empty | Name shouldn't be empty |
 
   @CreateWallet04
   Scenario Outline: Create Mantis wallet verify download PVK
@@ -81,8 +81,8 @@ Feature: Create Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @CreateWallet05
   Scenario Outline: Cancel creating Mantis wallet
@@ -94,8 +94,8 @@ Feature: Create Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @CreateWallet06
   Scenario Outline: Cancel creating Mantis wallet after getting word phrases
@@ -111,8 +111,8 @@ Feature: Create Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @CreateWallet07
   Scenario Outline: Create Mantis wallet and do not accept Recovery Conditions
@@ -126,8 +126,8 @@ Feature: Create Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @CreateWallet08
   Scenario Outline: Create Mantis wallet and do not accept Locally Conditions
@@ -141,8 +141,8 @@ Feature: Create Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @CreateWallet09
   Scenario Outline: Create Mantis wallet with incorrect word phrases order
@@ -156,8 +156,8 @@ Feature: Create Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @CreateWallet10
   Scenario Outline: Create Mantis wallet - click back from phrases reinput
@@ -173,8 +173,8 @@ Feature: Create Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @CreateWallet11
   Scenario Outline: Create Mantis wallet - clear input of recovery phrases
@@ -188,8 +188,8 @@ Feature: Create Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @CreateWallet12
   Scenario Outline: Create Mantis wallet - Verify that I cannot create a wallet without reinput
@@ -203,5 +203,5 @@ Feature: Create Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |

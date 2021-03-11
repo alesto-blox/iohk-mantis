@@ -27,8 +27,8 @@ Feature: Login Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @Login02
   Scenario Outline: I can view details
@@ -41,5 +41,5 @@ Feature: Login Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |

@@ -20,8 +20,8 @@ Feature: Logout Mantis wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @Logout02
   Scenario Outline: Logout Mantis wallet
@@ -33,8 +33,8 @@ Feature: Logout Mantis wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @Logout03
   Scenario Outline: Logout Mantis wallet
@@ -46,8 +46,8 @@ Feature: Logout Mantis wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @Logout04
   Scenario Outline: Logout Mantis wallet
@@ -59,8 +59,8 @@ Feature: Logout Mantis wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @Logout05
   Scenario Outline: Logout Mantis wallet
@@ -71,5 +71,5 @@ Feature: Logout Mantis wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |

@@ -22,8 +22,8 @@ Feature: Settings on Mantis wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @Settings02
   Scenario Outline: I change Mantis Wallet color theme
@@ -37,8 +37,8 @@ Feature: Settings on Mantis wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @Settings03
   Scenario Outline: I can change language, date format and time format
@@ -51,8 +51,8 @@ Feature: Settings on Mantis wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @Settings04
   Scenario Outline: I can change Network
@@ -67,15 +67,15 @@ Feature: Settings on Mantis wallet
       | Sagano Testnet | Mainnet        |
       | Sagano Testnet | Mordor         |
       | Sagano Testnet | Custom         |
-      | Mainnet        | Sagano Testnet |
-      | Mainnet        | Mordor         |
-      | Mainnet        | Custom         |
-      | Mordor         | Sagano Testnet |
-      | Mordor         | Mainnet        |
-      | Mordor         | Custom         |
-      | Custom         | Sagano Testnet |
-      | Custom         | Mordor         |
-      | Custom         | Mainnet        |
+#      | Mainnet        | Sagano Testnet |
+#      | Mainnet        | Mordor         |
+#      | Mainnet        | Custom         |
+#      | Mordor         | Sagano Testnet |
+#      | Mordor         | Mainnet        |
+#      | Mordor         | Custom         |
+#      | Custom         | Sagano Testnet |
+#      | Custom         | Mordor         |
+#      | Custom         | Mainnet        |
 
   @Settings05
   Scenario Outline: Check wallet directory
@@ -88,8 +88,8 @@ Feature: Settings on Mantis wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @Settings06
   Scenario Outline: Export private key
@@ -106,8 +106,8 @@ Feature: Settings on Mantis wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @Settings07
   Scenario Outline: Export private key password
@@ -123,7 +123,7 @@ Feature: Settings on Mantis wallet
       | network        | password  |
       | Sagano Testnet | Qwerty123 |
       | Sagano Testnet | empty     |
-      | Mordor         | Qwerty123 |
-      | Mordor         | empty     |
-      | Mainnet        | Qwerty123 |
-      | Mainnet        | empty     |
+#      | Mordor         | Qwerty123 |
+#      | Mordor         | empty     |
+#      | Mainnet        | Qwerty123 |
+#      | Mainnet        | empty     |

@@ -21,8 +21,8 @@ Feature: Not Logged in Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @NotLoggedIn02
   Scenario Outline:I should not have Transactions
@@ -34,8 +34,8 @@ Feature: Not Logged in Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @NotLoggedIn03
   Scenario Outline:Logout button should be disabled
@@ -46,5 +46,5 @@ Feature: Not Logged in Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |

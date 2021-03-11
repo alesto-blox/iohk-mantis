@@ -21,8 +21,8 @@ Feature: Create Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @RestoreWallet02
   @Smoke
@@ -35,8 +35,8 @@ Feature: Create Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @RestoreWallet03
   Scenario Outline: Restore Mantis wallet without wallet name
@@ -47,8 +47,8 @@ Feature: Create Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @RestoreWallet04
   Scenario Outline: Restore Mantis wallet with empty pvk
@@ -59,8 +59,8 @@ Feature: Create Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @RestoreWallet05
   Scenario Outline: Restore Mantis wallet with incorrect pvk
@@ -71,8 +71,8 @@ Feature: Create Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @RestoreWallet06
   Scenario Outline: Restore Mantis wallet - pass validations
@@ -89,18 +89,18 @@ Feature: Create Mantis Wallet
       | Sagano Testnet | qwertyUQ | qwertyUQ    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
       | Sagano Testnet | qwertQ1q | qwertQ1w    | Passwords don't match                                                           |
       | Sagano Testnet | empty    | empty       | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-      | Mainnet        | qwertQ1  | qwertQ1     | Password needs to be at least 8 characters                                      |
-      | Mainnet        | qwertyu1 | qwertyu1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-      | Mainnet        | QWERTYU1 | QWERTYU1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-      | Mainnet        | qwertyUQ | qwertyUQ    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-      | Mainnet        | qwertQ1q | qwertQ1w    | Passwords don't match                                                           |
-      | Mainnet        | empty    | empty       | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-      | Mordor         | qwertQ1  | qwertQ1     | Password needs to be at least 8 characters                                      |
-      | Mordor         | qwertyu1 | qwertyu1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-      | Mordor         | QWERTYU1 | QWERTYU1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-      | Mordor         | qwertyUQ | qwertyUQ    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-      | Mordor         | qwertQ1q | qwertQ1w    | Passwords don't match                                                           |
-      | Mordor         | empty    | empty       | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+#      | Mainnet        | qwertQ1  | qwertQ1     | Password needs to be at least 8 characters                                      |
+#      | Mainnet        | qwertyu1 | qwertyu1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+#      | Mainnet        | QWERTYU1 | QWERTYU1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+#      | Mainnet        | qwertyUQ | qwertyUQ    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+#      | Mainnet        | qwertQ1q | qwertQ1w    | Passwords don't match                                                           |
+#      | Mainnet        | empty    | empty       | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+#      | Mordor         | qwertQ1  | qwertQ1     | Password needs to be at least 8 characters                                      |
+#      | Mordor         | qwertyu1 | qwertyu1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+#      | Mordor         | QWERTYU1 | QWERTYU1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+#      | Mordor         | qwertyUQ | qwertyUQ    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+#      | Mordor         | qwertQ1q | qwertQ1w    | Passwords don't match                                                           |
+#      | Mordor         | empty    | empty       | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
 
   @RestoreWallet07
   Scenario Outline: Restore Mantis wallet without word phrases
@@ -112,8 +112,8 @@ Feature: Create Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
   @RestoreWallet08
   Scenario Outline: Restore Mantis wallet with word phrases
@@ -124,5 +124,5 @@ Feature: Create Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
