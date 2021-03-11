@@ -21,6 +21,7 @@
   "RestoreWallet": {
     "Password": "TestPass123!",
     "PVTKey": "0xd238a17a8c2fabbcbf0346fea7c7910e96b5e3cf2fbe135584b670bb4e51daa6",
+    "IncorrectPVTKey": "0xd238a17a8c2fabbcbf0346fea7c7910456b5e3cf2fbert5584b670bbre51daa6",
     "WalletName": "MantisWallet",
     "Address": "0x103e4d6fe1667e99bb8cbf24498988b706b5830a",
     "Phrases": [
@@ -37,6 +38,16 @@
       "lamp",
       "stage"
     ]
+  },
+  "BackupWallet": {
+  "Password": "TestPass123!",
+  "PVTKey": "0x33385a9edc8b6315778a43b41a3582573a51eaf0463f039f938e147bb537b5a2",
+  "WalletName": "MantisWalletBackup",
+  "Address": "0xec49c61786376007494af082b02fac4adb4e4292"
+},
+  "PVKBlurred": {
+    "True":"DialogQRCode blurred",
+    "False": "DialogQRCode"
   },
   "Addresses": {
     "WalletName": "My address",
@@ -88,7 +99,10 @@
   "SupportDescription": "If you encounter a bug, don't hesitate to contact our support team in IOHK.\nTo make it easier for us to diagnose your problem, please, include your debug logs in the bug report.\nYou can save your logs easily by clicking the Export Logs button below.",
   "ErrorColor": "rgba(255,0,0,1)",
   "AdditionalActionError": "Some fields require additional action before you can continue.",
-  "ErrorPhrases": "The phrase is incorrect",
+  "ErrorPhrases":"The phrase is incorrect",
   "WalletNameErrorMessage": "Name shouldn't be empty",
-  "PVKErrorMessage": "Private key must be set"
+  "PVKIncorrectPassError":"Key derivation failed - possibly wrong password",
+  "PVKErrorMessage": "Private key must be set",
+  "IncorrectPVKErrorMessage": "Invalid private key",
+  "InvalidSeedPhrase": "Invalid seed phrase"
 }

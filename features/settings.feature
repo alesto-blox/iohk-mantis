@@ -11,6 +11,7 @@ Feature: Settings on Mantis wallet
   I want to see my settings
   Because I want to customize my settings
 
+  @Settings01
   Scenario Outline: I see my settings page on Mantis wallet
     Given I restore Mantis Wallet on "<network>"
     And I click on settings button on main page
@@ -21,9 +22,10 @@ Feature: Settings on Mantis wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
+  @Settings02
   Scenario Outline: I change Mantis Wallet color theme
     Given I restore Mantis Wallet on "<network>"
     And I click on settings button on main page
@@ -35,9 +37,10 @@ Feature: Settings on Mantis wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
+  @Settings03
   Scenario Outline: I can change language, date format and time format
     Given I restore Mantis Wallet on "<network>"
     And I click on settings button on main page
@@ -48,9 +51,10 @@ Feature: Settings on Mantis wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
+  @Settings04
   Scenario Outline: I can change Network
     Given I restore Mantis Wallet on "<network>"
     And I click on settings button on main page
@@ -63,16 +67,17 @@ Feature: Settings on Mantis wallet
       | Sagano Testnet | Mainnet        |
       | Sagano Testnet | Mordor         |
       | Sagano Testnet | Custom         |
-      | Mainnet        | Sagano Testnet |
-      | Mainnet        | Mordor         |
-      | Mainnet        | Custom         |
-      | Mordor         | Sagano Testnet |
-      | Mordor         | Mainnet        |
-      | Mordor         | Custom         |
-      | Custom         | Sagano Testnet |
-      | Custom         | Mordor         |
-      | Custom         | Mainnet        |
+#      | Mainnet        | Sagano Testnet |
+#      | Mainnet        | Mordor         |
+#      | Mainnet        | Custom         |
+#      | Mordor         | Sagano Testnet |
+#      | Mordor         | Mainnet        |
+#      | Mordor         | Custom         |
+#      | Custom         | Sagano Testnet |
+#      | Custom         | Mordor         |
+#      | Custom         | Mainnet        |
 
+  @Settings05
   Scenario Outline: Check wallet directory
     Given I restore Mantis Wallet on "<network>"
     And I click on settings button on main page
@@ -83,5 +88,42 @@ Feature: Settings on Mantis wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
+
+  @Settings06
+  Scenario Outline: Export private key
+    Given I restore Mantis Wallet on "<network>"
+    And I click on settings button on main page
+    Then I click Export private key button
+    Then I enter my password and click unlock
+    Then I expect to see export private key and it is blurred
+    When I click on switch
+    Then I should see private key
+    Then I log out
+    And I close Mantis Wallet
+
+    Examples:
+      | network        |
+      | Sagano Testnet |
+#      | Mainnet        |
+#      | Mordor         |
+
+  @Settings07
+  Scenario Outline: Export private key password
+    Given I restore Mantis Wallet on "<network>"
+    And I click on settings button on main page
+    Then I click Export private key button
+    Then I enter "<password>" and click unlock
+    Then I should see error message for wrong pass
+    Then I log out
+    And I close Mantis Wallet
+
+    Examples:
+      | network        | password  |
+      | Sagano Testnet | Qwerty123 |
+      | Sagano Testnet | empty     |
+#      | Mordor         | Qwerty123 |
+#      | Mordor         | empty     |
+#      | Mainnet        | Qwerty123 |
+#      | Mainnet        | empty     |

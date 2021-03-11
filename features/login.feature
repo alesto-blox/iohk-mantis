@@ -16,6 +16,8 @@ Feature: Login Mantis Wallet
     Given I reset Mantis Wallet config.json
     And I open the Mantis wallet app
 
+  @Login01
+  @Smoke
   Scenario Outline: Login into Mantis wallet
     Then I choose the available Network "<network>" in Mantis Wallet
     Then I should be able to accept Terms and conditions
@@ -25,9 +27,10 @@ Feature: Login Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
+  @Login02
   Scenario Outline: I can view details
     Then I can see details of system
     Then I choose the available Network "<network>" in Mantis Wallet
@@ -38,5 +41,5 @@ Feature: Login Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |

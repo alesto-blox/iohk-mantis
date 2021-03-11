@@ -21,3 +21,31 @@ Then(/^I log out$/, async () => {
     await logoutPage.enterPasswordAndCheckCheckbox(app, TD.RestoreWallet.Password);
     await logoutPage.removeWallet(app);
 });
+When(/^I try to log out without password$/, async () => {
+    await logoutPage.logout(app);
+    await logoutPage.checkCheckbox(app);
+    await logoutPage.removeWallet(app);
+});
+Then(/^I should see invalid key error$/, async () => {
+    await logoutPage.invalidPass(app);
+});
+When(/^I try to log out without confirmation$/, async ()=> {
+    await logoutPage.logout(app);
+    await logoutPage.enterPassword(app, TD.RestoreWallet.Password);
+    await logoutPage.removeWallet(app);
+});
+Then(/^I should see Additional Action Error$/, async ()=> {
+    await logoutPage.additionalActionError(app);
+});
+When(/^I try to log out with wrong password$/, async ()=> {
+    await logoutPage.logout(app);
+    await logoutPage.enterPassword(app, "TestPass123123!");
+    await logoutPage.checkCheckbox(app);
+    await logoutPage.removeWallet(app);
+});
+When(/^I try to logout and I cancel$/, async ()=> {
+    await logoutPage.logout(app);
+    await logoutPage.enterPassword(app, TD.RestoreWallet.Password);
+    await logoutPage.checkCheckbox(app);
+    await logoutPage.cancelLogout(app);
+});

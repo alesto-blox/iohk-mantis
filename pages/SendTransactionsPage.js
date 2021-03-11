@@ -34,6 +34,7 @@ class SendTransactionPage {
     get confirmButton() { return('//span[contains(text(),"Confirm")]')}
     get passwordText() { return ('//label[@for="tx-password"]')}
     get passwordField() { return ('//*[@id="tx-password"]')}
+    get sendTransaction() { return ('//button/span[text()=\'Send\']')}
  
      //Send transaction advanced tab selectors
     get amountTextOnAdvanced() { return ('//*[@for="tx-amount"]')}
@@ -45,10 +46,26 @@ class SendTransactionPage {
     get dataField() { return ('//textarea[@id="tx-data"]')}
     get nonceText() { return ('//label[contains(text(),"Data")]')}
     get nonceField() { return ('//label[contains(text(),"Data")]/..//input')}
+
     async clickSendButton(app){
         await app.client
             .waitForVisible(this.sendButton,WAIT)
             .click(this.sendButton);
+    }
+    async sendTransaction(app){
+        await app.client
+            .waitForVisible(this.sendTransaction,WAIT)
+            .click(this.sendTransaction);
+    }
+    async enterReceivingAddress(app,address){
+        await app.client
+            .waitForVisible(this.recipientAddressValue, WAIT)
+            .setValue(this.recipientAddressValue, address);
+    }
+    async enterAmountToSend(app,amount){
+        await app.client
+            .waitForVisible(this.amountField, WAIT)
+            .setValue(this.amountField, amount);
     }
 
 }

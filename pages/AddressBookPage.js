@@ -64,12 +64,19 @@ class AddressBookPage {
     }
 
     async checkForNewContact(app, label) {
+        await this.checkForContactLabel(app, label)
+        await this.checkForContactAddress(app)
+    }
+
+    async checkForContactLabel(app, label){
         expect(await app.client
             .waitForVisible(this.firstContactText,WAIT)
             .getText(this.firstContactText)
         )
             .to.equal(label)
+    }
 
+    async checkForContactAddress(app){
         expect(await  app.client
             .waitForVisible(this.firstContactAddress,WAIT)
             .getText(this.firstContactAddress)
@@ -89,11 +96,19 @@ class AddressBookPage {
     }
 
     async saveInvalidContactErrorMessage(app) {
+        await this.someFieldsError(app)
+        await this.invalidAddressError(app)
+
+    }
+
+    async someFieldsError(app){
         expect(await app.client
             .waitForVisible(this.errorMessage, WAIT)
             .getText(this.errorMessage))
             .to.equal(TD.Addresses.NewContactError)
+    }
 
+    async invalidAddressError(app){
         expect(await app.client
             .waitForVisible(this.addressMustBeSetText, WAIT)
             .getText(this.addressMustBeSetText))
@@ -107,26 +122,38 @@ class AddressBookPage {
     }
 
     async deleteExistingContact(app) {
+        await this.clickDeleteContact(app)
+        await this.checkDeleteContactText(app)
+        await this.checkAreYouSureText(app)
+        await this.clickDeleteButtonOnPopup(app)
+    }
+
+    async clickDeleteContact(app){
         await app.client
             .waitForVisible(this.deleteContact,WAIT)
             .click(this.deleteContact)
+    }
 
+    async checkDeleteContactText(app){
         expect(await app.client
             .waitForVisible(this.deleteContactText,WAIT)
             .getText(this.deleteContactText)
         )
             .to.equal(TD.Addresses.DeleteContactText)
+    }
 
+    async checkAreYouSureText(app){
         expect(await app.client
             .waitForVisible(this.areYouSureDeleteContactText,WAIT)
             .getText(this.areYouSureDeleteContactText)
         )
             .to.equal(TD.Addresses.AreYouSureText)
+    }
 
+    async clickDeleteButtonOnPopup(app){
         await app.client
             .waitForVisible(this.deleteButtonOnPopup,WAIT)
             .click(this.deleteButtonOnPopup)
-
     }
 
     async checkIfAddressBookIsEmpty(app) {

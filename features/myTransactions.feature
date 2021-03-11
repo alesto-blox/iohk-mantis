@@ -11,6 +11,7 @@ Feature: My Transactions on Mantis Wallet
   I want to see my transactions
   Because I want to see my transactions
 
+  @Transactions01
   Scenario Outline: I see my transactions page on Mantis wallet
     Given I restore Mantis Wallet on "<network>"
     When I click on transactions button on main page
@@ -20,5 +21,5 @@ Feature: My Transactions on Mantis Wallet
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |

@@ -10,6 +10,7 @@ Feature: Accept terms and conditions
   As a regular user when I login into Mantis Wallet application
   for the first time I should read and accept Terms and Conditions
 
+  @TermsAndConditions01
   Scenario Outline: Accept Terms and Conditions
     Given I start Mantis wallet on "<network>"
     And I should be able to accept Terms and conditions
@@ -19,9 +20,10 @@ Feature: Accept terms and conditions
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
 
+  @TermsAndConditions02
   Scenario Outline: Accept Terms and Conditions
     Given I start Mantis wallet on "<network>"
     When I do not accept Terms and conditions
@@ -31,5 +33,5 @@ Feature: Accept terms and conditions
     Examples:
       | network        |
       | Sagano Testnet |
-      | Mainnet        |
-      | Mordor         |
+#      | Mainnet        |
+#      | Mordor         |
