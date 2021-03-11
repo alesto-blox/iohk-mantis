@@ -12,7 +12,6 @@ Feature: Settings on Mantis wallet
   Because I want to customize my settings
 
   @Settings01
-    @Smoke
   Scenario Outline: I see my settings page on Mantis wallet
     Given I restore Mantis Wallet on "<network>"
     And I click on settings button on main page

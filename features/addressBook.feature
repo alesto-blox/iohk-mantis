@@ -12,7 +12,6 @@ Feature: Address book on Mantis wallet
   Because I want to see my contacts
 
   @Address01
-  @Smoke
   Scenario Outline:I see address book page on Mantis wallet
     Given I restore Mantis Wallet on "<network>"
     When I click on address book button on main page
@@ -27,7 +26,6 @@ Feature: Address book on Mantis wallet
       | Mordor         |
 
   @Address02
-  @Smoke
   Scenario Outline:I can add new contact address
     Given I restore Mantis Wallet on "<network>"
     When I click on address book button on main page

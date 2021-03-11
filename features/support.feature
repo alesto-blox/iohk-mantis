@@ -12,7 +12,6 @@ Feature: Support on Mantis wallet
   Because I want to send support ticket
 
   @Support01
-  @Smoke
   Scenario Outline: I see support page on Mantis wallet
     Given I restore Mantis Wallet on "<network>"
     When I click on support button on main page
