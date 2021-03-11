@@ -45,6 +45,11 @@ class SendTransactionPage {
     get dataField() { return ('//textarea[@id="tx-data"]')}
     get nonceText() { return ('//label[contains(text(),"Data")]')}
     get nonceField() { return ('//label[contains(text(),"Data")]/..//input')}
+    async clickSendButton(app){
+        await app.client
+            .waitForVisible(this.sendButton,WAIT)
+            .click(this.sendButton);
+    }
 
 }
 
