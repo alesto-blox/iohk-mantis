@@ -197,9 +197,10 @@ class SettingsPage {
     }
 
     async getSelectedNetworkText(app){
-        await app.client
-            .waitForVisible(this.networkDropDown,WAIT)
-            .getText(this.networkDropDown);
+       return app.client
+           .waitForVisible(this.networkDropDown, WAIT)
+           .getText(this.networkDropDown);
+
     }
 
     async clickNetworkDropdown(app){
@@ -209,28 +210,10 @@ class SettingsPage {
 
     }
 
-    async clickSaganoNetwork(app){
+    async clickOnNetwork(app, network){
         await app.client
-            .waitForVisible(this.saganoNetwork,WAIT)
-            .click(this.saganoNetwork);
-    }
-
-    async clickMainnetNetwork(app){
-        await app.client
-            .waitForVisible(this.mainnetNetwork,WAIT)
-            .click(this.mainnetNetwork);
-    }
-
-    async clickMordorNetwork(app){
-        await app.client
-            .waitForVisible(this.mordorNetwork,WAIT)
-            .click(this.mordorNetwork);
-    }
-
-    async clickCustomNetwork(app){
-        await app.client
-            .waitForVisible(this.customNetwork,WAIT)
-            .click(this.customNetwork);
+            .waitForVisible('//div[@class="ant-select-item-option-content" and contains(text(),"'+network+'")]',WAIT)
+            .click('//div[@class="ant-select-item-option-content" and contains(text(),"'+network+'")]');
     }
 
     async typeNetworkNameIntoField(app, name){
@@ -247,13 +230,11 @@ class SettingsPage {
             case "Sagano Testnet":
                 if (selectedNetwork !== 'Sagano Testnet') {
                     await this.clickNetworkDropdown(app)
-                    await this.clickSaganoNetwork(app)
+                    await this.clickOnNetwork(app, "Sagano")
                     await this.clickConfirmButton(app)
                 }
 
-                expect(await app.client
-                    .waitForVisible(this.networkDropDown,WAIT)
-                    .getText(this.networkDropDown))
+                expect(await this.getSelectedNetworkText(app))
                     .to.equal(network);
 
                 expect(
@@ -265,14 +246,12 @@ class SettingsPage {
             case "Mainnet":
                 if (selectedNetwork !== 'Mainnet') {
                     await this.clickNetworkDropdown(app)
-                    await this.clickMainnetNetwork(app)
+                    await this.clickOnNetwork(app,"Mainnet")
                     await this.typeNetworkNameIntoField(app, "MAINNET")
                     await this.clickConfirmButton(app)
                 }
 
-                expect(await app.client
-                    .waitForVisible(this.networkDropDown,WAIT)
-                    .getText(this.networkDropDown))
+                expect(await this.getSelectedNetworkText(app))
                     .to.equal(network);
 
                 expect(
@@ -284,13 +263,11 @@ class SettingsPage {
             case "Mordor":
                 if (selectedNetwork !== 'Mordor') {
                     await this.clickNetworkDropdown(app)
-                    await this.clickMordorNetwork(app)
+                    await this.clickOnNetwork(app,"Mordor")
                     await this.clickConfirmButton(app)
                 }
 
-                expect(await app.client
-                    .waitForVisible(this.networkDropDown,WAIT)
-                    .getText(this.networkDropDown))
+                expect(await this.getSelectedNetworkText(app))
                     .to.equal(network);
 
                 expect(
@@ -302,7 +279,7 @@ class SettingsPage {
             case "Custom":
                 if (selectedNetwork !== 'Custom') {
                     await this.clickNetworkDropdown(app)
-                    await this.clickCustomNetwork(app)
+                    await this.clickOnNetwork(app,"Custom")
                     await this.typeNetworkNameIntoField(app, "Custom")
                     await this.clickConfirmButton(app)
                 }
