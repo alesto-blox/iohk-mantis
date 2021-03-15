@@ -6,7 +6,9 @@ const chaiFiles = require('chai-files')
 const chai = require('chai')
 chai.use(chaiFiles);
 const {file} = require("chai-files");
-class HomePage {
+const BasePage = require('../pages/BasePage.js')
+
+class HomePage extends BasePage.constructor{
 
     get termsOfServiceTitle() { return ('//div[@class="title" and contains(text(),"IOHK")]') };
     get termsOfServiceText() { return ('//div[@class="scrollable"]') };
@@ -90,17 +92,11 @@ class HomePage {
             .waitForVisible(this.createWalletButton,WAIT)
             .click(this.createWalletButton);
     }
-    async verifyLogout(app) {
-        expect(await app.client
-            .waitForVisible(this.createWalletButton,WAIT)
-            .getText(this.createWalletButton)
-        )
+    async verifyLogout() {
+        expect(await this.getText(this.createWalletButton))
             .to.equal("CREATE");
 
-        expect(await app.client
-            .waitForVisible(this.restoreWalletButton,WAIT)
-            .getText(this.restoreWalletButton)
-        )
+        expect(await this.getText(this.restoreWalletButton))
             .to.equal("RESTORE");
     }
     async addressBookIsUnavailable(app){
