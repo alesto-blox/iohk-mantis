@@ -124,8 +124,6 @@ class HomePage {
         )
             .to.equal('RESTORE');
     }
-
-
 }
 
 module.exports = new HomePage()

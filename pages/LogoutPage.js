@@ -3,8 +3,9 @@ const WAIT = require('../config/appConfig.js').WAIT;
 const helpers = require('../support/helpers.js');
 const TD = require('../test_data/testData.json');
 const expect = require('chai').expect;
+const BasePage = require('../pages/BasePage.js');
 
-class LogoutPage {
+class LogoutPage extends BasePage{
 
     get logoutButton() {
         return ('//span[contains(text(),"Log out")]')
@@ -71,10 +72,8 @@ class LogoutPage {
             .click(this.deleteDataWarningText);
     }
 
-    async removeWallet(app) {
-        await app.client
-            .waitForVisible(this.removeWalletButton, WAIT)
-            .click(this.removeWalletButton);
+    async removeWallet() {
+        await BasePage.click(this.removeWalletButton);
     }
 
     async checkIfLogoutButtonIsDisabled(app) {
