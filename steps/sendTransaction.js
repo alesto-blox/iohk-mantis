@@ -15,3 +15,9 @@ Then(/^I enter receiving address "([^"]*)"$/, async (address)=> {
 Then(/^I enter amount to send "([^"]*)"$/, async (amount)=>  {
     await sendPage.enterAmountToSend(app,amount);
 });
+Then(/^I enter password "([^"]*)"$/, async (pass)=> {
+    await sendPage.enterPassword(app,pass);
+});
+Then(/^I confirm transaction$/, async ()=> {
+    await sendPage.confirmTransaction(app);
+});

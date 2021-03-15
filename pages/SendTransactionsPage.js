@@ -11,7 +11,7 @@ class SendTransactionPage {
     get amountText() { return ('//label[contains(text(),"Amount")]')}
     get amountField() { return ('//*[@id="tx-amount"]')}
     get cancelButton() { return ('//span[contains(text(),"Cancel")]')}
-    get sendButton() { return ('//span[contains(text(),"Send")]')}
+    get sendButton() { return ('//button[contains(text(),"Send")]')}
     get feeText() { return ('//div[@class="DialogFee"]/label')}
     get customFee() { return ('//button[contains(text(),"Custom")]')}
     get slowFee() { return ('//span[contains(text(),"Slow")]')}
@@ -34,7 +34,7 @@ class SendTransactionPage {
     get confirmButton() { return('//span[contains(text(),"Confirm")]')}
     get passwordText() { return ('//label[@for="tx-password"]')}
     get passwordField() { return ('//*[@id="tx-password"]')}
-    get sendTransaction() { return ('//button/span[text()=\'Send\']')}
+    get sendTransactionButton() { return ('//button/span[text()=\'Send\']')}
  
      //Send transaction advanced tab selectors
     get amountTextOnAdvanced() { return ('//*[@for="tx-amount"]')}
@@ -54,20 +54,29 @@ class SendTransactionPage {
     }
     async sendTransaction(app){
         await app.client
-            .waitForVisible(this.sendTransaction,WAIT)
-            .click(this.sendTransaction);
+            .waitForVisible(this.sendTransactionButton,WAIT)
+            .click(this.sendTransactionButton);
     }
     async enterReceivingAddress(app,address){
         await app.client
-            .waitForVisible(this.recipientAddressValue, WAIT)
-            .setValue(this.recipientAddressValue, address);
+            .waitForVisible(this.recipientField, WAIT)
+            .setValue(this.recipientField, address);
     }
     async enterAmountToSend(app,amount){
         await app.client
             .waitForVisible(this.amountField, WAIT)
             .setValue(this.amountField, amount);
     }
-
+    async enterPassword(app,pass){
+        await app.client
+            .waitForVisible(this.passwordField, WAIT)
+            .setValue(this.passwordField, pass);
+    }
+    async confirmTransaction(app){
+        await app.client
+            .waitForVisible(this.confirmButton, WAIT)
+            .click(this.confirmButton);
+    }
 }
 
 module.exports = new SendTransactionPage()
