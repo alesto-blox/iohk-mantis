@@ -1,3 +1,4 @@
+
 const app = require('../support/baseApp.js').app
 const WAIT = require('../config/appConfig.js').WAIT;
 const expect = require('chai').expect;
