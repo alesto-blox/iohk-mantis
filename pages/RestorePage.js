@@ -1,8 +1,9 @@
 //Restore Page
-const WAIT = require('../config/appConfig.js').WAIT;
 const TD = require('../test_data/testData.json');
 const expect = require('chai').expect;
-class RestorePage {
+const BasePage = require('../pages/BasePage.js')
+
+class RestorePage extends BasePage.constructor{
 
     get restoreWalletText() { return ('//div[text()="Restore Wallet" and @class="title"]') }
     get restoreWalletInfoText() { return ('//div[text()="Restore Wallet"]/../div[@class="note"]') }
@@ -22,253 +23,115 @@ class RestorePage {
     get errorMessageBox() { return ('//div[@class="DialogError"]') }
     get pvkError() { return ('//div[@class="ant-form-item-explain"]/div') }
 
-    async enterRestoreDetails(app){
-        await app.client
-            .waitForVisible(this.walletNameField,WAIT)
-            .setValue(this.walletNameField, TD.RestoreWallet.WalletName);
-
-        await app.client
-            .waitForVisible(this.privateKeyField,WAIT)
-            .setValue(this.privateKeyField, TD.RestoreWallet.PVTKey);
-
-        await app.client
-            .waitForVisible(this.enterPasswordField,WAIT)
-            .setValue(this.enterPasswordField, TD.RestoreWallet.Password);
-
-        await app.client
-            .waitForVisible(this.repeatPasswordField,WAIT)
-            .setValue(this.repeatPasswordField, TD.RestoreWallet.Password);
-
-        await app.client
-            .waitForVisible(this.nextButton,WAIT)
-            .click(this.nextButton);
+    async enterRestoreDetails(){
+        await this.typeText(this.walletNameField, TD.RestoreWallet.WalletName);
+        await this.typeText(this.privateKeyField, TD.RestoreWallet.PVTKey);
+        await this.typeText(this.enterPasswordField, TD.RestoreWallet.Password);
+        await this.typeText(this.repeatPasswordField, TD.RestoreWallet.Password);
+        await this.click(this.nextButton);
     }
-    async enterRestorePhrasesDetails(app){
-        await app.client
-            .waitForVisible(this.walletNameField,WAIT)
-            .setValue(this.walletNameField, TD.RestoreWallet.WalletName);
-
-        await app.client
-            .waitForVisible(this.recoveryPhraseButton,WAIT)
-            .click(this.recoveryPhraseButton);
+    async enterRestorePhrasesDetails(){
+        await this.typeText(this.walletNameField, TD.RestoreWallet.WalletName);
+        await this.click(this.recoveryPhraseButton);
 
         for(let i =0; i<TD.RestoreWallet.Phrases.length;i++) {
             if(i !== TD.RestoreWallet.Phrases.length-1){
-                await app.client
-                    .waitForVisible(this.recoveryPhraseField, WAIT)
-                    .setValue(this.recoveryPhraseField, TD.RestoreWallet.Phrases[i]+" ");
+                await this.typeText(this.recoveryPhraseField, TD.RestoreWallet.Phrases[i]+" ");
             } else {
-                await app.client
-                    .waitForVisible(this.recoveryPhraseField, WAIT)
-                    .setValue(this.recoveryPhraseField, TD.RestoreWallet.Phrases[i]);
+                await this.typeText(this.recoveryPhraseField, TD.RestoreWallet.Phrases[i]);
             }
         }
 
-        await app.client
-            .waitForVisible(this.enterPasswordField,WAIT)
-            .setValue(this.enterPasswordField, TD.RestoreWallet.Password);
-
-        await app.client
-            .waitForVisible(this.repeatPasswordField,WAIT)
-            .setValue(this.repeatPasswordField, TD.RestoreWallet.Password);
-
-        await app.client
-            .waitForVisible(this.nextButton,WAIT)
-            .click(this.nextButton);
+        await this.typeText(this.enterPasswordField, TD.RestoreWallet.Password);
+        await this.typeText(this.repeatPasswordField, TD.RestoreWallet.Password);
+        await this.click(this.nextButton);
     }
-    async enterRestorePhrasesDetailsWithoutWalletName(app){
-        await app.client
-            .waitForVisible(this.recoveryPhraseButton,WAIT)
-            .click(this.recoveryPhraseButton);
+    async enterRestorePhrasesDetailsWithoutWalletName(){
+        await this.click(this.recoveryPhraseButton);
 
         for(let i =0; i<TD.RestoreWallet.Phrases.length;i++) {
             if(i !== TD.RestoreWallet.Phrases.length-1){
-                await app.client
-                    .waitForVisible(this.recoveryPhraseField, WAIT)
-                    .setValue(this.recoveryPhraseField, TD.RestoreWallet.Phrases[i]+" ");
+                await this.typeText(this.recoveryPhraseField, TD.RestoreWallet.Phrases[i]+" ");
             } else {
-                await app.client
-                    .waitForVisible(this.recoveryPhraseField, WAIT)
-                    .setValue(this.recoveryPhraseField, TD.RestoreWallet.Phrases[i]);
+                await this.typeText(this.recoveryPhraseField, TD.RestoreWallet.Phrases[i]);
             }
         }
 
-        await app.client
-            .waitForVisible(this.enterPasswordField,WAIT)
-            .setValue(this.enterPasswordField, TD.RestoreWallet.Password);
+        await this.typeText(this.enterPasswordField, TD.RestoreWallet.Password);
+        await this.typeText(this.repeatPasswordField, TD.RestoreWallet.Password);
+        await this.click(this.nextButton);
 
-        await app.client
-            .waitForVisible(this.repeatPasswordField,WAIT)
-            .setValue(this.repeatPasswordField, TD.RestoreWallet.Password);
-
-        await app.client
-            .waitForVisible(this.nextButton,WAIT)
-            .click(this.nextButton);
-
-        const errMsg = await app.client
-            .waitForVisible(this.walletNameError,WAIT)
-            .getText(this.walletNameError)
+        const errMsg = await this.getText(this.walletNameError)
         expect(errMsg)
             .to.equal(TD.WalletNameErrorMessage);
 
-        expect(await app.client
-            .waitForVisible(this.errorMessageBox,WAIT)
-            .getText(this.errorMessageBox)
+        expect(await this.getText(this.errorMessageBox)
         )
             .to.equal(TD.AdditionalActionError);
     }
-    async enterRestoreDetailsWithoutPVK(app){
-        await app.client
-            .waitForVisible(this.walletNameField,WAIT)
-            .setValue(this.walletNameField, TD.RestoreWallet.WalletName);
+    async enterRestoreDetailsWithoutPVK(){
+        await this.typeText(this.walletNameField, TD.RestoreWallet.WalletName);
+        await this.typeText(this.enterPasswordField, TD.RestoreWallet.Password);
+        await this.typeText(this.repeatPasswordField, TD.RestoreWallet.Password);
+        await this.click(this.nextButton);
 
-        await app.client
-            .waitForVisible(this.enterPasswordField,WAIT)
-            .setValue(this.enterPasswordField, TD.RestoreWallet.Password);
-
-        await app.client
-            .waitForVisible(this.repeatPasswordField,WAIT)
-            .setValue(this.repeatPasswordField, TD.RestoreWallet.Password);
-
-        await app.client
-            .waitForVisible(this.nextButton,WAIT)
-            .click(this.nextButton);
-
-        const errMsg = await app.client
-            .waitForVisible(this.pvkError,WAIT)
-            .getText(this.pvkError)
+        const errMsg = await this.getText(this.pvkError)
         expect(errMsg)
             .to.equal(TD.PVKErrorMessage);
 
-        expect(await app.client
-            .waitForVisible(this.errorMessageBox,WAIT)
-            .getText(this.errorMessageBox)
+        expect(await this.getText(this.errorMessageBox)
         )
             .to.equal(TD.AdditionalActionError);
     }
-    async enterRestoreDetailsWrongPVK(app){
-        await app.client
-            .waitForVisible(this.walletNameField,WAIT)
-            .setValue(this.walletNameField, TD.RestoreWallet.WalletName);
-
-        await app.client
-            .waitForVisible(this.privateKeyField,WAIT)
-            .setValue(this.privateKeyField, TD.RestoreWallet.IncorrectPVTKey);
-
-        await app.client
-            .waitForVisible(this.enterPasswordField,WAIT)
-            .setValue(this.enterPasswordField, TD.RestoreWallet.Password);
-
-        await app.client
-            .waitForVisible(this.repeatPasswordField,WAIT)
-            .setValue(this.repeatPasswordField, TD.RestoreWallet.Password);
-
-        await app.client
-            .waitForVisible(this.nextButton,WAIT)
-            .click(this.nextButton);
-
-        const errMsg = await app.client
-            .waitForVisible(this.pvkError,WAIT)
-            .getText(this.pvkError)
+    async enterRestoreDetailsWrongPVK(){
+        await this.typeText(this.walletNameField, TD.RestoreWallet.WalletName);
+        await this.typeText(this.privateKeyField, TD.RestoreWallet.IncorrectPVTKey);
+        await this.typeText(this.enterPasswordField, TD.RestoreWallet.Password);
+        await this.typeText(this.repeatPasswordField, TD.RestoreWallet.Password);
+        await this.click(this.nextButton);
+        const errMsg = await this.getText(this.pvkError)
         expect(errMsg)
             .to.equal(TD.IncorrectPVKErrorMessage);
 
-        expect(await app.client
-            .waitForVisible(this.errorMessageBox,WAIT)
-            .getText(this.errorMessageBox)
+        expect(await this.getText(this.errorMessageBox)
         )
             .to.equal(TD.AdditionalActionError);
     }
-    async enterRestoreDetailsInvalidPass(app,pass,confirmPass){
-        await app.client
-            .waitForVisible(this.walletNameField,WAIT)
-            .setValue(this.walletNameField, TD.RestoreWallet.WalletName);
-
-        await app.client
-            .waitForVisible(this.privateKeyField,WAIT)
-            .setValue(this.privateKeyField, TD.RestoreWallet.PVTKey);
-
-        await app.client
-            .waitForVisible(this.enterPasswordField,WAIT)
-            .setValue(this.enterPasswordField, pass);
-
-        await app.client
-            .waitForVisible(this.repeatPasswordField,WAIT)
-            .setValue(this.repeatPasswordField, confirmPass);
-
-        await app.client
-            .waitForVisible(this.nextButton,WAIT)
-            .click(this.nextButton);
+    async enterRestoreDetailsInvalidPass(pass,confirmPass){
+        await this.typeText(this.walletNameField, TD.RestoreWallet.WalletName);
+        await this.typeText(this.privateKeyField, TD.RestoreWallet.PVTKey);
+        await this.typeText(this.enterPasswordField, pass);
+        await this.typeText(this.repeatPasswordField, confirmPass);
+        await this.click(this.nextButton);
     }
-    async clickRecoveryPhrases(app){
-        await app.client
-            .waitForVisible(this.recoveryPhraseButton,WAIT)
-            .click(this.recoveryPhraseButton);
+    async clickRecoveryPhrases(){
+        await this.click(this.recoveryPhraseButton);
     }
-    async enterRestoreDetailsWithoutWordPhrases(app){
-        await app.client
-            .waitForVisible(this.walletNameField,WAIT)
-            .setValue(this.walletNameField, TD.RestoreWallet.WalletName);
-
-        await app.client
-            .waitForVisible(this.recoveryPhraseButton,WAIT)
-            .click(this.recoveryPhraseButton);
-
-        await app.client
-            .waitForVisible(this.enterPasswordField,WAIT)
-            .setValue(this.enterPasswordField, TD.RestoreWallet.Password);
-
-        await app.client
-            .waitForVisible(this.repeatPasswordField,WAIT)
-            .setValue(this.repeatPasswordField, TD.RestoreWallet.Password);
-
-        await app.client
-            .waitForVisible(this.nextButton,WAIT)
-            .click(this.nextButton);
-
-        expect(await app.client
-            .waitForVisible(this.errorMessageBox,WAIT)
-            .getText(this.errorMessageBox)
+    async enterRestoreDetailsWithoutWordPhrases(){
+        await this.typeText(this.walletNameField, TD.RestoreWallet.WalletName);
+        await this.click(this.recoveryPhraseButton);
+        await this.typeText(this.enterPasswordField, TD.RestoreWallet.Password);
+        await this.typeText(this.repeatPasswordField, TD.RestoreWallet.Password);
+        await this.click(this.nextButton);
+        expect(await this.getText(this.errorMessageBox)
         )
             .to.equal(TD.InvalidSeedPhrase);
     }
-    async enterRestoreIncorrectPhrasesDetails(app){
-        await app.client
-            .waitForVisible(this.walletNameField,WAIT)
-            .setValue(this.walletNameField, TD.RestoreWallet.WalletName);
-
-        await app.client
-            .waitForVisible(this.recoveryPhraseButton,WAIT)
-            .click(this.recoveryPhraseButton);
+    async enterRestoreIncorrectPhrasesDetails(){
+        await this.typeText(this.walletNameField, TD.RestoreWallet.WalletName);
+        await this.click(this.recoveryPhraseButton);
 
         for(let i = TD.RestoreWallet.Phrases.length-1; i>1;i--) {
             if(i !== TD.RestoreWallet.Phrases.length-1){
-                await app.client
-                    .waitForVisible(this.recoveryPhraseField, WAIT)
-                    .setValue(this.recoveryPhraseField, TD.RestoreWallet.Phrases[i]+" ");
+                await this.typeText(this.recoveryPhraseField, TD.RestoreWallet.Phrases[i]+" ");
             } else {
-                await app.client
-                    .waitForVisible(this.recoveryPhraseField, WAIT)
-                    .setValue(this.recoveryPhraseField, TD.RestoreWallet.Phrases[i]);
+                await this.typeText(this.recoveryPhraseField, TD.RestoreWallet.Phrases[i]);
             }
         }
-
-        await app.client
-            .waitForVisible(this.enterPasswordField,WAIT)
-            .setValue(this.enterPasswordField, TD.RestoreWallet.Password);
-
-        await app.client
-            .waitForVisible(this.repeatPasswordField,WAIT)
-            .setValue(this.repeatPasswordField, TD.RestoreWallet.Password);
-
-        await app.client
-            .waitForVisible(this.nextButton,WAIT)
-            .click(this.nextButton);
-
-        expect(await app.client
-            .waitForVisible(this.errorMessageBox,WAIT)
-            .getText(this.errorMessageBox)
-        )
+        await this.typeText(this.enterPasswordField, TD.RestoreWallet.Password);
+        await this.typeText(this.repeatPasswordField, TD.RestoreWallet.Password);
+        await this.click(this.nextButton);
+        expect(await this.getText(this.errorMessageBox))
             .to.equal(TD.InvalidSeedPhrase);
     }
 }

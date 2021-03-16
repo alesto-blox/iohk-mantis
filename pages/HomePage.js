@@ -1,5 +1,4 @@
 //Home Page
-const WAIT = require('../config/appConfig.js').WAIT;
 const expect = require('chai').expect;
 const TD = require('../test_data/testData.json')
 const chaiFiles = require('chai-files')
@@ -21,76 +20,49 @@ class HomePage extends BasePage.constructor{
     get connectedNetwork() {return ('//div[@class="network"]')}
     get addressBookNeedAddressInfo() { return ('//div[text()="You need a wallet to continue"]')}
 
-    async acceptTermsAndConditions(app){
-        await app.client
-            .waitForVisible(this.acceptTermsAndConditionsButton,WAIT)
-            .click(this.acceptTermsAndConditionsButton);
-
-        await app.client
-            .waitForVisible(this.nextButton,WAIT)
-            .click(this.nextButton);
+    async acceptTermsAndConditions(){
+        await this.click(this.acceptTermsAndConditionsButton);
+        await this.click(this.nextButton);
     }
-    async doNotAcceptTermsAndConditions(app){
-        await app.client
-            .waitForVisible(this.nextButton,WAIT)
-            .click(this.nextButton);
+    async doNotAcceptTermsAndConditions(){
+        await this.click(this.nextButton);
     }
-    async verifyTermsAndConditions(app){
+    async verifyTermsAndConditions(){
 
-        expect(await app.client
-            .waitForVisible(this.termsOfServiceTitle,WAIT)
-            .isVisible(this.termsOfServiceTitle)
-        ).to.equal(true);
+        expect(await this.isVisible(this.termsOfServiceTitle))
+            .to.equal(true);
 
-        expect(await app.client
-            .waitForVisible(this.termsOfServiceTitle,WAIT)
-            .getText(this.termsOfServiceTitle)
-        ).to.equal(TD.TOS.TOSTitle);
+        expect(await this.getText(this.termsOfServiceTitle))
+            .to.equal(TD.TOS.TOSTitle);
 
-        expect(await app.client
-            .waitForVisible(this.termsOfServiceText,WAIT)
-            .isVisible(this.termsOfServiceText)
-        ).to.equal(true);
+        expect(await this.isVisible(this.termsOfServiceText))
+            .to.equal(true);
 
-        expect(await app.client
-            .waitForVisible(this.termsOfServiceText,WAIT)
-            .getText(this.termsOfServiceText)
-        ).to.equal(file('./test_data/TermsOfServiceAgreement.txt'));
+        expect(await this.getText(this.termsOfServiceText))
+            .to.equal(file('./test_data/TermsOfServiceAgreement.txt'));
 
     }
-    async verifyWalletOptionsAreDisplayed(app){
-        expect(await app.client
-            .waitForVisible(this.createWalletButton,WAIT)
-            .isVisible(this.createWalletButton)
-        ).to.equal(true);
+    async verifyWalletOptionsAreDisplayed(){
+        expect(await this.isVisible(this.createWalletButton))
+            .to.equal(true);
 
-        expect(await app.client
-            .waitForVisible(this.restoreWalletButton,WAIT)
-            .isVisible(this.restoreWalletButton)
-        ).to.equal(true);
+        expect(await this.isVisible(this.restoreWalletButton))
+            .to.equal(true);
     }
-    async verifyErrorMessageWhenTermsAreNotAccepted(app){
-        expect(await app.client
-            .waitForVisible(this.errorDialog,WAIT)
-            .getText(this.errorDialog)
-        ).to.equal("Some fields require additional action before you can continue.")
+    async verifyErrorMessageWhenTermsAreNotAccepted(){
+        expect(await this.getText(this.errorDialog))
+            .to.equal("Some fields require additional action before you can continue.")
     }
-    async isMantisStartedForTheSelectedNetwork(app,network){
-        expect(await app.client
-            .waitForVisible(this.connectedNetwork,WAIT)
-            .getText(this.connectedNetwork)
-        )
+    async isMantisStartedForTheSelectedNetwork(network){
+        expect(await this
+            .getText(this.connectedNetwork))
             .to.equal(network);
     }
-    async clickRestoreWalletButton(app){
-        await app.client
-            .waitForVisible(this.restoreWalletButton,WAIT)
-            .click(this.restoreWalletButton);
+    async clickRestoreWalletButton(){
+        await this.click(this.restoreWalletButton);
     }
-    async createWallet(app){
-        await app.client
-            .waitForVisible(this.createWalletButton,WAIT)
-            .click(this.createWalletButton);
+    async createWallet(){
+        await this.click(this.createWalletButton);
     }
     async verifyLogout() {
         expect(await this.getText(this.createWalletButton))
@@ -99,25 +71,16 @@ class HomePage extends BasePage.constructor{
         expect(await this.getText(this.restoreWalletButton))
             .to.equal("RESTORE");
     }
-    async addressBookIsUnavailable(app){
-        expect(await app.client
-            .waitForVisible(this.addressBookNeedAddressInfo,WAIT)
-            .getText(this.addressBookNeedAddressInfo)
-        )
+    async addressBookIsUnavailable(){
+        expect(await this.getText(this.addressBookNeedAddressInfo))
             .to.equal(TD.Addresses.NeedWalletToSeeAddressBookText);
     }
-    async checkIfCreateButtonIsDisplayed(app){
-        expect(await app.client
-            .waitForVisible(this.createWalletButton,WAIT)
-            .getText(this.createWalletButton)
-        )
+    async checkIfCreateButtonIsDisplayed(){
+        expect(await this.getText(this.createWalletButton))
             .to.equal('CREATE');
     }
-    async checkIfRestoreButtonIsDisplayed(app){
-        expect(await app.client
-            .waitForVisible(this.restoreWalletButton,WAIT)
-            .getText(this.restoreWalletButton)
-        )
+    async checkIfRestoreButtonIsDisplayed(){
+        expect(await this.getText(this.restoreWalletButton))
             .to.equal('RESTORE');
     }
 }

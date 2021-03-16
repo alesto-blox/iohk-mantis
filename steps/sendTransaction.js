@@ -1,25 +1,24 @@
 const {When, Then} = require('@cucumber/cucumber');
 const sendPage = require('../pages/SendTransactionsPage.js');
-const TD = require('../test_data/testData.json');
 const app = require('../support/baseApp.js').app
 
 When(/^I click send button on main page$/, async () => {
-    await sendPage.clickSendButton(app);
+    await sendPage.clickSendButton();
 });
 Then(/^I click send$/, async () => {
-    await sendPage.sendTransaction(app);
+    await sendPage.sendTransaction();
 });
 Then(/^I enter receiving address "([^"]*)"$/, async (address)=> {
-    await sendPage.enterReceivingAddress(app,address);
+    await sendPage.enterReceivingAddress(address);
 });
 Then(/^I enter amount to send "([^"]*)"$/, async (amount)=>  {
-    await sendPage.enterAmountToSend(app,amount);
+    await sendPage.enterAmountToSend(amount);
 });
 Then(/^I enter password "([^"]*)"$/, async (pass)=> {
-    await sendPage.enterPassword(app,pass);
+    await sendPage.enterPassword(pass);
 });
 Then(/^I confirm transaction$/, async ()=> {
-    await sendPage.confirmTransaction(app);
+    await sendPage.confirmTransaction();
 });
 Then(/^I should see incorrect pass error$/, async ()=> {
     await sendPage.passErrorCheck(app);

@@ -1,8 +1,9 @@
 //Support Page
-const WAIT = require('../config/appConfig.js').WAIT;
 const expect = require('chai').expect;
 const TD = require('../test_data/testData.json')
-class SupportPage {
+const BasePage = require('../pages/BasePage.js')
+
+class SupportPage extends BasePage.constructor{
 
     get supportText() { return ('//div[contains(text(), "Support")]') }
     get exportLogsButton() { return ('//span[contains(text(), "Export Logs")]') }
