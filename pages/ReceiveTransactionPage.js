@@ -1,6 +1,8 @@
 //Receive Transaction Page
 const expect = require('chai').expect;
-class ReceiveTransactionPage {
+const BasePage = require('../pages/BasePage.js')
+
+class ReceiveTransactionPage extends BasePage.constructor{
 
     get yourAddressText() { return ('//div[contains(text(), "Your Address")]')}
     get qrCode() { return ('//div[@class="qr-code"]')}

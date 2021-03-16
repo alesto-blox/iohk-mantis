@@ -41,6 +41,23 @@ class BasePage {
             .getValue(element)
     }
 
+    async isVisible(element){
+        return  app.client
+            .waitForVisible(element,WAIT)
+            .isVisible(element)
+    }
+
+    async getBackgroundColor(element) {
+        return app.client
+            .waitForVisible(element, WAIT)
+            .getCssProperty(element, "background-color");
+    }
+
+    async isEnabled(element) {
+        return app.client
+            .waitForVisible(element, WAIT)
+            .isEnabled(element)
+    }
 }
 
 module.exports = new BasePage();

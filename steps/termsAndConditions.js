@@ -1,18 +1,17 @@
 const {When, Then} = require('@cucumber/cucumber');
 const homePage = require('../pages/HomePage.js');
-const app = require('../support/baseApp.js').app
 
 Then(/^I should be able to accept Terms and conditions$/, async () => {
-    await homePage.verifyTermsAndConditions(app);
-    await homePage.acceptTermsAndConditions(app);
+    await homePage.verifyTermsAndConditions();
+    await homePage.acceptTermsAndConditions();
 });
 Then(/^I should see Create new Wallet and Restore Wallet options$/, async () => {
-    await homePage.verifyWalletOptionsAreDisplayed(app);
+    await homePage.verifyWalletOptionsAreDisplayed();
 });
 When(/^I do not accept Terms and conditions$/, async () => {
-    await homePage.verifyTermsAndConditions(app);
-    await homePage.doNotAcceptTermsAndConditions(app);
+    await homePage.verifyTermsAndConditions();
+    await homePage.doNotAcceptTermsAndConditions();
 });
 Then(/^I should see an Error Message$/, async () => {
-    await homePage.verifyErrorMessageWhenTermsAreNotAccepted(app);
+    await homePage.verifyErrorMessageWhenTermsAreNotAccepted();
 });

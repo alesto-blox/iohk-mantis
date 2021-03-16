@@ -1,7 +1,7 @@
 //Send Transaction Page
-const WAIT = require('../config/appConfig.js').WAIT;
-const expect = require('chai').expect;
-class SendTransactionPage {
+const BasePage = require('../pages/BasePage.js')
+
+class SendTransactionPage extends BasePage.constructor{
 
      //Send transaction selectors
     get sendTransactionText() { return ('//div[@class="title"]')}
@@ -47,35 +47,23 @@ class SendTransactionPage {
     get nonceText() { return ('//label[contains(text(),"Data")]')}
     get nonceField() { return ('//label[contains(text(),"Data")]/..//input')}
 
-    async clickSendButton(app){
-        await app.client
-            .waitForVisible(this.sendButton,WAIT)
-            .click(this.sendButton);
+    async clickSendButton(){
+        await this.click(this.sendButton);
     }
-    async sendTransaction(app){
-        await app.client
-            .waitForVisible(this.sendTransactionButton,WAIT)
-            .click(this.sendTransactionButton);
+    async sendTransaction(){
+        await this.click(this.sendTransactionButton);
     }
-    async enterReceivingAddress(app,address){
-        await app.client
-            .waitForVisible(this.recipientField, WAIT)
-            .setValue(this.recipientField, address);
+    async enterReceivingAddress(address){
+        await this.typeText(this.recipientField, address);
     }
-    async enterAmountToSend(app,amount){
-        await app.client
-            .waitForVisible(this.amountField, WAIT)
-            .setValue(this.amountField, amount);
+    async enterAmountToSend(amount){
+        await this.typeText(this.amountField, amount);
     }
-    async enterPassword(app,pass){
-        await app.client
-            .waitForVisible(this.passwordField, WAIT)
-            .setValue(this.passwordField, pass);
+    async enterPassword(pass){
+        await this.typeText(this.passwordField, pass);
     }
-    async confirmTransaction(app){
-        await app.client
-            .waitForVisible(this.confirmButton, WAIT)
-            .click(this.confirmButton);
+    async confirmTransaction(){
+        await this.click(this.confirmButton);
     }
 }
 

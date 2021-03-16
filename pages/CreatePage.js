@@ -1,10 +1,10 @@
 //Create Page
-const WAIT = require('../config/appConfig.js').WAIT;
 const helpers = require('../support/helpers.js');
 const TD = require('../test_data/testData.json');
 const expect = require('chai').expect;
+const BasePage = require('../pages/BasePage.js')
 
-class CreatePage {
+class CreatePage extends BasePage.constructor{
 
     get createWalletText() {
         return ('//div[text()="Create New Wallet" and @class="title"]')
@@ -150,190 +150,150 @@ class CreatePage {
         return ('//div[@class="InlineError input"]')
     }
 
-    async enterWalletName(app,name){
-        await app.client
-            .waitForVisible(this.walletNameField, WAIT)
-            .setValue(this.walletNameField, name);
+    async enterWalletName(name){
+        await this.typeText(this.walletNameField, name);
     }
 
-    async enterWalletPassword(app, pass){
-        await app.client
-            .waitForVisible(this.enterPasswordField, WAIT)
-            .setValue(this.enterPasswordField, pass);
+    async enterWalletPassword(pass){
+        await this.typeText(this.enterPasswordField, pass);
     }
 
-    async repeatWalletPassword(app, pass){
-        await app.client
-            .waitForVisible(this.repeatPasswordField, WAIT)
-            .setValue(this.repeatPasswordField, pass);
+    async repeatWalletPassword( pass){
+        await this.typeText(this.repeatPasswordField, pass);
     }
 
-    async clickNextButton(app){
-        await app.client
-            .waitForVisible(this.nextButton, WAIT)
-            .click(this.nextButton);
+    async clickNextButton(){
+        await this.click(this.nextButton);
     }
 
-    async enterWalletNameAndPasswords(app) {
-        await this.enterWalletName(app, TD.CreateWallet.WalletName)
-        await this.enterWalletPassword(app, TD.CreateWallet.WalletPass)
-        await this.repeatWalletPassword(app, TD.CreateWallet.WalletPass)
-        await this.clickNextButton(app)
+    async enterWalletNameAndPasswords() {
+        await this.enterWalletName(TD.CreateWallet.WalletName)
+        await this.enterWalletPassword(TD.CreateWallet.WalletPass)
+        await this.repeatWalletPassword(TD.CreateWallet.WalletPass)
+        await this.clickNextButton()
     }
 
-    async enterWalletNameAndPasswordValidations(app, pass, confirmPass) {
-        await this.enterWalletName(app, TD.CreateWallet.WalletName)
+    async enterWalletNameAndPasswordValidations(pass, confirmPass) {
+        await this.enterWalletName(TD.CreateWallet.WalletName)
 
         if (pass === "empty") {
-            await this.enterWalletPassword(app, "")
-            await this.repeatWalletPassword(app, "")
+            await this.enterWalletPassword("")
+            await this.repeatWalletPassword("")
         } else {
-            await this.enterWalletPassword(app, pass)
-            await this.repeatWalletPassword(app, confirmPass)
+            await this.enterWalletPassword(pass)
+            await this.repeatWalletPassword(confirmPass)
         }
-        await this.clickNextButton(app)
+        await this.clickNextButton()
     }
 
-    async enterWalletNameAndPasswordNameValidations(app, name) {
+    async enterWalletNameAndPasswordNameValidations(name) {
         if (name === "empty") {
-            await this.enterWalletName(app, "")
+            await this.enterWalletName("")
         } else {
-            await this.enterWalletName(app, name)
+            await this.enterWalletName(name)
         }
-        await this.enterWalletPassword(app, TD.CreateWallet.WalletPass);
-        await this.repeatWalletPassword(app, TD.CreateWallet.WalletPass);
-        await this.clickNextButton(app)
+        await this.enterWalletPassword(TD.CreateWallet.WalletPass);
+        await this.repeatWalletPassword(TD.CreateWallet.WalletPass);
+        await this.clickNextButton()
     }
 
-    async clickOnShowPrivateKey(app){
-        await app.client
-            .waitForVisible(this.showPrivateKeyButton, WAIT)
-            .click(this.showPrivateKeyButton);
+    async clickOnShowPrivateKey(){
+        await this.click(this.showPrivateKeyButton);
     }
 
-    async getPrivateKeyText(app){
-        await app.client
-            .waitForVisible(this.privateKeyValue, WAIT)
-            .getText(this.privateKeyValue);
+    async getPrivateKeyText(){
+        await this.getText(this.privateKeyValue);
     }
 
-    async getPrivateKey(app) {
-        await this.clickOnShowPrivateKey(app)
-        const privateKey = await this.getPrivateKeyText(app)
-        await this.clickNextButton(app)
+    async getPrivateKey() {
+        await this.clickOnShowPrivateKey()
+        const privateKey = await this.getPrivateKeyText()
+        await this.clickNextButton()
         return privateKey;
     }
 
-    async getRecoveryWordText(app){
-        return  app.client
-            .waitForVisible(this.recoveryWordsText, WAIT)
-            .getText(this.recoveryWordsText);
+    async getRecoveryWordText(){
+        return  this.getText(this.recoveryWordsText);
     }
 
-    async clickOnWrittenDownText(app){
-        await app.client
-            .waitForVisible(this.writtenDownText, WAIT)
-            .click(this.writtenDownText);
+    async clickOnWrittenDownText(){
+        await this.click(this.writtenDownText);
     }
 
-    async getRecoveryPhrase(app) {
-        const recoveryPhrase = await this.getRecoveryWordText(app)
-        await this.clickOnWrittenDownText(app)
-        await this.clickNextButton(app)
+    async getRecoveryPhrase() {
+        const recoveryPhrase = await this.getRecoveryWordText()
+        await this.clickOnWrittenDownText()
+        await this.clickNextButton()
         return recoveryPhrase.toString().replace(/[^A-Za-z]+/g, '\n');
     }
 
-    async clickOnFinishButton(app){
-        app.client
-            .waitForVisible(this.finishButton, WAIT)
-            .click(this.finishButton);
+    async clickOnFinishButton(){
+        await this.click(this.finishButton);
     }
 
-    async clickOnConditionLocallyBox(app){
-        await app.client
-            .waitForVisible(this.conditionsLocallyBox, WAIT)
-            .click(this.conditionsLocallyBox);
+    async clickOnConditionLocallyBox(){
+        await this.click(this.conditionsLocallyBox);
     }
 
-    async clickOnConditionRecoveryBox(app){
-        await app.client
-            .waitForVisible(this.conditionRecoveryBox, WAIT)
-            .click(this.conditionRecoveryBox);
+    async clickOnConditionRecoveryBox(){
+        await this.click(this.conditionRecoveryBox);
     }
 
-    async reInputRecoveryPhrase(app, phrase) {
+    async reInputRecoveryPhrase(phrase) {
         const words = phrase.split("\n");
         for (let i = 1; i < words.length; i++) {
             await helpers.timeout(300)
-            await app.client
-                .waitForVisible("//div[@class='word' and text()='" + words[i] + "']", WAIT)
-                .click("//div[@class='word' and text()='" + words[i] + "']");
+            await this.click("//div[@class='word' and text()='" + words[i] + "']");
         }
-        await this.clickOnConditionLocallyBox(app)
-        await this.clickOnConditionRecoveryBox(app)
-        await this.clickOnFinishButton(app)
+        await this.clickOnConditionLocallyBox()
+        await this.clickOnConditionRecoveryBox()
+        await this.clickOnFinishButton()
     }
 
-    async getBackgroundColor(app, element){
-        return  app.client
-            .waitForVisible(element, WAIT)
-            .getCssProperty(element, "background-color");
+    async getErrorMessageBoxText(){
+        return this.getText(this.errorMessageBox)
     }
 
-    async getErrorMessageBoxText(app){
-        return app.client
-            .waitForVisible(this.errorMessageBox, WAIT)
-            .getText(this.errorMessageBox)
-    }
-
-    async reInputRecoveryPhraseWithoutConfirmationConditionsLocally(app, phrase) {
+    async reInputRecoveryPhraseWithoutConfirmationConditionsLocally(phrase) {
         const words = phrase.split("\n");
         for (let i = 1; i < words.length; i++) {
             await helpers.timeout(300)
-            await app.client
-                .waitForVisible("//div[@class='word' and text()='" + words[i] + "']", WAIT)
-                .click("//div[@class='word' and text()='" + words[i] + "']");
+            await this.click("//div[@class='word' and text()='" + words[i] + "']");
         }
-        await this.clickOnConditionRecoveryBox(app)
-        await this.clickOnFinishButton(app)
+        await this.clickOnConditionRecoveryBox()
+        await this.clickOnFinishButton()
         await helpers.timeout(2000);
-        const color = await this.getBackgroundColor(app, this.conditionsLocallyBoxSpan)
+        const color = await this.getBackgroundColor(this.conditionsLocallyBoxSpan)
         expect(color.value).to.equal(TD.ErrorColor);
-        expect(await this.getErrorMessageBoxText(app))
+        expect(await this.getErrorMessageBoxText())
             .to.equal(TD.AdditionalActionError);
     }
 
-    async reInputRecoveryPhraseWithoutConditionsRecovery(app, phrase) {
+    async reInputRecoveryPhraseWithoutConditionsRecovery(phrase) {
         const words = phrase.split("\n");
         for (let i = 1; i < words.length; i++) {
             await helpers.timeout(300)
-            await app.client
-                .waitForVisible("//div[@class='word' and text()='" + words[i] + "']", WAIT)
-                .click("//div[@class='word' and text()='" + words[i] + "']");
+            await this.click("//div[@class='word' and text()='" + words[i] + "']");
         }
-        await this.clickOnConditionLocallyBox(app)
-        await this.clickOnFinishButton(app)
+        await this.clickOnConditionLocallyBox()
+        await this.clickOnFinishButton()
         await helpers.timeout(2000);
-        const color = await this.getBackgroundColor(app, this.conditionRecoveryBoxSpan)
+        const color = await this.getBackgroundColor(this.conditionRecoveryBoxSpan)
         expect(color.value).to.equal(TD.ErrorColor);
-        expect(await this.getErrorMessageBoxText(app))
+        expect(await this.getErrorMessageBoxText())
             .to.equal(TD.AdditionalActionError);
     }
 
-    async getErrorMessageText(app){
-        return app.client
-            .waitForVisible(this.errorMessageText, WAIT)
-            .getText(this.errorMessageText)
+    async getErrorMessageText(){
+        return this.getText(this.errorMessageText)
     }
 
-    async getErrorMessageWalletNameText(app){
-        return app.client
-            .waitForVisible(this.errorMessageWalletNameText, WAIT)
-            .getText(this.errorMessageWalletNameText)
+    async getErrorMessageWalletNameText(){
+        return this.getText(this.errorMessageWalletNameText)
     }
 
-    async validateErrorMessages(app, message) {
-        const errMsg = await this.getErrorMessageText(app)
+    async validateErrorMessages(message) {
+        const errMsg = await this.getErrorMessageText()
         try {
             expect('"' + errMsg + '"')
                 .to.equal(message)
@@ -342,133 +302,106 @@ class CreatePage {
                 .to.equal(message)
         }
 
-        expect(await this.getErrorMessageBoxText(app))
+        expect(await this.getErrorMessageBoxText())
             .to.equal(TD.AdditionalActionError);
     }
 
-    async validateWalletNameErrorMessages(app, message) {
-        expect(await this.getErrorMessageWalletNameText(app))
+    async validateWalletNameErrorMessages(message) {
+        expect(await this.getErrorMessageWalletNameText())
             .to.equal(message);
-        expect(await this.getErrorMessageBoxText(app))
+        expect(await this.getErrorMessageBoxText())
             .to.equal(TD.AdditionalActionError);
     }
 
-    async isDownloadButtonDisplayedAndClickable(app) {
-        expect(await this.isDownloadButtonVisible(app))
+    async isDownloadButtonDisplayedAndClickable() {
+        expect(await this.isDownloadButtonVisible())
             .to.equal(true);
 
-        expect(await this.getDownloadButtonText(app))
+        expect(await this.getDownloadButtonText())
             .to.equal("DOWNLOAD TXT");
 
-        expect(await this.isDownloadButtonEnabled(app)
+        expect(await this.isDownloadButtonEnabled()
         )
             .to.equal(true);
     }
 
-    async isDownloadButtonVisible(app){
-        return app.client
-            .waitForVisible(this.downloadTxtButton, WAIT)
-            .isVisible(this.downloadTxtButton)
+    async isDownloadButtonVisible(){
+        return this.isVisible(this.downloadTxtButton)
     }
 
-    async isDownloadButtonEnabled(app){
-        return app.client
-            .waitForVisible(this.downloadTxtButton, WAIT)
-            .isEnabled(this.downloadTxtButton)
+    async isDownloadButtonEnabled(){
+        return this.isEnabled(this.downloadTxtButton)
     }
 
-    async getDownloadButtonText(app){
-        return app.client
-            .waitForVisible(this.downloadTxtButton, WAIT)
-            .getText(this.downloadTxtButton)
+    async getDownloadButtonText(){
+        return this.getText(this.downloadTxtButton)
     }
 
-    async cancelWalletCreation(app) {
-        await app.client
-            .waitForVisible(this.cancelButton, WAIT)
-            .click(this.cancelButton);
+    async cancelWalletCreation() {
+        await this.click(this.cancelButton);
     }
 
-    async clickBack(app) {
-        await app.client
-            .waitForVisible(this.backButton, WAIT)
-            .click(this.backButton);
+    async clickBack() {
+        await this.click(this.backButton);
     }
 
-    async reinputWordPhrasesIncorrectOrder(app, phrase) {
+    async reinputWordPhrasesIncorrectOrder(phrase) {
         const words = phrase.split("\n");
         for (let i = words.length - 1; i >= 1; i--) {
             await helpers.timeout(300)
-            await app.client
-                .waitForVisible("//div[@class='word' and text()='" + words[i] + "']", WAIT)
-                .click("//div[@class='word' and text()='" + words[i] + "']");
+            await this.click("//div[@class='word' and text()='" + words[i] + "']");
         }
 
-        await this.clickOnConditionLocallyBox(app)
-        await this.clickOnConditionRecoveryBox(app)
-        await this.clickOnFinishButton(app)
-        expect(await this.getErrorMessagePhrases(app))
+        await this.clickOnConditionLocallyBox()
+        await this.clickOnConditionRecoveryBox()
+        await this.clickOnFinishButton()
+        expect(await this.getErrorMessagePhrases())
             .to.equal(TD.ErrorPhrases);
     }
 
-    async getErrorMessagePhrases(app) {
-        return app.client
-            .waitForVisible(this.errorMessagePhrases, WAIT)
-            .getText(this.errorMessagePhrases)
+    async getErrorMessagePhrases() {
+        return this.getText(this.errorMessagePhrases)
     }
 
-    async reinputWordPhrasesAndIClickBack(app, phrase) {
+    async reinputWordPhrasesAndIClickBack(phrase) {
         const words = phrase.split("\n");
         for (let i = 1; i < words.length; i++) {
             await helpers.timeout(300)
-            await app.client
-                .waitForVisible("//div[@class='word' and text()='" + words[i] + "']", WAIT)
-                .click("//div[@class='word' and text()='" + words[i] + "']");
+            await this.click("//div[@class='word' and text()='" + words[i] + "']");
         }
 
-        await this.clickOnConditionLocallyBox(app)
-        await this.clickOnConditionRecoveryBox(app)
-        await this.clickBack(app)
+        await this.clickOnConditionLocallyBox()
+        await this.clickOnConditionRecoveryBox()
+        await this.clickBack()
     }
 
-    async clickClearRecoveryPhrase(app){
-        await app.client
-            .waitForVisible(this.clearRecoveryPhraseButton, WAIT)
-            .click(this.clearRecoveryPhraseButton);
+    async clickClearRecoveryPhrase(){
+        await this.click(this.clearRecoveryPhraseButton);
     }
 
-    async reinputWordPhrasesAndIClickClear(app, phrase) {
+    async reinputWordPhrasesAndIClickClear(phrase) {
         const words = phrase.split("\n");
         for (let i = 1; i < words.length; i++) {
             await helpers.timeout(300)
-            await app.client
-                .waitForVisible("//div[@class='word' and text()='" + words[i] + "']", WAIT)
-                .click("//div[@class='word' and text()='" + words[i] + "']");
+            await this.click("//div[@class='word' and text()='" + words[i] + "']");
         }
 
-        await this.clickClearRecoveryPhrase(app)
-        expect(await this.getTextFromReinputBox(app))
+        await this.clickClearRecoveryPhrase()
+        expect(await this.getTextFromReinputBox())
             .to.equal("");
     }
 
-    async getTextFromReinputBox(app){
-        return app.client
-            .waitForVisible(this.reinputBox, WAIT)
-            .getText(this.reinputBox)
+    async getTextFromReinputBox(){
+        return this.getText(this.reinputBox)
     }
 
-    async verifyFinishIsDisabled(app) {
-        expect(await app.client
-            .waitForVisible(this.finishButton, WAIT)
-            .isEnabled(this.finishButton)
-        )
+    async verifyFinishIsDisabled() {
+        expect(await this.isEnabled(this.finishButton))
             .to.equal(false);
     }
 
-    async clickOnButton(app, element){
-        await app.client
-            .waitForVisible(element, WAIT)
-            .click(element);
+    async clickOnButton(element){
+        await this.click(element);
     }
 }
 

@@ -1,5 +1,4 @@
 //Logout Page
-const WAIT = require('../config/appConfig.js').WAIT;
 const helpers = require('../support/helpers.js');
 const TD = require('../test_data/testData.json');
 const expect = require('chai').expect;
@@ -66,8 +65,8 @@ class LogoutPage extends BasePage.constructor{
         await this.click(this.removeWalletButton);
     }
 
-    async checkIfLogoutButtonIsDisabled(app) {
-        expect(await app.client.getHTML(this.logoutButton))
+    async checkIfLogoutButtonIsDisabled() {
+        expect(await this.getHTML(this.logoutButton))
             .to.include('disabled')
     }
 
@@ -77,8 +76,7 @@ class LogoutPage extends BasePage.constructor{
     }
 
     async invalidPass() {
-        expect(await this.getText(this.errorMessageBox)
-        )
+        expect(await this.getText(this.errorMessageBox))
             .to.equal(TD.PVKIncorrectPassError);
     }
 
@@ -87,8 +85,7 @@ class LogoutPage extends BasePage.constructor{
     }
 
     async additionalActionError() {
-        expect(await this.getText(this.errorMessageBox)
-        )
+        expect(await this.getText(this.errorMessageBox))
             .to.equal(TD.AdditionalActionError);
     }
 
