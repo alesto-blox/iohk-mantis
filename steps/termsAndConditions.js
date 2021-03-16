@@ -12,6 +12,6 @@ When(/^I do not accept Terms and conditions$/, async () => {
     await homePage.verifyTermsAndConditions();
     await homePage.doNotAcceptTermsAndConditions();
 });
-Then(/^I should see an Error Message$/, async () => {
+Then(/^I should see Error Message on TOS$/, async () => {
     await homePage.verifyErrorMessageWhenTermsAreNotAccepted();
 });

@@ -400,9 +400,6 @@ class CreatePage extends BasePage.constructor{
             .to.equal(false);
     }
 
-    async clickOnButton(element){
-        await this.click(element);
-    }
 }
 
 module.exports = new CreatePage();

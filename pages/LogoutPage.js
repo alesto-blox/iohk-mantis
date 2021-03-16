@@ -51,7 +51,7 @@ class LogoutPage extends BasePage.constructor{
     }
 
     async logout() {
-        await helpers.timeout(5000);
+        await helpers.timeout(2000);
         await this.click(this.logoutButton)
     }
 

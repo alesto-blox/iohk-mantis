@@ -1,8 +1,6 @@
-
+//Base Page
 const app = require('../support/baseApp.js').app
 const WAIT = require('../config/appConfig.js').WAIT;
-const expect = require('chai').expect;
-const helpers = require('../support/helpers.js');
 
 class BasePage {
 
@@ -58,6 +56,14 @@ class BasePage {
         return app.client
             .waitForVisible(element, WAIT)
             .isEnabled(element)
+    }
+
+    async start(){
+        await app.start();
+    }
+
+    async stop(){
+        await app.stop();
     }
 }
 
