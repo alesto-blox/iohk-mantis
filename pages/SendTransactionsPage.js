@@ -1,4 +1,7 @@
 //Send Transaction Page
+const WAIT = require('../config/appConfig.js').WAIT;
+const expect = require('chai').expect;
+const TD = require('../test_data/testData.json');
 const BasePage = require('../pages/BasePage.js')
 
 class SendTransactionPage extends BasePage.constructor{
@@ -23,7 +26,9 @@ class SendTransactionPage extends BasePage.constructor{
     get remainingBalanceValue() { return ('//div[contains(text(),"Remaining")]/..//div[@class="amount"]')}
     get transferButton() { return ('//span[contains(text(),"Transfer")]')}
     get advancedButton() { return ('//span[contains(text(),"Advanced")]')}
-     
+    get closeSendTransactionWindow() { return ('//span[@class="anticon anticon-close"]')}
+
+
      //Send transaction next page selectors    
     get recipientAddressValue() { return('//label[contains(text(),"Recipient")]/..//input')}
     get amountTextOnNextPage() { return('//div[contains(text(),"Amount")]')}     
@@ -34,8 +39,10 @@ class SendTransactionPage extends BasePage.constructor{
     get confirmButton() { return('//span[contains(text(),"Confirm")]')}
     get passwordText() { return ('//label[@for="tx-password"]')}
     get passwordField() { return ('//*[@id="tx-password"]')}
+    get passError() { return ('//div[@class="error-message"]')}
     get sendTransactionButton() { return ('//button/span[text()=\'Send\']')}
- 
+    get itemExplain() { return ('//div[@class="ant-form-item-explain"]/div')}
+
      //Send transaction advanced tab selectors
     get amountTextOnAdvanced() { return ('//*[@for="tx-amount"]')}
     get gasLimitText() { return ('//label[contains(text(),"Gas limit")]')}
@@ -64,6 +71,63 @@ class SendTransactionPage extends BasePage.constructor{
     }
     async confirmTransaction(){
         await this.click(this.confirmButton);
+    }
+    async passErrorCheck(app){
+        const err = await app.client
+            .waitForVisible(this.passError,WAIT)
+            .getText(this.passError);
+        expect(err).to.equal(TD.PVKIncorrectPassError)
+    }
+    async closeSendTransaction(app){
+        await app.client
+            .waitForVisible(this.closeSendTransactionWindow, WAIT)
+            .click(this.closeSendTransactionWindow);
+    }
+    async passNotProvided(app){
+        const err = await app.client
+            .waitForVisible(this.itemExplain,WAIT)
+            .getText(this.itemExplain);
+        expect(err).to.equal(TD.PassMustBeProvided)
+    }
+    async addressNotSet(app){
+        const err = await app.client
+            .waitForVisible(this.itemExplain,WAIT)
+            .getText(this.itemExplain);
+        expect(err).to.equal(TD.AddressNotSet)
+    }
+    async invalidAddress(app){
+        const err = await app.client
+            .waitForVisible(this.itemExplain,WAIT)
+            .getText(this.itemExplain);
+        expect(err).to.equal(TD.InvalidAddress)
+    }
+    async graterThanZero(app){
+        const err = await app.client
+            .waitForVisible(this.itemExplain,WAIT)
+            .getText(this.itemExplain);
+        expect(err).to.equal(TD.Amount0Error)
+    }
+    async chooseFee(app,fee){
+        switch (fee){
+            case "Slow" : {
+                await app.client
+                    .waitForVisible(this.slowFee, WAIT)
+                    .click(this.slowFee);
+            }
+                break;
+            case "Average" : {
+                await app.client
+                    .waitForVisible(this.averageFee, WAIT)
+                    .click(this.averageFee);
+            }
+                break;
+            case "Fast" : {
+                await app.client
+                    .waitForVisible(this.fastFee, WAIT)
+                    .click(this.fastFee);
+            }
+                break;
+        }
     }
 }
 
