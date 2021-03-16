@@ -104,5 +104,9 @@
   "PVKIncorrectPassError":"Key derivation failed - possibly wrong password",
   "PVKErrorMessage": "Private key must be set",
   "IncorrectPVKErrorMessage": "Invalid private key",
-  "InvalidSeedPhrase": "Invalid seed phrase"
+  "InvalidSeedPhrase": "Invalid seed phrase",
+  "PassMustBeProvided": "Password must be provided",
+  "AddressNotSet": "Address must be set",
+  "InvalidAddress": "Invalid address",
+  "Amount0Error": "Must be a number greater than 0"
 }
