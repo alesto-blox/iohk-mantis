@@ -1,15 +1,16 @@
-# IOHK-Mantis
-
-### How to clone/copy project from repo?
-
-  * Check if you have nodejs and npm installed on your local mashine
-    type in terminal `node -v` that shows nodejs version if installed
-    type in terminal `npm -v` that shows npm version if installed
-  * Go to this link https://github.com/alesto-blox/iohk-mantis 
-  * Clone/copy the repo to your local mashine
-  * Type in terminal `npm install`, which will install all dependecies
+# IOHK-Mantis-Wallet-Automation-Tests
 
   ### How to run tests?
-  * First in config/apConfig.js specify PATH to the Mantis Wallet app
-  * Then in package.json add script to include PATH to app
-  * In terminal type `npm run script` where you can change `script` to match the name that you gave in the previous step
+  * Synch the wallet to a network you whish to run tests on
+  * Install Node.js
+  * Clone/copy the repo to your local mashine
+  * Type in terminal `npm install`, which will install all dependecies
+  * Specify PATH to the Mantis Wallet app in config/apConfig.js
+  * In terminal type `npm run script` where you can change `script` to match the name of the script you wish to run
+  * Report will be generated in the reports folder
+  * Example of a run: nmp run LSmoke - this will run smoke test suite on a Linux machine
+  * Example of a run: nmp run WSmoke - this will run smoke test suite on a Windows machine
+  * Example of a run: nmp run MSmoke - this will run smoke test suite on a MacOS machine
+  * Full list of available scripts can be found in package.json
+  * To run a custom command you need to type the following:
+  "cross-env ENV={OS} ./node_modules/.bin/cucumber-js -r ./steps --tags @{TAG} --format html:./reports/cucumber-html-report.html" Change {OS} to LINUX,WINDOWS or MAC, and change {TAG} to a specific tag for a test you want to run ex Login01
