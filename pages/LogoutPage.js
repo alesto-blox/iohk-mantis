@@ -4,7 +4,7 @@ const helpers = require('../support/helpers.js');
 const TD = require('../test_data/testData.json');
 const expect = require('chai').expect;
 
-class LogoutPage {
+class LogoutPage{
 
     get logoutButton() {
         return ('//span[contains(text(),"Log out")]')

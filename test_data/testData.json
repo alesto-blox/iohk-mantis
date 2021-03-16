@@ -38,7 +38,8 @@
       "lamp",
       "stage"
     ]
-  },"BackupWallet": {
+  },
+  "BackupWallet": {
   "Password": "TestPass123!",
   "PVTKey": "0x33385a9edc8b6315778a43b41a3582573a51eaf0463f039f938e147bb537b5a2",
   "WalletName": "MantisWalletBackup",
@@ -103,5 +104,9 @@
   "PVKIncorrectPassError":"Key derivation failed - possibly wrong password",
   "PVKErrorMessage": "Private key must be set",
   "IncorrectPVKErrorMessage": "Invalid private key",
-  "InvalidSeedPhrase": "Invalid seed phrase"
+  "InvalidSeedPhrase": "Invalid seed phrase",
+  "PassMustBeProvided": "Password must be provided",
+  "AddressNotSet": "Address must be set",
+  "InvalidAddress": "Invalid address",
+  "Amount0Error": "Must be a number greater than 0"
 }

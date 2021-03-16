@@ -1,51 +1,44 @@
 const {When, Then} = require('@cucumber/cucumber');
+const sendPage = require('../pages/SendTransactionsPage.js');
+const TD = require('../test_data/testData.json');
 const app = require('../support/baseApp.js').app
 
 When(/^I click send button on main page$/, async () => {
-    // TODO implement step
+    await sendPage.clickSendButton(app);
 });
-Then(/^I expect to see sent transaction page$/, async () => {
-    // TODO implement step
+Then(/^I click send$/, async () => {
+    await sendPage.sendTransaction(app);
 });
-When(/^I enter recipient address on send transaction page$/, async () => {
-    // TODO implement step
+Then(/^I enter receiving address "([^"]*)"$/, async (address)=> {
+    await sendPage.enterReceivingAddress(app,address);
 });
-When(/^I enter amount to send and select fee on send transaction page$/, async () => {
-    // TODO implement step
+Then(/^I enter amount to send "([^"]*)"$/, async (amount)=>  {
+    await sendPage.enterAmountToSend(app,amount);
 });
-When(/^I click send button on send transaction page$/, async () => {
-    // TODO implement step
+Then(/^I enter password "([^"]*)"$/, async (pass)=> {
+    await sendPage.enterPassword(app,pass);
 });
-When(/^I enter my password on send transaction page$/, async () => {
-    // TODO implement step
+Then(/^I confirm transaction$/, async ()=> {
+    await sendPage.confirmTransaction(app);
 });
-When(/^I click confirm button on send transaction page$/, async () => {
-    // TODO implement step
+Then(/^I should see incorrect pass error$/, async ()=> {
+    await sendPage.passErrorCheck(app);
 });
-Then(/^I expect to see that transaction on My transaction page$/, async () => {
-    // TODO implement step
+Then(/^I should close send transaction window$/, async ()=> {
+    await sendPage.closeSendTransaction(app);
 });
-When(/^I select recipient address from drop-down on send transaction page$/, async () => {
-    // TODO implement step
+Then(/^I should see pass not provided error$/, async ()=> {
+    await sendPage.passNotProvided(app);
 });
-When(/^I click on advanced button on send transaction page$/, async () => {
-    // TODO implement step
+Then(/^I should see address not set error$/, async ()=> {
+    await sendPage.addressNotSet(app);
 });
-When(/^I enter recipient address on send transaction page advanced tab$/, async () => {
-    // TODO implement step
+Then(/^I should see invalid address error$/, async ()=> {
+    await sendPage.invalidAddress(app);
 });
-When(/^I enter amount to send, gas limit and gas price on send transaction page$/, async () => {
-    // TODO implement step
+Then(/^should see must be grater than zero error$/, async ()=> {
+    await sendPage.graterThanZero(app);
 });
-When(/^I click send button on send transaction page advanced tab$/, async () => {
-    // TODO implement step
-});
-When(/^I enter my password on send transaction page advanced tab$/, async () => {
-    // TODO implement step
-});
-When(/^I click confirm button on send transaction page advanced tab$/, async () => {
-    // TODO implement step
-});
-When(/^I select recipient address from drop-down on send transaction page advanced tab$/, async () => {
-    // TODO implement step
+Then(/^I choose a fee "([^"]*)"$/, async (fee)=> {
+    await sendPage.chooseFee(app,fee);
 });
