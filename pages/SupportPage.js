@@ -3,13 +3,27 @@ const expect = require('chai').expect;
 const TD = require('../test_data/testData.json')
 const BasePage = require('../pages/BasePage.js')
 
-class SupportPage extends BasePage.constructor{
+class SupportPage extends BasePage.constructor {
 
-    get supportText() { return ('//div[contains(text(), "Support")]') }
-    get exportLogsButton() { return ('//span[contains(text(), "Export Logs")]') }
-    get openTicketButton() { return ('//span[contains(text(), "Open Ticket")]') }
-    get supportDescriptionText() { return ('//div[@class="description"]')}
-    get closeModalButton() { return ('//span[@aria-label="close"]')}
+    get supportText() {
+        return ('//div[contains(text(), "Support")]')
+    }
+
+    get exportLogsButton() {
+        return ('//span[contains(text(), "Export Logs")]')
+    }
+
+    get openTicketButton() {
+        return ('//span[contains(text(), "Open Ticket")]')
+    }
+
+    get supportDescriptionText() {
+        return ('//div[@class="description"]')
+    }
+
+    get closeModalButton() {
+        return ('//span[@aria-label="close"]')
+    }
 
     async checkIfYouAreOnSupportPage() {
         await this.checkForSupportTitleText()
@@ -19,27 +33,27 @@ class SupportPage extends BasePage.constructor{
 
     }
 
-    async checkForSupportText(){
+    async checkForSupportText() {
         expect(await this.getText(this.supportText))
             .to.equal('Support')
     }
 
-    async checkForExportLogs(){
+    async checkForExportLogs() {
         expect(await this.getText(this.exportLogsButton))
             .to.equal('Export Logs')
     }
 
-    async checkForOpenTicket(){
+    async checkForOpenTicket() {
         expect(await this.getText(this.openTicketButton))
             .to.equal('Open Ticket')
     }
 
-    async checkForSupportTitleText(){
+    async checkForSupportTitleText() {
         expect(await this.getText(this.supportDescriptionText))
             .to.equal(TD.SupportDescription)
     }
 
-    async closeSupportPage(){
+    async closeSupportPage() {
         await this.click(this.closeModalButton)
     }
 

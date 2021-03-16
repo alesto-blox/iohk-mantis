@@ -27,7 +27,7 @@ Feature: Accept terms and conditions
   Scenario Outline: Accept Terms and Conditions
     Given I start Mantis wallet on "<network>"
     When I do not accept Terms and conditions
-    Then I should see an Error Message
+    Then I should see Error Message on TOS
     And I close Mantis Wallet
 
     Examples:
