@@ -1,5 +1,4 @@
 //Receive Transaction Page
-const WAIT = require('../config/appConfig.js').WAIT;
 const expect = require('chai').expect;
 class ReceiveTransactionPage {
 
@@ -8,11 +7,8 @@ class ReceiveTransactionPage {
     get myAddressValue() { return ('.qr-content') }
     get copyAddressButton() { return ('//button[contains(text(), "Copy Address")]')}
 
-    async checkIfYouAreOnReceiveAddressPage(app) {
-        expect(await app.client
-            .waitForVisible(this.yourAddressText, WAIT)
-            .getText(this.yourAddressText)
-        )
+    async checkIfYouAreOnReceiveAddressPage() {
+        expect(await this.getText(this.yourAddressText))
             .to.equal('Your Address')
     }
 

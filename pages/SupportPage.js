@@ -10,50 +10,36 @@ class SupportPage {
     get supportDescriptionText() { return ('//div[@class="description"]')}
     get closeModalButton() { return ('//span[@aria-label="close"]')}
 
-    async checkIfYouAreOnSupportPage(app) {
-        await this.checkForSupportTitleText(app)
-        await this.checkForExportLogs(app)
-        await this.checkForOpenTicket(app)
-        await this.checkForSupportText(app)
+    async checkIfYouAreOnSupportPage() {
+        await this.checkForSupportTitleText()
+        await this.checkForExportLogs()
+        await this.checkForOpenTicket()
+        await this.checkForSupportText()
 
     }
 
-    async checkForSupportText(app){
-        expect(await app.client
-            .waitForVisible(this.supportText, WAIT)
-            .getText(this.supportText)
-        )
+    async checkForSupportText(){
+        expect(await this.getText(this.supportText))
             .to.equal('Support')
     }
 
-    async checkForExportLogs(app){
-        expect(await app.client
-            .waitForVisible(this.exportLogsButton, WAIT)
-            .getText(this.exportLogsButton)
-        )
+    async checkForExportLogs(){
+        expect(await this.getText(this.exportLogsButton))
             .to.equal('Export Logs')
     }
 
-    async checkForOpenTicket(app){
-        expect(await app.client
-            .waitForVisible(this.openTicketButton, WAIT)
-            .getText(this.openTicketButton)
-        )
+    async checkForOpenTicket(){
+        expect(await this.getText(this.openTicketButton))
             .to.equal('Open Ticket')
     }
 
-    async checkForSupportTitleText(app){
-        expect(await app.client
-            .waitForVisible(this.supportDescriptionText,WAIT)
-            .getText(this.supportDescriptionText)
-        )
+    async checkForSupportTitleText(){
+        expect(await this.getText(this.supportDescriptionText))
             .to.equal(TD.SupportDescription)
     }
 
-    async closeSupportPage(app){
-        await app.client
-            .waitForVisible(this.closeModalButton,WAIT)
-            .click(this.closeModalButton)
+    async closeSupportPage(){
+        await this.click(this.closeModalButton)
     }
 
 }

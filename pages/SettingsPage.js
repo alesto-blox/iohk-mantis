@@ -1,10 +1,11 @@
 //Setting Page
-const WAIT = require('../config/appConfig.js').WAIT;
 const expect = require('chai').expect;
 const configFilePath = require('../config/appConfig')[process.env.ENV].APP_CONF_PATH
 const TD = require('../test_data/testData.json')
 const helpers = require('../support/helpers')
-class SettingsPage {
+const BasePage = require('../pages/BasePage.js')
+
+class SettingsPage extends BasePage.constructor{
 
     get mySettingsText() { return ('//div[contains(text(),"My settings")]') }
     get enableDarkModeText() { return ('//div[contains(text(),"Enable Dark")]')}
@@ -40,94 +41,87 @@ class SettingsPage {
     get mantisDataDirectoryText() { return ('//div[text()="Mantis data directory"]')}
     get mantisDataDirectoryValue() { return ('//div[text()="Mantis data directory"]/..//input')}
 
-    async checkIfYouAreOnSettingsPage(app) {
-        expect(await app.client
-            .waitForVisible(this.mySettingsText, WAIT)
-            .getText(this.mySettingsText)
-        )
+    async checkIfYouAreOnSettingsPage() {
+        expect(await this.getText(this.mySettingsText))
             .to.equal('My settings')
     }
 
-    async darkModeToggle(app) {
-        expect(await app.client
-            .waitForVisible(this.enableDarkModeText, WAIT)
-            .getText(this.enableDarkModeText)
-        )
+    async darkModeToggle() {
+        await this.checkDarkModeText()
+        await this.checkDarkModeClass()
+        await this.clickToggleSwitch()
+    }
+
+    async checkDarkModeText(){
+        expect(await this.getText(this.enableDarkModeText))
             .to.equal('Enable Dark Mode')
+    }
 
-        expect(await app.client
-            .getAttribute(this.colorThemeAtribute,'class')
-        )
+    async checkDarkModeClass(){
+        expect(await this.getAttributeClass(this.colorThemeAtribute))
             .to.equal('theme-dark')
-
-        await app.client
-            .waitForVisible(this.enableDarkModeSwitch, WAIT)
-            .click(this.enableDarkModeSwitch)
     }
 
-    async checkColorThemeChanges(app) {
-        expect(await app.client
-            .getAttribute(this.colorThemeAtribute,'class')
-        )
+    async clickToggleSwitch(){
+        await this.click(this.enableDarkModeSwitch)
+    }
+
+    async checkLightModeClass(){
+        expect(await this.getAttributeClass(this.colorThemeAtribute))
             .to.equal('theme-light')
-
-        await app.client
-            .waitForVisible(this.enableDarkModeSwitch, WAIT)
-            .click(this.enableDarkModeSwitch)
     }
 
-    async checkLanguageOptions(app) {
-        expect(await app.client
-            .waitForVisible(this.languageText, WAIT)
-            .getText(this.languageText)
-        )
+    async checkColorThemeChanges() {
+        await this.checkLightModeClass()
+        await this.clickToggleSwitch()
+    }
+
+    async checkLanguageText(){
+        expect(await this.getText(this.languageText))
             .to.equal('Language')
-
-        await this.pickLanguageFormat(app)
     }
 
-    async pickLanguageFormat(app){
+    async checkLanguageOptions() {
+        await this.checkLanguageText()
+        await this.pickLanguageFormat()
+    }
+
+    async clickLanguageDropdown() {
+        await this.click(this.languageDropDown)
+    }
+
+    async pickLanguageFormat(){
         for(let i = 0; i<TD.LanguageFormat.length; i++){
-            await app.client
-                .waitForVisible(this.languageDropDown, WAIT)
-                .click(this.languageDropDown)
-
-            await app.client
-                .waitForVisible('//div[@class="ant-select-item-option-content" and text()="'+TD.LanguageFormat[i]+'"]',WAIT)
-                .click('//div[@class="ant-select-item-option-content" and text()="'+TD.LanguageFormat[i]+'"]')
-
+            await this.clickLanguageDropdown()
+            await this.click('//div[@class="ant-select-item-option-content" and text()="'+TD.LanguageFormat[i]+'"]')
             expect(
                 helpers.readJSONFile(configFilePath).settings.language)
                 .to.equal('en')
         }
     }
 
-    async pickDateFormat(app){
+    async clickDateFormatDropdown(){
+        await this.click(this.dateFormatDropDown)
+    }
+
+    async pickDateFormat(){
         for(let i = 0; i<TD.DateFormat.length; i++){
-                await app.client
-                    .waitForVisible(this.dateFormatDropDown, WAIT)
-                    .click(this.dateFormatDropDown)
-
-                await app.client
-                    .waitForVisible('//div[@class="ant-select-item-option-content" and text()="'+TD.DateFormat[i]+'"]',WAIT)
-                    .click('//div[@class="ant-select-item-option-content" and text()="'+TD.DateFormat[i]+'"]')
-
+            await this.clickDateFormatDropdown()
+            await this.click('//div[@class="ant-select-item-option-content" and text()="'+TD.DateFormat[i]+'"]')
             expect(
                 helpers.readJSONFile(configFilePath).settings.dateFormat)
                 .to.equal(TD.DateFormat[i])
         }
     }
 
-    async pickTimeFormat(app){
+    async clickTimeFormatDropdown(){
+        await this.click(this.timeFormatDropDown)
+    }
+
+    async pickTimeFormat(){
         for(let i = 0; i<TD.TimeFormat.length; i++){
-            await app.client
-                .waitForVisible(this.timeFormatDropDown, WAIT)
-                .click(this.timeFormatDropDown)
-
-            await app.client
-                .waitForVisible('//div[@class="ant-select-item-option-content" and text()="'+TD.TimeFormat[i]+'"]',WAIT)
-                .click('//div[@class="ant-select-item-option-content" and text()="'+TD.TimeFormat[i]+'"]')
-
+            await this.clickTimeFormatDropdown()
+            await this.click('//div[@class="ant-select-item-option-content" and text()="'+TD.TimeFormat[i]+'"]')
             expect(
                 helpers.readJSONFile(configFilePath).settings.timeFormat)
                 .to.equal(TD.TimeFormat[i])
@@ -135,51 +129,62 @@ class SettingsPage {
 
     }
 
-    async checkDateOptions(app) {
-        expect(await app.client
-            .waitForVisible(this.dateFormatText)
-            .getText(this.dateFormatText)
-        )
+    async checkDateFormatText(){
+        expect(await this.getText(this.dateFormatText))
             .to.equal('Date Format')
-
-         await this.pickDateFormat(app)
     }
 
-    async checkTimeOptions(app) {
-        expect(await app.client
-            .waitForVisible(this.timeFormatText)
-            .getText(this.timeFormatText)
-        )
+    async checkDateOptions() {
+        await this.checkDateFormatText()
+        await this.pickDateFormat()
+    }
+
+    async checkTimeFormatText(){
+        expect(await this.getText(this.timeFormatText))
             .to.equal('Time Format')
-
-        await this.pickTimeFormat(app)
     }
 
-    async checkNetworkOptions(network,app) {
+    async checkTimeOptions() {
+        await this.checkTimeFormatText()
+        await this.pickTimeFormat()
+    }
 
-        const selectedNetwork = await app.client
-            .waitForVisible(this.networkDropDown,WAIT)
-            .getText(this.networkDropDown);
+    async clickConfirmButton(){
+        await this.click(this.confirmButton);
+    }
+
+    async getSelectedNetworkText(){
+       return this.getText(this.networkDropDown);
+
+    }
+
+    async clickNetworkDropdown(){
+        await this.click(this.networkDropDown);
+
+    }
+
+    async clickOnNetwork(network){
+        await this.click('//div[@class="ant-select-item-option-content" and contains(text(),"'+network+'")]');
+    }
+
+    async typeNetworkNameIntoField(name){
+        await this.typeText(this.confirmMainnetText, name);
+    }
+
+    async checkNetworkOptions(network) {
+
+        const selectedNetwork = await this.getSelectedNetworkText()
 
         switch (network) {
             case "Sagano Testnet":
                 if (selectedNetwork !== 'Sagano Testnet') {
-                    await app.client
-                        .click(this.networkDropDown);
-
-                    await app.client
-                        .waitForVisible(this.saganoNetwork,WAIT)
-                        .click(this.saganoNetwork);
-
-                    await app.client
-                        .waitForVisible(this.confirmButton,WAIT)
-                        .click(this.confirmButton);
+                    await this.clickNetworkDropdown()
+                    await this.clickOnNetwork("Sagano")
+                    await this.clickConfirmButton()
                 }
 
-                expect(await app.client
-                    .waitForVisible(this.networkDropDown,WAIT)
-                    .getText(this.networkDropDown)
-                ).to.equal(network);
+                expect(await this.getSelectedNetworkText())
+                    .to.equal(network);
 
                 expect(
                     helpers.readJSONFile(configFilePath).networkName)
@@ -189,26 +194,13 @@ class SettingsPage {
 
             case "Mainnet":
                 if (selectedNetwork !== 'Mainnet') {
-                    await app.client
-                        .click(this.networkDropDown);
-
-                    await app.client
-                        .waitForVisible(this.mainnetNetwork,WAIT)
-                        .click(this.mainnetNetwork);
-
-                    await app.client
-                        .waitForVisible(this.confirmMainnetText,WAIT)
-                        .setValue(this.confirmMainnetText, "MAINNET");
-
-                    await app.client
-                        .waitForVisible(this.confirmButton,WAIT)
-                        .click(this.confirmButton);
+                    await this.clickNetworkDropdown()
+                    await this.clickOnNetwork("Mainnet")
+                    await this.typeNetworkNameIntoField( "MAINNET")
+                    await this.clickConfirmButton()
                 }
 
-                expect(await app.client
-                    .waitForVisible(this.networkDropDown,WAIT)
-                    .getText(this.networkDropDown)
-                )
+                expect(await this.getSelectedNetworkText())
                     .to.equal(network);
 
                 expect(
@@ -219,22 +211,13 @@ class SettingsPage {
 
             case "Mordor":
                 if (selectedNetwork !== 'Mordor') {
-                    await app.client
-                        .click(this.networkDropDown);
-
-                    await app.client
-                        .waitForVisible(this.mordorNetwork,WAIT)
-                        .click(this.mordorNetwork);
-
-                    await app.client
-                        .waitForVisible(this.confirmButton,WAIT)
-                        .click(this.confirmButton);
+                    await this.clickNetworkDropdown()
+                    await this.clickOnNetwork("Mordor")
+                    await this.clickConfirmButton()
                 }
 
-                expect(await app.client
-                    .waitForVisible(this.networkDropDown,WAIT)
-                    .getText(this.networkDropDown)
-                ).to.equal(network);
+                expect(await this.getSelectedNetworkText())
+                    .to.equal(network);
 
                 expect(
                     helpers.readJSONFile(configFilePath).networkName)
@@ -244,20 +227,10 @@ class SettingsPage {
 
             case "Custom":
                 if (selectedNetwork !== 'Custom') {
-                    await app.client
-                        .click(this.networkDropDown);
-
-                    await app.client
-                        .waitForVisible(this.customNetwork,WAIT)
-                        .click(this.customNetwork);
-
-                    await app.client
-                        .waitForVisible(this.confirmMainnetText,WAIT)
-                        .setValue(this.confirmMainnetText, "Custom");
-
-                    await app.client
-                        .waitForVisible(this.confirmButton,WAIT)
-                        .click(this.confirmButton);
+                    await this.clickNetworkDropdown()
+                    await this.clickOnNetwork("Custom")
+                    await this.typeNetworkNameIntoField("Custom")
+                    await this.clickConfirmButton()
                 }
 
                 expect(
@@ -268,76 +241,55 @@ class SettingsPage {
         }
     }
 
-    async checkCurrentDirectory(app){
-        expect(await app.client
-            .waitForVisible(this.mantisDataDirectoryText, WAIT)
-            .getText(this.mantisDataDirectoryText)
-        )
+    async checkMantisDataDirectoryText(){
+        expect(await this.getText(this.mantisDataDirectoryText))
             .to.equal('Mantis data directory')
+    }
 
-        const walletDirectory = await app.client
-            .waitForVisible(this.mantisDataDirectoryValue,WAIT)
-            .getValue(this.mantisDataDirectoryValue)
-
+    async checkCurrentDirectory(){
+        await this.checkMantisDataDirectoryText()
+        const walletDirectory = await this.getValue(this.mantisDataDirectoryValue)
         expect(
             helpers.readJSONFile(configFilePath).settings.mantisDatadir)
             .to.equal(walletDirectory)
     }
 
-    async clickOnExportPrivateKey(app){
-        await app.client
-            .waitForVisible(this.exportPrivateKeyButton, WAIT)
-            .click(this.exportPrivateKeyButton)
+    async clickOnExportPrivateKey(){
+        await this.click(this.exportPrivateKeyButton)
     }
 
-    async enterPassword(app,pass){
+    async enterPassword(pass){
         if(pass === "empty"){
-            await app.client
-                .waitForVisible(this.enterYourPasswordField, WAIT)
-                .setValue(this.enterYourPasswordField,"")
+            await this.typeText(this.enterYourPasswordField,"")
         } else {
-             await app.client
-                 .waitForVisible(this.enterYourPasswordField, WAIT)
-                 .setValue(this.enterYourPasswordField,pass)
+             await this.typeText(this.enterYourPasswordField,pass)
         }
     }
 
-    async clickOnUnlockButton(app){
-        await app.client
-            .waitForVisible(this.unlockButton, WAIT)
-            .click(this.unlockButton)
+    async clickOnUnlockButton(){
+        await this.click(this.unlockButton)
     }
 
-    async checkIfYouAreOnExportPrivateKey(app){
-        expect(await app.client
-            .waitForVisible(this.revealPrivateKeyText, WAIT)
-            .getText(this.revealPrivateKeyText)
-        )
+    async checkIfYouAreOnExportPrivateKey(){
+        expect(await this.getText(this.revealPrivateKeyText))
             .to.equal('Reveal Private Key')
     }
 
-    async checkIfPrivateKeyIsBlurred(app, blurred){
-    expect(await app.client
-        .getAttribute(this.blurredPrivateKey,'class')
-    ).to.equal(blurred)
+    async checkIfPrivateKeyIsBlurred(blurred){
+    expect(await this.getAttributeClass(this.blurredPrivateKey))
+        .to.equal(blurred)
     }
 
-    async blurredToggle(app){
-        await app.client
-            .waitForVisible(this.revealPrivateKeyButton, WAIT)
-            .click(this.revealPrivateKeyButton)
+    async blurredToggle(){
+        await this.click(this.revealPrivateKeyButton)
     }
 
-    async clickCloseButton(app) {
-        await app.client
-            .waitForVisible(this.closeButton, WAIT)
-            .click(this.closeButton)
+    async clickCloseButton() {
+        await this.click(this.closeButton)
     }
 
-    async errorMessageDisplayed(app){
-        expect(await app.client
-            .waitForVisible(this.errorMessageText,WAIT)
-            .getText(this.errorMessageText)
+    async errorMessageDisplayed(){
+        expect(await this.getText(this.errorMessageText)
         ).to.equal(TD.PVKIncorrectPassError)
     }
 

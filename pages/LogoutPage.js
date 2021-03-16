@@ -3,8 +3,9 @@ const WAIT = require('../config/appConfig.js').WAIT;
 const helpers = require('../support/helpers.js');
 const TD = require('../test_data/testData.json');
 const expect = require('chai').expect;
+const BasePage = require('../pages/BasePage.js');
 
-class LogoutPage{
+class LogoutPage extends BasePage.constructor{
 
     get logoutButton() {
         return ('//span[contains(text(),"Log out")]')
@@ -50,31 +51,19 @@ class LogoutPage{
         return ('//div[@class="DialogError"]')
     }
 
-    async logout(app) {
+    async logout() {
         await helpers.timeout(5000);
-        await app.client
-            .waitForVisible(this.logoutButton, WAIT)
-            .click(this.logoutButton);
+        await this.click(this.logoutButton)
     }
 
-    async enterPasswordAndCheckCheckbox(app, pass) {
-        await app.client
-            .waitForVisible(this.passwordField, WAIT)
-            .setValue(this.passwordField, pass);
-
-        await app.client
-            .waitForVisible(this.restoreWarningText, WAIT)
-            .click(this.restoreWarningText);
-
-        await app.client
-            .waitForVisible(this.deleteDataWarningText, WAIT)
-            .click(this.deleteDataWarningText);
+    async enterPasswordAndCheckCheckbox(pass) {
+        await this.typeText(this.passwordField, pass)
+        await this.click(this.restoreWarningText)
+        await this.click(this.deleteDataWarningText)
     }
 
-    async removeWallet(app) {
-        await app.client
-            .waitForVisible(this.removeWalletButton, WAIT)
-            .click(this.removeWalletButton);
+    async removeWallet() {
+        await this.click(this.removeWalletButton);
     }
 
     async checkIfLogoutButtonIsDisabled(app) {
@@ -82,42 +71,29 @@ class LogoutPage{
             .to.include('disabled')
     }
 
-    async checkCheckbox(app) {
-        await app.client
-            .waitForVisible(this.restoreWarningText, WAIT)
-            .click(this.restoreWarningText);
-
-        await app.client
-            .waitForVisible(this.deleteDataWarningText, WAIT)
-            .click(this.deleteDataWarningText);
+    async checkCheckbox() {
+        await this.click(this.restoreWarningText);
+        await this.click(this.deleteDataWarningText);
     }
 
-    async invalidPass(app) {
-        expect(await app.client
-            .waitForVisible(this.errorMessageBox, WAIT)
-            .getText(this.errorMessageBox)
+    async invalidPass() {
+        expect(await this.getText(this.errorMessageBox)
         )
             .to.equal(TD.PVKIncorrectPassError);
     }
 
-    async enterPassword(app, pass) {
-        await app.client
-            .waitForVisible(this.passwordField, WAIT)
-            .setValue(this.passwordField, pass);
+    async enterPassword(pass) {
+        await this.typeText(this.passwordField, pass);
     }
 
-    async additionalActionError(app) {
-        expect(await app.client
-            .waitForVisible(this.errorMessageBox, WAIT)
-            .getText(this.errorMessageBox)
+    async additionalActionError() {
+        expect(await this.getText(this.errorMessageBox)
         )
             .to.equal(TD.AdditionalActionError);
     }
 
-    async cancelLogout(app){
-        await app.client
-            .waitForVisible(this.cancelButton, WAIT)
-            .click(this.cancelButton);
+    async cancelLogout(){
+        await this.click(this.cancelButton);
     }
 }
 

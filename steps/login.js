@@ -28,8 +28,8 @@ Given(/^I reset Mantis Wallet config\.json$/, async () => {
 });
 Then(/^I can see details of system$/, async () => {
     await startPage.clickOnShowDetails(app)
-    await statusPage.checkIfYouAreOnStatusPage(app)
-    await statusPage.closeStatusPage(app)
+    await statusPage.checkIfYouAreOnStatusPage()
+    await statusPage.closeStatusPage()
 });
 Given(/^I restore Mantis Wallet on "([^"]*)"$/, async (network) => {
     await helpers.resetMantisConfig(APP_CONF.TEST_CONF_PATH, APP_CONF.APP_CONF_PATH);
