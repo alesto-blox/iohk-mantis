@@ -18,11 +18,20 @@ Feature: Create Mantis Wallet
     And I log out
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |
 
   @RestoreWallet02
   @Smoke
@@ -32,11 +41,20 @@ Feature: Create Mantis Wallet
     And I log out
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |
 
   @RestoreWallet03
   Scenario Outline: Restore Mantis wallet without wallet name
@@ -44,11 +62,20 @@ Feature: Create Mantis Wallet
     Then I enter private key and passwords without the wallet name
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |
 
   @RestoreWallet04
   Scenario Outline: Restore Mantis wallet with empty pvk
@@ -56,11 +83,20 @@ Feature: Create Mantis Wallet
     Then I dont enter private key and I enter passwords and wallet name
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |
 
   @RestoreWallet05
   Scenario Outline: Restore Mantis wallet with incorrect pvk
@@ -68,11 +104,20 @@ Feature: Create Mantis Wallet
     Then I enter passwords wallet name and incorrect PVK
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |
 
   @RestoreWallet06
   Scenario Outline: Restore Mantis wallet - pass validations
@@ -81,6 +126,7 @@ Feature: Create Mantis Wallet
     Then I should see an Error <message>
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        | password | confirmPass | message                                                                         |
       | Sagano Testnet | qwertQ1  | qwertQ1     | Password needs to be at least 8 characters                                      |
@@ -89,18 +135,26 @@ Feature: Create Mantis Wallet
       | Sagano Testnet | qwertyUQ | qwertyUQ    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
       | Sagano Testnet | qwertQ1q | qwertQ1w    | Passwords don't match                                                           |
       | Sagano Testnet | empty    | empty       | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-#      | Mainnet        | qwertQ1  | qwertQ1     | Password needs to be at least 8 characters                                      |
-#      | Mainnet        | qwertyu1 | qwertyu1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-#      | Mainnet        | QWERTYU1 | QWERTYU1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-#      | Mainnet        | qwertyUQ | qwertyUQ    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-#      | Mainnet        | qwertQ1q | qwertQ1w    | Passwords don't match                                                           |
-#      | Mainnet        | empty    | empty       | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-#      | Mordor         | qwertQ1  | qwertQ1     | Password needs to be at least 8 characters                                      |
-#      | Mordor         | qwertyu1 | qwertyu1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-#      | Mordor         | QWERTYU1 | QWERTYU1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-#      | Mordor         | qwertyUQ | qwertyUQ    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
-#      | Mordor         | qwertQ1q | qwertQ1w    | Passwords don't match                                                           |
-#      | Mordor         | empty    | empty       | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+
+    @Mainnet
+    Examples:
+      | network        | password | confirmPass | message                                                                         |
+      | Mainnet        | qwertQ1  | qwertQ1     | Password needs to be at least 8 characters                                      |
+      | Mainnet        | qwertyu1 | qwertyu1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+      | Mainnet        | QWERTYU1 | QWERTYU1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+      | Mainnet        | qwertyUQ | qwertyUQ    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+      | Mainnet        | qwertQ1q | qwertQ1w    | Passwords don't match                                                           |
+      | Mainnet        | empty    | empty       | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+
+    @Mordor
+    Examples:
+      | network        | password | confirmPass | message                                                                         |
+      | Mordor         | qwertQ1  | qwertQ1     | Password needs to be at least 8 characters                                      |
+      | Mordor         | qwertyu1 | qwertyu1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+      | Mordor         | QWERTYU1 | QWERTYU1    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+      | Mordor         | qwertyUQ | qwertyUQ    | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
+      | Mordor         | qwertQ1q | qwertQ1w    | Passwords don't match                                                           |
+      | Mordor         | empty    | empty       | Password needs to have at least 1 uppercase, 1 lowercase and 1 number character |
 
   @RestoreWallet07
   Scenario Outline: Restore Mantis wallet without word phrases
@@ -109,11 +163,20 @@ Feature: Create Mantis Wallet
     When I enter wallet name and passwords without word phrases
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |
 
   @RestoreWallet08
   Scenario Outline: Restore Mantis wallet with word phrases
@@ -121,8 +184,17 @@ Feature: Create Mantis Wallet
     Then I enter wallet name, incorrect recovery phrase and passwords
     #And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |

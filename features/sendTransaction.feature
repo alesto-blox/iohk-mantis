@@ -24,11 +24,20 @@ Feature: Send transaction on Mantis wallet
     Then I log out
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        | address                                    | amount | pass         |
       | Sagano Testnet | 0xec49c61786376007494af082b02fac4adb4e4292 | 0.001  | TestPass123! |
-      #|Mainnet  |
-      #|Mordor   |
+
+#    @Mainnet
+#    Examples:
+#      | network        | address                                    | amount | pass         |
+#      |Mainnet         |                                            |        |              |
+
+#    @Mordor
+#    Examples:
+#      | network        | address                                    | amount | pass         |
+#      |Mordor          |                                            |        |              |
 
   @SendTransaction02
   Scenario Outline: I send with incorrect pass
@@ -44,11 +53,20 @@ Feature: Send transaction on Mantis wallet
     Then I log out
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        | address                                    | amount | pass          |
       | Sagano Testnet | 0xec49c61786376007494af082b02fac4adb4e4292 | 0.001  | TestPass123!1 |
-      #|Mainnet  |
-      #|Mordor   |
+
+#    @Mainnet
+#    Examples:
+#      | network        | address                                    | amount | pass          |
+#      |Mainnet         |                                            |        |               |
+
+#    @Mordor
+#    Examples:
+#      | network        | address                                    | amount | pass          |
+#      |Mordor          |                                            |        |               |
 
   @SendTransaction03
   Scenario Outline: I send without pass
@@ -64,11 +82,20 @@ Feature: Send transaction on Mantis wallet
     Then I log out
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        | address                                    | amount |
       | Sagano Testnet | 0xec49c61786376007494af082b02fac4adb4e4292 | 0.001  |
-      #|Mainnet  |
-      #|Mordor   |
+
+#    @Mainnet
+#    Examples:
+#      | network        | address                                    | amount |
+#      |Mainnet         |                                            |        |
+#
+#    @Mordor
+#    Examples:
+#      | network        | address                                    | amount |
+#      |Mordor          |                                            |        |
 
   @SendTransaction04
   Scenario Outline: I send without address
@@ -82,11 +109,20 @@ Feature: Send transaction on Mantis wallet
     Then I log out
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        | amount |
       | Sagano Testnet | 0.001  |
-      #|Mainnet  |
-      #|Mordor   |
+
+#    @Mainnet
+#    Examples:
+#      | network        | amount |
+#      |Mainnet         |        |
+#
+#    @Mordor
+#    Examples:
+#      | network        | amount |
+#      |Mordor          |        |
 
   @SendTransaction05
   Scenario Outline: I send with invalid address
@@ -101,11 +137,20 @@ Feature: Send transaction on Mantis wallet
     Then I log out
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        | address                                       | amount |
       | Sagano Testnet | 0xec49c61786376007494af082b02fac4adb4e4292154 | 0.001  |
-      #|Mainnet  |
-      #|Mordor   |
+
+#    @Mainnet
+#    Examples:
+#      | network        | address                                       | amount |
+#      |Mainnet         |                                               |        |
+#
+#    @Mordor
+#    Examples:
+#      | network        | address                                       | amount |
+#      |Mordor          |                                               |        |
 
   @SendTransaction06
   Scenario Outline: I send amount 0
@@ -120,11 +165,20 @@ Feature: Send transaction on Mantis wallet
     Then I log out
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        | address                                    | amount |
       | Sagano Testnet | 0xec49c61786376007494af082b02fac4adb4e4292 | 0      |
-      #|Mainnet  |
-      #|Mordor   |
+
+#    @Mainnet
+#    Examples:
+#      | network        | address                                    | amount |
+#      |Mainnet         |                                            |        |
+#
+#    @Mordor
+#    Examples:
+#      | network        | address                                    | amount |
+#      |Mordor          |                                            |        |
 
   @SendTransaction07
   Scenario Outline: I send ETC to another wallet
@@ -139,11 +193,20 @@ Feature: Send transaction on Mantis wallet
     Then I log out
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        | address                                    | amount | pass         | fee     |
       | Sagano Testnet | 0xec49c61786376007494af082b02fac4adb4e4292 | 0.001  | TestPass123! | Fast    |
       | Sagano Testnet | 0xec49c61786376007494af082b02fac4adb4e4292 | 0.001  | TestPass123! | Average |
       | Sagano Testnet | 0xec49c61786376007494af082b02fac4adb4e4292 | 0.001  | TestPass123! | Slow    |
       | Sagano Testnet | 0xec49c61786376007494af082b02fac4adb4e4292 | 0.001  | TestPass123! | Custom  |
-      #|Mainnet  |
-      #|Mordor   |
+
+#    @Mainnet
+#    Examples:
+#      | network        | address                                    | amount | pass         | fee     |
+#      |Mainnet         |                                            |        |              |         |
+#
+#    @Mordor
+#    Examples:
+#      | network        | address                                    | amount | pass         | fee     |
+#      |Mordor          |                                            |        |              |         |

@@ -24,11 +24,20 @@ Feature: Login Mantis Wallet
     Then I should see that I am syncing or connecting to the selected Network "<network>"
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |
 
   @Login02
   Scenario Outline: I can view details
@@ -38,8 +47,17 @@ Feature: Login Mantis Wallet
     Then I should see that I am syncing or connecting to the selected Network "<network>"
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |

@@ -19,11 +19,20 @@ Feature: Settings on Mantis wallet
     Then I log out
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |
 
   @Settings02
   Scenario Outline: I change Mantis Wallet color theme
@@ -34,11 +43,20 @@ Feature: Settings on Mantis wallet
     Then I log out
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |
 
   @Settings03
   Scenario Outline: I can change language, date format and time format
@@ -48,11 +66,20 @@ Feature: Settings on Mantis wallet
     Then I log out
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |
 
   @Settings04
   Scenario Outline: I can change Network
@@ -62,20 +89,33 @@ Feature: Settings on Mantis wallet
     Then I log out
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        | networkChange  |
       | Sagano Testnet | Mainnet        |
       | Sagano Testnet | Mordor         |
       | Sagano Testnet | Custom         |
-#      | Mainnet        | Sagano Testnet |
-#      | Mainnet        | Mordor         |
-#      | Mainnet        | Custom         |
-#      | Mordor         | Sagano Testnet |
-#      | Mordor         | Mainnet        |
-#      | Mordor         | Custom         |
-#      | Custom         | Sagano Testnet |
-#      | Custom         | Mordor         |
-#      | Custom         | Mainnet        |
+
+    @Mainnet
+    Examples:
+      | network        | networkChange  |
+      | Mainnet        | Sagano Testnet |
+      | Mainnet        | Mordor         |
+      | Mainnet        | Custom         |
+
+    @Mordor
+    Examples:
+      | network        | networkChange  |
+      | Mordor         | Sagano Testnet |
+      | Mordor         | Mainnet        |
+      | Mordor         | Custom         |
+
+    @Custom
+    Examples:
+      | network        | networkChange  |
+      | Custom         | Sagano Testnet |
+      | Custom         | Mordor         |
+      | Custom         | Mainnet        |
 
   @Settings05
   Scenario Outline: Check wallet directory
@@ -85,11 +125,20 @@ Feature: Settings on Mantis wallet
     Then I log out
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |
 
   @Settings06
   Scenario Outline: Export private key
@@ -103,11 +152,20 @@ Feature: Settings on Mantis wallet
     Then I log out
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |
 
   @Settings07
   Scenario Outline: Export private key password
@@ -119,11 +177,20 @@ Feature: Settings on Mantis wallet
     Then I log out
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        | password  |
       | Sagano Testnet | Qwerty123 |
       | Sagano Testnet | empty     |
-#      | Mordor         | Qwerty123 |
-#      | Mordor         | empty     |
-#      | Mainnet        | Qwerty123 |
-#      | Mainnet        | empty     |
+
+    @Mordor
+    Examples:
+      | network        | password  |
+      | Mordor         | Qwerty123 |
+      | Mordor         | empty     |
+
+    @Mainnet
+    Examples:
+      | network        | password  |
+      | Mainnet        | Qwerty123 |
+      | Mainnet        | empty     |

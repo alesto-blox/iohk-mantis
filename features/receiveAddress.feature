@@ -19,8 +19,17 @@ Feature: Receive address on Mantis wallet
     Then I expect to see my address on Mantis wallet
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |

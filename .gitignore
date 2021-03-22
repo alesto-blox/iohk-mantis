@@ -2,4 +2,4 @@ screenshots
 node_modules
 .idea
 LOGSDIR_IS_UNDEFINED
-reports
+reports/cucumber-html-report.html

@@ -17,11 +17,20 @@ Feature: Accept terms and conditions
     Then I should see Create new Wallet and Restore Wallet options
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |
 
   @TermsAndConditions02
   Scenario Outline: Accept Terms and Conditions
@@ -30,8 +39,17 @@ Feature: Accept terms and conditions
     Then I should see Error Message on TOS
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |

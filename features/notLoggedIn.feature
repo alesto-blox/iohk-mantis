@@ -18,11 +18,20 @@ Feature: Not Logged in Mantis Wallet
     Then AddressBook should be Unavailable
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |
 
   @NotLoggedIn02
   Scenario Outline:I should not have Transactions
@@ -31,11 +40,20 @@ Feature: Not Logged in Mantis Wallet
     Then I should see Create and Restore options
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |
 
   @NotLoggedIn03
   Scenario Outline:Logout button should be disabled
@@ -43,8 +61,17 @@ Feature: Not Logged in Mantis Wallet
     Then Logout button should be disabled
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |
