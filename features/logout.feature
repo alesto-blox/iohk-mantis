@@ -17,11 +17,20 @@ Feature: Logout Mantis wallet
     Then I log out
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |
 
   @Logout02
   Scenario Outline: Logout Mantis wallet
@@ -30,11 +39,20 @@ Feature: Logout Mantis wallet
     Then I should see invalid key error
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |
 
   @Logout03
   Scenario Outline: Logout Mantis wallet
@@ -43,11 +61,20 @@ Feature: Logout Mantis wallet
     Then I should see Additional Action Error
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |
 
   @Logout04
   Scenario Outline: Logout Mantis wallet
@@ -56,11 +83,20 @@ Feature: Logout Mantis wallet
     Then I should see invalid key error
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |
 
   @Logout05
   Scenario Outline: Logout Mantis wallet
@@ -68,8 +104,17 @@ Feature: Logout Mantis wallet
     When I try to logout and I cancel
     And I close Mantis Wallet
 
+    @Sagano
     Examples:
       | network        |
       | Sagano Testnet |
-#      | Mainnet        |
-#      | Mordor         |
+
+    @Mainnet
+    Examples:
+      | network        |
+      | Mainnet        |
+
+    @Mordor
+    Examples:
+      | network        |
+      | Mordor         |
